@@ -18,8 +18,12 @@ const userSchema = new mongoose.Schema({
     password: {
         type: String,
         required: [true, 'Password is required'],
-        minlength: [4, 'Password must be at leats 4 characters long'],
+        minlength: [8, 'Password must be at leats 8 characters long'],
         //validate: [/^[a-zA-Z0-9]+$/, 'Password can contain only alphanumeric characters']
+    },
+    avatar: {
+        type: String,
+        default: '/static/noAvatar.png'
     },
     posts: [{
         type: mongoose.Schema.Types.ObjectId,
