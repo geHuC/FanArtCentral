@@ -1,4 +1,3 @@
-const { BASE_TITLE } = require('../constants');
 
 //const { auth } = require('../middlewares/authenticationMiddleware');
 
