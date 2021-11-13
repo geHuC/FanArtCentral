@@ -45,7 +45,7 @@ const schema = new mongoose.Schema({
     }
 }, { timestamps: true });
 
-userSchema.pre('save', function (next) {
+schema.pre('save', function (next) {
     if (this.isModified('title')) {
         this.slug = slugify(this.title, { lower: true, strict: true });
     }
