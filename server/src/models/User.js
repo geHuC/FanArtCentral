@@ -27,12 +27,12 @@ const userSchema = new mongoose.Schema({
     },
     posts: [{
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Post',
+        ref: 'Submission',
         default: []
     }],
     favourites: [{
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Post',
+        ref: 'Submission',
         default: []
     }],
     following: [{
