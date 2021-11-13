@@ -10,9 +10,6 @@ const routes = require('./routes')
 //Setup configurations
 require('./configurations/expressConfig')(app, express); //express
 const mongoDbConnection = require('./configurations/mongooseConfig'); //mongoose
-
-console.log(PORT);
-console.log(DB_CONNECTION_STRING);
 //Setup the router
 app.use(routes);
 // app.use(function (req, res) {
