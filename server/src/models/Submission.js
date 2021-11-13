@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const slugify = require('slugify');
 
 const schema = new mongoose.Schema({
     title: {
@@ -8,8 +9,7 @@ const schema = new mongoose.Schema({
     },
     category: {
         type: String,
-        required: [true, 'Keyword is a reqired field'],
-        minlength: [6, 'Keyword must be at leatst 6 characters long']
+        required: [true, 'You have to select a category'],
     },
     imageUrl: {
         type: String,
@@ -26,6 +26,14 @@ const schema = new mongoose.Schema({
         ref: 'User',
         required: true,
     },
+    slug: {
+        type: String,
+        required: true,
+    },
+    tags: [{
+        type: String,
+        default: []
+    }],
     favourites: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
@@ -35,7 +43,14 @@ const schema = new mongoose.Schema({
         type: Boolean,
         default: false
     }
-},{ timestamps: true });
+}, { timestamps: true });
+
+userSchema.pre('save', function (next) {
+    if (this.isModified('title')) {
+        this.slug = slugify(this.title, { lower: true, strict: true });
+    }
+    return next();
+});
 
 const Submission = mongoose.model('Submission', schema);
 
