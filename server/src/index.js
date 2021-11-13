@@ -12,7 +12,7 @@ require('./configurations/expressConfig')(app, express); //express
 const mongoDbConnection = require('./configurations/mongooseConfig'); //mongoose
 
 //Setup the router
-//app.use(routes);
+app.use(routes);
 // app.use(function (req, res) {
 //     res.status(404);
 // });
