@@ -1,16 +1,18 @@
 //Require packages
 const express = require('express');
-
+require('dotenv').config();
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 const DB_CONNECTION_STRING = process.env.DB_CONNECTION_STRING;
-//const routes = require('./routes')
+const routes = require('./routes')
 
 //Setup configurations
 require('./configurations/expressConfig')(app, express); //express
 const mongoDbConnection = require('./configurations/mongooseConfig'); //mongoose
 
+console.log(PORT);
+console.log(DB_CONNECTION_STRING);
 //Setup the router
 app.use(routes);
 // app.use(function (req, res) {
