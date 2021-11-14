@@ -4,4 +4,10 @@
   --font-family: 'Roboto', sans-serif;
 
   --color-bg: #f5f5f5;
+  --color-logo: #17953d;
+  --color-accent: #17953d;
+  --color-logo-text: #f6f6f6;
+  --color-navbar-background: #fff;
+  --color-navbar-search-input: #e2e2e2;
+  --color-navbar-search-text: #1a1a1a;
 }
