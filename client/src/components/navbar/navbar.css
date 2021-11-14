@@ -58,6 +58,8 @@
 .navigation-links p {
     margin: 1rem 0.5rem;
     cursor: pointer;
+    align-items: center;
+    overflow: hidden;
 }
 .navigation-links a {
     text-decoration: none;
