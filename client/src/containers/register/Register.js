@@ -1,10 +1,11 @@
+import RegisterForm from '../../components/registerForm/RegisterForm.js'
 import './register.css'
 
 const Register = () => {
     return (
-        <div>
-            Register
-        </div>
+        <section className="register">
+            <RegisterForm />
+        </section>
     )
 }
 
