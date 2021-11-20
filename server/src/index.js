@@ -1,6 +1,7 @@
 //Require packages
 const express = require('express');
 require('dotenv').config();
+const cors = require('cors');
 
 const app = express();
 const PORT = process.env.PORT || 3030;
@@ -12,6 +13,7 @@ require('./configurations/expressConfig')(app, express); //express
 const mongoDbConnection = require('./configurations/mongooseConfig'); //mongoose
 
 //Setup the router
+app.use(cors());
 app.use(routes);
 // app.use(function (req, res) {
 //     res.status(404);
