@@ -1,10 +1,21 @@
-* {
+*,*::after, *::before {
     box-sizing: border-box;
     padding: 0;
     margin: 0;
     scroll-behavior: smooth;
 }
-
+html {
+    overflow-y: scroll;
+}
 body {
     background: var(--color-bg);
+}
+
+.container{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    max-width: 1200px;
 }
