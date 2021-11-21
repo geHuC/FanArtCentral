@@ -1,6 +1,88 @@
-.submission-card{
-    border: 2px solid red;
-    height: 300px;
-    width: 200px;
+.submission-card {
     margin: 0.25rem 0.25rem;
+    height: 15rem;
+    overflow: hidden;
+    position: relative;
+    transition: all .5s ease-in;
+    cursor: pointer;
+}
+
+.submission-card-img>img {
+    height: 15rem;
+    width: auto;
+    object-fit: cover;
+}
+
+.submission-card-overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    visibility: none;
+    transition: .5s ease;
+    background: rgb(57, 56, 57);
+    background: linear-gradient(0deg, rgba(57, 56, 57, 1) 35%, rgba(57, 56, 57, 0) 100%, rgba(57, 56, 57, 0) 100%);
+
+    display: flex;
+}
+
+.submission-card-left {
+    flex: 4;
+    padding: 0.5rem;
+    display: flex;
+    overflow: hidden;
+}
+
+.submisssion-card-right {
+    flex: 1;
+    padding: 0.5rem;
+    display: flex;
+}
+
+.submission-card-left-container {
+    align-self: flex-end;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.submission-card-right-container {
+    align-self: flex-end;
+    display: flex;
+    flex-direction: column;
+}
+
+.submission-card-title {
+    width: inherit;
+    color: white;
+    font-size: 1.5rem;
+    font-style: bold;
+    padding-bottom: 0.5rem;
+    text-overflow: ellipsis;
+
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.submission-card-user>img {
+    object-fit: cover;
+    width: 2rem;
+    height: 2rem;
+    padding-right: 0.5rem;
+}
+.submission-card-name{
+    color: white;
+    font-style: bold;
+}
+.submission-card-user{
+    display: flex;
+    align-items: center;
+}
+
+.submission-card:hover .submission-card-overlay {
+    opacity: .9;
 }
