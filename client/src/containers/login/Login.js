@@ -1,10 +1,11 @@
+import LoginForm from '../../components/loginForm/LoginForm.js'
 import './login.css'
 
 const Login = () => {
     return (
-        <div>
-            Login
-        </div>
+        <section className="login">
+            <LoginForm />
+        </section>
     )
 }
 

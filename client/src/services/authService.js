@@ -8,5 +8,9 @@ const register = (data) => {
     return api.post('/register', data);
 }
 
-const Auth = {register}
-export default Auth
+const login = (data) => {
+    return api.post('/login', data);
+}
+
+const authService = {register, login}
+export default authService
