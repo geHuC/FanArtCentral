@@ -1,8 +1,10 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
+import UserContext from '../../context/UserContext.js'
 import './navbar.css'
 
 const Navbar = () => {
+    const { state: { isAuthenticated }, dispatch } = useContext(UserContext);
     return (
         <div className="navigation">
             <div className="navigation-container">
@@ -19,9 +21,15 @@ const Navbar = () => {
                     </div>
                 </div>
                 <div className="navigation-links">
-                    <p><Link to="/create">Submit</Link></p>
-                    <p><Link to="/login">Sign in</Link></p>
-                    <p><Link to="/register">Sign up</Link></p>
+                    {isAuthenticated
+                        ? <>
+                            <p><Link to="/create">Submit</Link></p>
+                            <p><button onClick={() => { dispatch({ type: 'LOGOUT' }) }}>Logout</button></p>
+                        </>
+                        : <>
+                            <p><Link to="/login">Sign in</Link></p>
+                            <p><Link to="/register">Sign up</Link></p>
+                        </>}
                 </div>
             </div>
         </div>
