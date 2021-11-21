@@ -22,10 +22,12 @@ const login = async (userData) => {
     //TODO: create token
     let payload = {
         _id: user._id,
+        isAdmin: user.isAdmin,
         username: user.username,
     };
 
-    return jwt.sign(payload, JWT_TOKEN_SECRET);
+    let token = await jwt.sign(payload, JWT_TOKEN_SECRET);
+    return {token, user: {username: user.username, isAdmin: user.isAdmin}}
 }
 
 const register = async (userData) => {

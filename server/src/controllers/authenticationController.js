@@ -8,7 +8,7 @@ router.post('/login', async (req, res) => {
     const { username, password } = req.body; //Cange according to what is needed for login
     try {
         let token = await auth.login({ username, password });
-        return res.status(200).json({token});
+        return res.status(200).json(token);
     } catch (err) {
         let error = parseError(err).join(', ');
         return res.status(400).json(error);
@@ -23,7 +23,7 @@ router.post('/register', async (req, res) => {
     try {
         let user = await auth.register({ email, username, password, repeatPassword });
         let token = await auth.login({ email, username, password });
-        return res.status(201).json({token});
+        return res.status(201).json(token);
     } catch (err) {
         error = parseError(err);
         return res.status(400).json(error);
