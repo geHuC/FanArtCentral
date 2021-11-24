@@ -1,7 +1,9 @@
 .navigation {
     background-color: var(--color-navbar-background);
-    box-shadow: 0px 3px 3px -3px rgba(0,0,0,0.1);
+    box-shadow: 0px 3px 3px -3px rgba(0, 0, 0, 0.1);
     position: sticky;
+    top: 0;
+    z-index: 9999;
 }
 
 .navigation-container {
@@ -15,9 +17,10 @@
 }
 
 .navigation-search {
-    margin-right: 2rem;
+    margin-right: 1rem;
+    margin-left: 8rem;
     height: 2rem;
-    width: 33%;
+    flex-grow: 1;
 }
 
 .navigation-search-input {
@@ -62,9 +65,11 @@
     align-items: center;
     overflow: hidden;
 }
+
 .navigation-links a {
     text-decoration: none;
 }
+
 .navigation-logo {
     position: absolute;
     left: 0;
