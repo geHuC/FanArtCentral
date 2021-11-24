@@ -1,6 +1,6 @@
 .form-input input {
     padding: 1rem;
-    margin-top: 0.75rem;
+    margin-top: 0.25rem;
     border: none;
     outline: none;
 }
@@ -23,6 +23,9 @@
 }
 .form-input input:invalid[focused="true"]{
     border-left: 2px solid red;
+}
+.form-input input:valid{
+    border-left: 2px solid var(--color-accent);
 }
 .form-input input:invalid[focused="true"] ~ span{
     display: block;
