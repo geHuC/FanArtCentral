@@ -3,14 +3,14 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 400px;
+    width: 100%;
 }
 .register-form button{
     padding: 0.50rem;
     width: 100%;
     text-transform: uppercase;
     margin-top: 2rem;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
     border: none;
     background: var(--color-logo);
     color: var(--color-logo-text);
