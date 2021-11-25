@@ -4,9 +4,9 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Register from './containers/register/Register.js';
 import Login from './containers/login/Login.js';
 import Home from './containers/home/Home.js';
-import Create from './containers/create/Create.js';
 import UserContext from './context/UserContext.js';
 import { useEffect, useReducer } from 'react';
+import Submit from './containers/submit/Submit.js';
 
 const initialState = {
   isAuthenticated: false,
@@ -69,7 +69,7 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route path="/register" element={<Register />} />
               <Route path="/login" element={<Login />} />
-              <Route path="/create" element={<Create />} />
+              <Route path="/submit" element={<Submit />} />
             </Routes>
           </div>
         </UserContext.Provider>

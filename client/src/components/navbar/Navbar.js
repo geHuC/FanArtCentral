@@ -23,7 +23,7 @@ const Navbar = () => {
                 <div className="navigation-links">
                     {isAuthenticated
                         ? <>
-                            <p><Link to="/create">Submit</Link></p>
+                            <p><Link to="/submit">Submit</Link></p>
                             <p><button onClick={() => { dispatch({ type: 'LOGOUT' }) }}>Logout</button></p>
                         </>
                         : <>
