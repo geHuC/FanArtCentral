@@ -11,10 +11,12 @@ const routes = require('./routes')
 //Setup configurations
 require('./configurations/expressConfig')(app, express); //express
 const mongoDbConnection = require('./configurations/mongooseConfig'); //mongoose
+const { urlencoded } = require('express');
 
 //Setup the router
 app.use(cors());
 app.use(routes);
+app.use(urlencoded);
 // app.use(function (req, res) {
 //     res.status(404);
 // });
