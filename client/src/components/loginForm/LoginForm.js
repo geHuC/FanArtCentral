@@ -3,11 +3,11 @@ import UserContext from '../../context/UserContext.js';
 import authService from '../../services/authService.js';
 import FormInput from '../formInput/FormInput.js';
 import './loginForm.css';
-import { Navigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const LoginForm = () => {
     const { dispatch } = useContext(UserContext);
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const navigate = useNavigate();
     const [values, setValues] = useState({
         username: "",
         password: "",
@@ -37,7 +37,7 @@ const LoginForm = () => {
         authService.login(values)
             .then(data => {
                 dispatch({ type: 'LOGIN', payload: data.data })
-                setIsLoggedIn(true);
+                navigate('/');
             })
             .catch(err => console.log(err));
     }
@@ -46,7 +46,6 @@ const LoginForm = () => {
         setValues({ ...values, [e.target.name]: e.target.value });
     }
 
-    if (isLoggedIn) return <Navigate to="/" />;
     return (
         <form className="login-form" onSubmit={submitHandler}>
             {inputs.map(input => <FormInput key={input.name} {...input} value={values[input.name]} onChange={onChange} />)}

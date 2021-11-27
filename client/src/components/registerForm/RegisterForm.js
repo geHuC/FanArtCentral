@@ -1,12 +1,12 @@
 import { useContext, useState } from 'react'
-import { Navigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import FormInput from '../formInput/FormInput.js'
 import './registerForm.css'
 import authService from '../../services/authService.js'
 import UserContext from '../../context/UserContext.js'
 
 const RegisterForm = () => {
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const navigate = useNavigate();
     const { dispatch } = useContext(UserContext);
     const [values, setValues] = useState({
         username: "",
@@ -57,25 +57,25 @@ const RegisterForm = () => {
             errorMessage: 'Passwords do not match',
             pattern: values.password,
             required: true,
-            lastField:true,
+            lastField: true,
         }
     ];
 
     const submitHandler = (e) => {
         e.preventDefault();
+        console.log('called');
         authService.register(values)
             .then(data => {
                 dispatch({ type: 'LOGIN', payload: data.data });
-                setIsLoggedIn(true);
+                navigate('/');
             })
-            .catch(err => console.log(err.response.data));
+            .catch(err => console.log(err));
     }
 
     const onChange = (e) => {
         setValues({ ...values, [e.target.name]: e.target.value });
     }
-    
-    if (isLoggedIn) return <Navigate to="/" />;
+
     return (
         <form className="register-form" onSubmit={submitHandler}>
             {inputs.map(input => <FormInput key={input.name} {...input} value={values[input.name]} onChange={onChange} />)}
