@@ -15,6 +15,10 @@ const schema = new mongoose.Schema({
         type: String,
         required: [true, 'Image is reqired'],
     },
+    thumbUrl: {
+        type: String,
+        required: [true, 'Image is reqired'],
+    },
     description: {
         type: String,
         required: [true, 'Description is a reqired field'],
@@ -45,12 +49,14 @@ const schema = new mongoose.Schema({
     }
 }, { timestamps: true });
 
-schema.pre('save', function (next) {
-    if (this.isModified('title')) {
-        this.slug = slugify(this.title, { lower: true, strict: true });
-    }
-    return next();
-});
+// schema.pre('save', function (next) {
+//     console.log('called');
+//     if (this.isModified('title')) {
+//         console.log('called');
+//         this.slug = slugify(this.title, { lower: true, strict: true });
+//     }
+//     return next();
+// });
 
 const Submission = mongoose.model('Submission', schema);
 
