@@ -3,8 +3,9 @@ const { default: slugify } = require('slugify');
 const upload = require('../configurations/multerConfig.js');
 const imageThumbnail = require('image-thumbnail');
 const submissionService = require('../services/submissionService.js');
+const {isUser} = require('../middlewares/routeGuardMiddleware.js')
 const fbService = require('../services/firebaseService.js');
-
+const sizeOf = require('image-size')
 
 router.get('/', async (req, res) => {
 
@@ -16,22 +17,25 @@ router.get('/', async (req, res) => {
     }
 })
 
-router.post('/', upload.single('image'), async (req, res) => {
+router.post('/', isUser, upload.single('image'),  async (req, res) => {
     try {
         let count = await submissionService.getCount();
-        req.body.author = '618fe42a2776e1a7faa65b5b';
-
+        req.body.author = req.user._id;
         req.body.slug = slugify(req.body.title, { lower: true, strict: true, trim: true }) + `-${count + 1}`;
 
         const thumbnail = await imageThumbnail(req.file.buffer, { height: 300 });
+        const dimensions = sizeOf(thumbnail);
 
-        const fileName = `${req.body.slug}.jpg`
-        const thumbName = `${req.body.slug}_thumb.jpg`
-        await fbService.file(`art/${fileName}`).createWriteStream().end(req.file.buffer);
-        await fbService.file(`thumbs/${thumbName}`).createWriteStream().end(thumbnail);
+        const fileName = `${req.body.slug}.${dimensions.type}`;
+        const thumbName = `${req.body.slug}_thumb.${dimensions.type}`;
+
+        await fbService.file(`art/${req.user.username}/${fileName}`).createWriteStream().end(req.file.buffer);
+        await fbService.file(`thumbs/${req.user.username}/${thumbName}`).createWriteStream().end(thumbnail);
         
-        req.body.imageUrl = `https://firebasestorage.googleapis.com/v0/b/fanart-central.appspot.com/o/art%2F${fileName}?alt=media`;
-        req.body.thumbUrl = `https://firebasestorage.googleapis.com/v0/b/fanart-central.appspot.com/o/thumb%2F${thumbName}?alt=media`;
+        req.body.thumbWidth = dimensions.width;
+        req.body.imageUrl = `https://firebasestorage.googleapis.com/v0/b/fanart-central.appspot.com/o/art%2F${req.user.username}%2F${fileName}?alt=media`;
+        req.body.thumbUrl = `https://firebasestorage.googleapis.com/v0/b/fanart-central.appspot.com/o/thumb%2F${req.user.username}%2F${thumbName}?alt=media`;
+
         const sub = await submissionService.create(req.body);
         res.status(201).json(sub)
     } catch (error) {

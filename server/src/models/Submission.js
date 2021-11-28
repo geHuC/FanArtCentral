@@ -19,6 +19,9 @@ const schema = new mongoose.Schema({
         type: String,
         required: [true, 'Image is reqired'],
     },
+    thumbWidth: {
+        type: Number,
+    },
     description: {
         type: String,
         required: [true, 'Description is a reqired field'],
