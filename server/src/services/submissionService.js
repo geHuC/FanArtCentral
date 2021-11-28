@@ -4,11 +4,12 @@ const create = async (data) => {
     return Submission.create(data);
 }
 
-const getAll = async (sortParams) => {
-    if (!sortParams) {
-        return Submission.find({}).lean();
-    }
-    return Submission.find({}).sort(sortParams).lean();
+const getCount = async () => {
+    return Submission.count({});
+}
+
+const getAll = async (sortParams = {createdAt: 'desc'}, skip = 0, pagesize = 20) => {
+    return Submission.find().sort(sortParams).skip(skip).limit(pagesize).lean();
 }
 
 const getOne = async (id) => {
@@ -62,5 +63,6 @@ module.exports = {
     updateOne,
     pushToField,
     upvote,
-    downvote
+    downvote,
+    getCount
 }
