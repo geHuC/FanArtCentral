@@ -5,7 +5,7 @@ const schema = new mongoose.Schema({
     title: {
         type: String,
         required: [true, 'Title is a reqired field'],
-        minlength: [6, 'Title must be at leatst 6 characters long']
+        minlength: [3, 'Title must be at leatst 3 characters long']
     },
     category: {
         type: String,
@@ -21,6 +21,10 @@ const schema = new mongoose.Schema({
     },
     thumbWidth: {
         type: Number,
+    },
+    views: {
+        type: Number,
+        default: 0,
     },
     description: {
         type: String,
