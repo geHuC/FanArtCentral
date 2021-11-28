@@ -8,14 +8,16 @@ const getCount = async () => {
     return Submission.count({});
 }
 
-const getAll = async (sortParams = {createdAt: 'desc'}, skip = 0, pagesize = 20) => {
+const getAll = async (sortParams = { createdAt: 'desc' }, skip = 0, pagesize = 20) => {
     return Submission.find().sort(sortParams).skip(skip).limit(pagesize).lean();
 }
 
-const getOne = async (id) => {
-    return Submission.findById(id).lean();
+const getOne = async (slug) => {
+    return await Submission.findOne({ slug: slug }).populate('author').lean();
 }
-
+const updateViews = async (id) => {
+    return Submission.findOneAndUpdate({ _id: id }, { $inc: { views: 1 } });
+}
 const deleteOne = async (id, ownerId) => {
     return Submission.findOneAndDelete({ _id: id, author: ownerId });
 }
@@ -25,7 +27,7 @@ const updateOne = async (id, ownerId, data) => {
 
 const pushToField = async (id, userId, fieldName) => {
     const item = await Submission.findById(id);
-    if(item[fieldName].some(x => x._id == userId)){
+    if (item[fieldName].some(x => x._id == userId)) {
         throw new Error('Already booked in this hotel');
     }
     item[fieldName].push(userId);
@@ -33,10 +35,10 @@ const pushToField = async (id, userId, fieldName) => {
 }
 const upvote = async (id, userId, fieldName) => {
     const item = await Submission.findById(id);
-    if(item.author == userId){
+    if (item.author == userId) {
         throw new Error('Cannot vote on your post')
     }
-    if(item[fieldName].some(x => x._id == userId)){
+    if (item[fieldName].some(x => x._id == userId)) {
         throw new Error('Already voted on this post');
     }
     item[fieldName].push(userId);
@@ -45,10 +47,10 @@ const upvote = async (id, userId, fieldName) => {
 }
 const downvote = async (id, userId, fieldName) => {
     const item = await Submission.findById(id);
-    if(item.author == userId){
+    if (item.author == userId) {
         throw new Error('Cannot vote on your post')
     }
-    if(item[fieldName].some(x => x._id == userId)){
+    if (item[fieldName].some(x => x._id == userId)) {
         throw new Error('Already voted on this post');
     }
     item[fieldName].push(userId);
@@ -64,5 +66,6 @@ module.exports = {
     pushToField,
     upvote,
     downvote,
-    getCount
+    getCount,
+    updateViews
 }
