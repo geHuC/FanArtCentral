@@ -7,6 +7,7 @@ import Home from './containers/home/Home.js';
 import UserContext from './context/UserContext.js';
 import { useEffect, useReducer } from 'react';
 import Submit from './containers/submit/Submit.js';
+import Details from './containers/details/Details.js';
 
 const initialState = {
   isAuthenticated: false,
@@ -70,6 +71,7 @@ function App() {
               <Route path="/register" element={<Register />} />
               <Route path="/login" element={<Login />} />
               <Route path="/submit" element={<Submit />} />
+              <Route path="/:author/art/:slug" element ={<Details />} />
             </Routes>
           </div>
         </UserContext.Provider>
