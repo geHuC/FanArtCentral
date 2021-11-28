@@ -25,7 +25,7 @@ const userSchema = new mongoose.Schema({
         type: String,
         default: '/static/noAvatar.png'
     },
-    posts: [{
+    submissions: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Submission',
         default: []
