@@ -1,0 +1,43 @@
+.tag-input-container {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 0.25rem;
+    padding-left: 0.25rem;
+    border: none;
+    outline: none;
+    background: var(--color-navbar-search-input);
+}
+
+.tag-label{
+    display: block;
+    margin-top: 1rem;
+}
+
+.tag-input-container>input {
+    padding: 1rem;
+    margin-top: 0.25rem;
+    border: none;
+    outline: none;
+    background: var(--color-navbar-search-input);
+}
+
+.input-tag {
+    display: flex;
+    align-items: center;
+    margin: 0.5rem 0;
+    margin-right: 0.25rem;
+    padding: 0 0.5rem;
+    padding-right: 0.25rem;
+    background-color: var(--color-accent);
+    white-space: nowrap;
+    color: var(--color-logo-text);
+}
+
+.input-tag>button {
+    display: flex;
+    padding: 0.25rem;
+    border: none;
+    background-color: unset;
+    cursor: pointer;
+    color: var(--color-logo-text);
+}
