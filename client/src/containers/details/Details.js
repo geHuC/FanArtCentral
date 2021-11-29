@@ -1,7 +1,8 @@
 import axios from 'axios';
 import { useState, useEffect } from 'react';
-import { Link, useParams } from 'react-router-dom'
-import { AiFillEye, AiOutlineStar } from 'react-icons/ai'
+import { Link, useParams } from 'react-router-dom';
+import { AiFillEye, AiOutlineStar } from 'react-icons/ai';
+import TimeAgo from 'timeago-react';
 import './details.css'
 
 const Details = () => {
@@ -21,42 +22,45 @@ const Details = () => {
             <div className="image-container">
                 <img src={data.imageUrl} alt="fanart" />
             </div>
-            <div className="submission-info">
-                <div className="submission-info-left">
-                    <div className="submission-avatar">
-                        <img src={data?.author?.avatarUrl} alt="avatar" />
-                    </div>
-                    <div className="submission-info-left-container">
-                        <div className="submission-info-title">
-                            <h2>{data.title}</h2>
+            <div className="submission-details-container">
+                <div className="submission-info">
+                    <div className="submission-info-left">
+                        <div className="submission-avatar">
+                            <img src={data?.author?.avatarUrl} alt="avatar" />
                         </div>
-                        <div className="submission-info-username">
-                            <span>by </span>
-                            <Link to={`/${data.author?.username}`}>{data.author?.username}</Link>
-                            <button>Follow</button>
+                        <div className="submission-info-left-container">
+                            <div className="submission-info-title">
+                                <h2>{data.title}</h2>
+                            </div>
+                            <div className="submission-info-username">
+                                <span>by </span>
+                                <Link to={`/${data.author?.username}`}>{data.author?.username}</Link>
+                                <button> + Follow</button>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <div className="submission-info-right">
-                    <span>{data.createdAt}</span>
+                    <div className="submission-info-right">
+                        <p>Published: </p>
+                        <TimeAgo datetime={data.createdAt} />
+                    </div>
                 </div>
-            </div>
-            <div className="submission-statistics">
-                <div className="submission-statitstics-favourites">
-                    <AiOutlineStar />
-                    <span>{data.favourites?.length}</span>
+                <div className="submission-statistics">
+                    <div className="submission-statitstics-favourites">
+                        <AiOutlineStar />
+                        <span>{data.favourites?.length} Favourites</span>
+                    </div>
+                    <div className="submission-statitstics-views">
+                        <AiFillEye />
+                        <span>{data.views} Views</span>
+                    </div>
                 </div>
-                <div className="submission-statitstics-views">
-                    <AiFillEye />
-                    <span>{data.views}</span>
+                <div className="submission-tags">
+                    {data.tags.map(x => <Link to={`/tags/${x}`} key={x}>{x}</Link>)}
                 </div>
-            </div>
-            <div className="submission-tags">
-                {data.tags.map(x => <Link to={`/tags/${x}`}>{x}</Link>)}
-            </div>
-            <div className="submission-description">
-                <p>{data.description}</p>
+                <div className="submission-description">
+                    <p>{data.description}</p>
+                </div>
             </div>
         </section>
     )
