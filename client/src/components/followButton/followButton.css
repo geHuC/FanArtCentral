@@ -1,0 +1,16 @@
+.follow-button-not-following{
+    color: var(--color-accent);
+}
+
+.follow-button-following{
+    color: var(--color-text-light);
+}
+
+.follow-button{
+    text-decoration: none;
+    margin-left: 0.5rem;
+    border: none;
+    background: none;
+    font-weight: bold;
+    cursor: pointer;
+}

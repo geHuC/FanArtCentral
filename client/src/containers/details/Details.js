@@ -4,6 +4,8 @@ import { Link, useParams } from 'react-router-dom';
 import { AiFillEye, AiOutlineStar } from 'react-icons/ai';
 import TimeAgo from 'timeago-react';
 import './details.css'
+import AuthorControls from '../../components/authorControls/AuthorControls.js';
+import FollowButton from '../../components/followButton/FollowButton.js';
 
 const Details = () => {
     let { author, slug } = useParams();
@@ -35,7 +37,8 @@ const Details = () => {
                             <div className="submission-info-username">
                                 <span>by </span>
                                 <Link to={`/${data.author?.username}`}>{data.author?.username}</Link>
-                                <button> + Follow</button>
+                                <FollowButton followers={data.author.followers}/>
+                                <AuthorControls />
                             </div>
                         </div>
                     </div>

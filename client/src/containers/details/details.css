@@ -91,15 +91,7 @@
     color: var(--color-text-light);
     font-weight: bold;
 }
-.submission-info-username button{
-    text-decoration: none;
-    margin-left: 0.5rem;
-    border: none;
-    background: none;
-    color: var(--color-accent);
-    font-weight: bold;
-    cursor: pointer;
-}
+
 .submission-avatar img{
     object-fit: cover;
     width: 2.5rem;
