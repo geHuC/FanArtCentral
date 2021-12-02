@@ -1,6 +1,9 @@
 .follow-button-not-following{
     color: var(--color-accent);
 }
+.wait{
+    cursor: wait;
+}
 
 .follow-button-following{
     color: var(--color-text-light);
