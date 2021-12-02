@@ -21,7 +21,7 @@ router.get('/', async (req, res) => {
 router.get('/:slug', async (req, res) => {
     try {
         const submission = await submissionService.getOne(req.params.slug);
-        submission.author = {username: submission.author.username, avatarUrl: submission.author.avatar};
+        submission.author = {username: submission.author.username, avatarUrl: submission.author.avatar, followers: submission.author.followers};
         submissionService.updateViews(submission._id);
         res.status(200).json(submission);
     } catch (error) {
