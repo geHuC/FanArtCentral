@@ -8,6 +8,7 @@ import UserContext from './context/UserContext.js';
 import { useEffect, useReducer } from 'react';
 import Submit from './containers/submit/Submit.js';
 import Details from './containers/details/Details.js';
+import submissionService from './services/submissionService.js';
 
 const initialState = {
   isAuthenticated: false,
@@ -19,6 +20,7 @@ const reducer = (state, action) => {
     case "LOGIN":
       localStorage.setItem("user", JSON.stringify(action.payload.user));
       localStorage.setItem("token", action.payload.token);
+      submissionService.setUp(action.payload.token)
       return {
         ...state,
         isAuthenticated: true,
@@ -26,6 +28,7 @@ const reducer = (state, action) => {
         token: action.payload.token
       };
     case "LOGOUT":
+      submissionService.clearToken();
       localStorage.clear();
       return {
         ...state,
@@ -33,6 +36,7 @@ const reducer = (state, action) => {
         user: null
       };
     case "STORAGE-LOAD":
+      submissionService.setUp(action.payload.token)
       return {
         ...state,
         isAuthenticated: action.payload.isAuthenticated,

@@ -1,10 +1,10 @@
-import axios from 'axios';
-import {useNavigate} from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useContext, useState } from 'react';
 import FormInput from '../../components/formInput/FormInput.js'
 import TagInput from '../../components/tagInput/TagInput.js';
 import UserContext from '../../context/UserContext.js';
 import './submit.css'
+import submissionService from '../../services/submissionService.js';
 
 const Submit = () => {
     const { state } = useContext(UserContext);
@@ -14,14 +14,9 @@ const Submit = () => {
         e.preventDefault();
         let formData = new FormData(e.currentTarget);
         formData.append('tags', JSON.stringify(tags));
-        axios.post('http://localhost:3030/api/v1/submissions', formData, {
-            headers: {
-                "Content-Type": "multipart/form-data",
-                "X-Authorization": state.token
-            },
-        })
-        .then(data => navigate(`/${state.user.username}/art/${data.data.slug}`))
-        .catch(err => console.log(err));
+        submissionService.create(formData)
+            .then(data => navigate(`/${state.user.username}/art/${data.data.slug}`))
+            .catch(err => console.log(err));
     }
 
     return (
@@ -61,7 +56,7 @@ const Submit = () => {
                     required={true}
                     accept="image/png, image/jpeg, image/jpg"
                 />
-                <button type ="submit">Submit</button>
+                <button type="submit">Submit</button>
             </form>
         </div>
     )
