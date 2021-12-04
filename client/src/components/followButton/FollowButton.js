@@ -26,7 +26,6 @@ const FollowButton = ({ author }) => {
     const followHandler = (e) => {
         e.preventDefault()
         setWaiting(true);
-        console.log(token);
         axios.get(`http://localhost:3030/api/v1/users/follow/${author.username}`, {
             headers: {
                 'X-Authorization': token
@@ -38,7 +37,6 @@ const FollowButton = ({ author }) => {
     const unfollowHandler = (e) => {
         e.preventDefault()
         setWaiting(true);
-        console.log(token);
         axios.get(`http://localhost:3030/api/v1/users/unfollow/${author.username}`, {
             headers: {
                 'X-Authorization': token
