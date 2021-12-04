@@ -27,7 +27,7 @@ const login = async (userData) => {
     };
 
     let token = await jwt.sign(payload, JWT_TOKEN_SECRET);
-    return {token, user: {username: user.username, isAdmin: user.isAdmin, _id:user._id}}
+    return {token, user: {username: user.username, isAdmin: user.isAdmin, _id:user._id, avatar: user.avatar}}
 }
 
 const register = async (userData) => {

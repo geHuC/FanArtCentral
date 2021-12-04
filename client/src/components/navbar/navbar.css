@@ -57,9 +57,10 @@
 
 .navigation-links {
     display: flex;
+    justify-content: center;
 }
 
-.navigation-links p {
+.navigation-links>p {
     margin: 1rem 0.5rem;
     cursor: pointer;
     align-items: center;

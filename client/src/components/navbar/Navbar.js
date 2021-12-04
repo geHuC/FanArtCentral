@@ -1,6 +1,7 @@
 import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
 import UserContext from '../../context/UserContext.js'
+import UserDropDown from '../userDropDown/UserDropDown.js'
 import './navbar.css'
 
 const Navbar = () => {
@@ -23,8 +24,10 @@ const Navbar = () => {
                 <div className="navigation-links">
                     {isAuthenticated
                         ? <>
+                            <p><Link to="/feed">Feed</Link></p>
                             <p><Link to="/submit">Submit</Link></p>
-                            <p><button onClick={() => { dispatch({ type: 'LOGOUT' }) }}>Logout</button></p>
+                            <UserDropDown />
+                            
                         </>
                         : <>
                             <p><Link to="/login">Sign in</Link></p>
