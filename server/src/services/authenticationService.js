@@ -31,23 +31,28 @@ const login = async (userData) => {
 }
 
 const register = async (userData) => {
-    let { email, username, password, repeatPassword } = userData;
+    let { email, username, password, repeatPassword, fullname } = userData;
     if (email) email = email.trim();
     if (username) username = username.trim();
     if (password) password = password.trim();
     if (repeatPassword) repeatPassword = repeatPassword.trim();
+    if (fullname) fullname = fullname.trim();
 
+    let errorObject =  {}
     //Check if user already exists
     const emailPattern = new RegExp(`^${email}$`, 'i');
     let userByEmail = await User.findOne({ email: { $regex: emailPattern } });
-    if (userByEmail) throw new Error('Email already in use');
+    if (userByEmail) errorObject.email ='Email already in use';
 
     const usernamePattern = new RegExp(`^${username}$`, 'i');
     let userByUserName = await User.findOne({ username: { $regex: usernamePattern } });
-    if (userByUserName) throw new Error('Username already in use');
+    if (userByUserName) errorObject.username='Username already in use';
 
-    if (password !== repeatPassword) throw new Error('Passwords do not match');
-    return User.create({ username, email, password });
+    if (password !== repeatPassword) errorObject.repeatPassword='Passwords do not match';
+
+    if(Object.keys(errorObject).length > 0) throw errorObject;
+    
+    return User.create({ username, email, password, fullname });
 }
 
 
