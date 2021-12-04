@@ -1,0 +1,13 @@
+.favourites-button-container-not-followed:hover{
+    color: var(--color-accent);
+}
+.favourites-button-container-followed:hover{
+    color: tomato;
+}
+.favourites-button-container{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 0.8rem;
+    z-index: 9998;
+}
