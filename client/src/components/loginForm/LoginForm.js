@@ -37,7 +37,7 @@ const LoginForm = () => {
         authService.login(values)
             .then(data => {
                 dispatch({ type: 'LOGIN', payload: data.data })
-                navigate('/');
+                navigate(-1);
             })
             .catch(err => console.log(err));
     }
