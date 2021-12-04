@@ -14,7 +14,6 @@ const Register = () => {
                 <RegisterForm />
                 <span>Already a member? <Link to="/login" >Sign In!</Link></span>
             </div>
-
         </section>
     )
 }

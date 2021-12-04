@@ -4,7 +4,8 @@
 	-moz-box-shadow: 0 0 1rem rgba(0, 0, 0, 0.3)  ; 
     background: white;
     position: absolute;
-    right: calc(40% - 10rem);
+    right: calc(40%);
+    transform: translateX(50%);
     top: -8rem;
     width: 20rem;
     height: 7rem;
