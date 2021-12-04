@@ -7,6 +7,15 @@
     cursor: pointer;
 }
 
+.submission-card-link{
+    text-decoration: none;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+
 .submission-card-img>img {
     height: 15rem;
     width: auto;
@@ -41,6 +50,7 @@
     flex: 1;
     padding: 0.5rem;
     display: flex;
+    color: white;
 }
 
 .submission-card-left-container {
@@ -68,21 +78,34 @@
     overflow: hidden;
 }
 
-.submission-card-user>img {
+.submission-card-user img {
     object-fit: cover;
-    width: 2rem;
-    height: 2rem;
-    padding-right: 0.5rem;
+    width: 1.5rem;
+    height: 1.5rem;
 }
 .submission-card-name{
+    text-decoration: none;
     color: white;
     font-style: bold;
+    margin-left: 0.5rem;
+    
+    text-overflow: ellipsis;
+
+    white-space: nowrap;
+    overflow: hidden;
 }
 .submission-card-user{
     display: flex;
     align-items: center;
+    z-index: 9998;
 }
 
 .submission-card:hover .submission-card-overlay {
     opacity: .9;
+}
+.submission-card-views{
+    display: flex;
+    align-items: center;
+    font-size: 0.8rem;
+    justify-content: space-between;
 }
