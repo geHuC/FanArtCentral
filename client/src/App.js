@@ -9,6 +9,7 @@ import { useEffect, useReducer } from 'react';
 import Submit from './containers/submit/Submit.js';
 import Details from './containers/details/Details.js';
 import submissionService from './services/submissionService.js';
+import Footer from './components/footer/Footer.js';
 
 const initialState = {
   isAuthenticated: false,
@@ -78,6 +79,7 @@ function App() {
               <Route path="/:author/art/:slug" element ={<Details />} />
             </Routes>
           </div>
+          <Footer />
         </UserContext.Provider>
       </BrowserRouter>
     </>
