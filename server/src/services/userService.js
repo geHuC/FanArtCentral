@@ -26,9 +26,13 @@ const unfollow = async (username, followerId) => {
 const getAndPopulate = async (id, field) => {
     return User.findById(id).populate({ path: 'posts', populate: { path: 'author' } }).lean();
 }
+const getOne = async(id) =>{
+    return User.findById(id).lean();
+}
 module.exports = {
     pushToField,
     getAndPopulate,
     follow,
-    unfollow
+    unfollow,
+    getOne
 }

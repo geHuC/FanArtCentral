@@ -9,18 +9,22 @@ const sizeOf = require('image-size');
 const userService = require('../services/userService.js');
 
 router.get('/', async (req, res) => {
-
     try {
         const submissions = await submissionService.getAll();
+        submissions.forEach(x => x.author = {username: x.author.username, avatar: x.author.avatar});
         res.status(200).json(submissions);
     } catch (error) {
+        console.log(error);
         res.status(500).json({ error })
     }
 })
 
-router.get('/:slug', async (req, res) => {
+router.get('/:author/:slug', async (req, res) => {
     try {
         const submission = await submissionService.getOne(req.params.slug);
+        if(submission.author.username != req.params.author){
+            throw new Error('Different author');
+        }
         submission.author = {username: submission.author.username, avatarUrl: submission.author.avatar, followers: submission.author.followers};
         submissionService.updateViews(submission._id);
         res.status(200).json(submission);
@@ -29,6 +33,24 @@ router.get('/:slug', async (req, res) => {
     }
 })
 
+router.get('/random', async (req, res) => {
+    try {
+        const submission = await submissionService.getRandom();
+        const author = await userService.getOne(submission[0].author);
+        const constructedObject = {
+            title : submission[0].title,
+            imageUrl: submission[0].imageUrl,
+            slug: submission[0].slug,
+            author: {
+                username: author.username,
+                avatar: author.avatar
+            }
+        }
+        res.status(200).json(constructedObject);
+    } catch (error) {
+        res.status(500).json({ error })
+    }
+})
 
 router.post('/', isUser, upload.single('image'),  async (req, res) => {
     try {
@@ -49,7 +71,7 @@ router.post('/', isUser, upload.single('image'),  async (req, res) => {
         await fbService.file(`thumbs/${req.user.username}/${thumbName}`).createWriteStream().end(thumbnail);
         req.body.thumbWidth = dimensions.width;
         req.body.imageUrl = `https://firebasestorage.googleapis.com/v0/b/fanart-central.appspot.com/o/art%2F${req.user.username}%2F${fileName}?alt=media`;
-        req.body.thumbUrl = `https://firebasestorage.googleapis.com/v0/b/fanart-central.appspot.com/o/thumb%2F${req.user.username}%2F${thumbName}?alt=media`;
+        req.body.thumbUrl = `https://firebasestorage.googleapis.com/v0/b/fanart-central.appspot.com/o/thumbs%2F${req.user.username}%2F${thumbName}?alt=media`;
 
         const sub = await submissionService.create(req.body);
         userService.pushToField(req.user._id, sub._id, 'submissions');

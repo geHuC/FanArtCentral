@@ -9,7 +9,7 @@ const getCount = async () => {
 }
 
 const getAll = async (sortParams = { createdAt: 'desc' }, skip = 0, pagesize = 20) => {
-    return Submission.find().sort(sortParams).skip(skip).limit(pagesize).lean();
+    return Submission.find().populate('author').sort(sortParams).skip(skip).limit(pagesize).lean();
 }
 
 const getOne = async (slug) => {
@@ -24,7 +24,9 @@ const deleteOne = async (id, ownerId) => {
 const updateOne = async (id, ownerId, data) => {
     return Submission.findOneAndUpdate({ _id: id, author: ownerId }, data, { runValidators: true });
 }
-
+const getRandom = async () => {
+    return Submission.aggregate().sample(1);
+}
 const pushToField = async (id, userId, fieldName) => {
     const item = await Submission.findById(id);
     if (item[fieldName].some(x => x._id == userId)) {
@@ -67,5 +69,6 @@ module.exports = {
     upvote,
     downvote,
     getCount,
-    updateViews
+    updateViews,
+    getRandom
 }
