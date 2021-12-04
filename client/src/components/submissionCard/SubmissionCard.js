@@ -1,9 +1,8 @@
 import './submissionCard.css';
 import { Link } from 'react-router-dom';
 
-import { AiFillEye, AiOutlineStar } from 'react-icons/ai';
+import { AiFillEye } from 'react-icons/ai';
 import prettyNumbers from '../../utils/prettyNumbers.js';
-import { useEffect, useState } from 'react';
 import FavouriteButton from '../favouriteButton/FavouriteButton.js';
 
 const SubmissionCard = (props) => {

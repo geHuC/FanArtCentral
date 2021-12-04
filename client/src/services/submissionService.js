@@ -34,6 +34,9 @@ const favourite = (id) => {
 const unfavourite = (id) => {
     return api.get(`/unfavourite/${id}`)
 }
+const deleteOne = (id) => {
+    return api.delete(`/${id}`);
+}
 
 const submissionService = {
     setUp,
@@ -44,5 +47,6 @@ const submissionService = {
     getRandom,
     favourite,
     unfavourite,
+    deleteOne,
 }
 export default submissionService
