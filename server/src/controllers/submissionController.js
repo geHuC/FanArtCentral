@@ -57,7 +57,16 @@ router.get('/random', async (req, res) => {
         res.status(500).json({ error })
     }
 })
-
+router.delete('/:id', isUser, async (req, res) => {
+    try {
+        console.log('called');
+        await submissionService.deleteOne(req.params.id, req.user._id);
+        await userService.removeFromField(req.user._id,req.params.id, 'submissions');
+        res.status(200).json({ok:'deleted item'});
+    } catch (error) {
+        res.status(500).json({ error })
+    }
+})
 router.post('/', isUser, upload.single('image'), async (req, res) => {
     try {
 
