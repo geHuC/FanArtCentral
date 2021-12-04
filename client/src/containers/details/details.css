@@ -90,6 +90,11 @@
     text-decoration: underline;
     color: var(--color-text-light);
     font-weight: bold;
+    margin-left: 0.2rem;
+}
+.submission-info-username {
+    display: flex;
+    align-items: center;
 }
 
 .submission-avatar img{
