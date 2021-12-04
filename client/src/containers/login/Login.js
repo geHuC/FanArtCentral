@@ -1,10 +1,19 @@
 import LoginForm from '../../components/loginForm/LoginForm.js'
+import { Link } from 'react-router-dom'
 import './login.css'
 
 const Login = () => {
     return (
         <section className="login">
-            <LoginForm />
+            <div className="login-left-side">
+                <h2>FanArt Central</h2>
+                <h3>Your first stop into the world of FanArt</h3>
+            </div>
+            <div className="login-right-side">
+                <h2>Login</h2>
+                <LoginForm />
+                <span>Not a member? <Link to="/register" >Sign Up!</Link></span>
+            </div>
         </section>
     )
 }
