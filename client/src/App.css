@@ -18,4 +18,5 @@ body {
     align-items: center;
     margin: auto;
     max-width: 1200px;
+    min-height: calc(100vh - 10.25rem);
 }
