@@ -18,15 +18,14 @@ router.post('/login', async (req, res) => {
 //Registration
 router.post('/register', async (req, res) => {
     //Change datafileds accordingly
-    const { email, username, password, repeatPassword } = req.body;
+    const { email, username, password, repeatPassword, fullname } = req.body;
 
     try {
-        let user = await auth.register({ email, username, password, repeatPassword });
+        let user = await auth.register({ email, username, password, repeatPassword, fullname });
         let token = await auth.login({ email, username, password });
         return res.status(201).json(token);
     } catch (err) {
-        error = parseError(err);
-        return res.status(400).json(error);
+        return res.status(400).json(err);
     }
 });
 

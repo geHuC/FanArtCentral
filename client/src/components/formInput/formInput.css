@@ -7,7 +7,7 @@
 }
 .form-input span{
     display: none;
-    color: red;
+    color: tomato;
     font-size: 0.75rem;
     padding-left: 0.25rem;
 }
@@ -23,11 +23,18 @@
     width: 100%;
 }
 .form-input input:invalid[focused="true"]{
-    border-left: 2px solid red;
+    border-left: 2px solid tomato;
 }
-.form-input input:valid{
+.form-input input:valid:not(.form-input-invalid){
     border-left: 2px solid var(--color-accent);
 }
 .form-input input:invalid[focused="true"] ~ span{
+    display: block;
+}
+
+.form-input-invalid {
+    border-left: 2px solid tomato !important;
+}
+.form-input-invalid ~ span{
     display: block;
 }

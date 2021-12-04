@@ -7,39 +7,22 @@ import { useNavigate } from 'react-router-dom';
 
 const LoginForm = () => {
     const { dispatch } = useContext(UserContext);
+    const [serverError, setServerError] = useState(false);
     const navigate = useNavigate();
     const [values, setValues] = useState({
         username: "",
         password: "",
     });
 
-    const inputs = [
-        {
-            name: 'username',
-            type: 'text',
-            placeholder: 'Username',
-            label: 'Username:',
-            errorMessage: 'Username must be at least 5 characters and contain only alphanumeric characters and underscore "_"',
-            required: true,
-        },
-        {
-            name: 'password',
-            type: 'password',
-            placeholder: 'Passowrd',
-            label: 'Password:',
-            errorMessage: 'Password must be at least 8 characters long',
-            required: true,
-        },
-    ];
-
     const submitHandler = (e) => {
+        setServerError(false);
         e.preventDefault();
         authService.login(values)
             .then(data => {
                 dispatch({ type: 'LOGIN', payload: data.data })
                 navigate(-1);
             })
-            .catch(err => console.log(err));
+            .catch(err => {setServerError(true); console.log(err);});
     }
 
     const onChange = (e) => {
@@ -48,7 +31,30 @@ const LoginForm = () => {
 
     return (
         <form className="login-form" onSubmit={submitHandler}>
-            {inputs.map(input => <FormInput key={input.name} {...input} value={values[input.name]} onChange={onChange} />)}
+            <FormInput
+                classes={serverError ? 'form-input-invalid' : ''}
+                name="username"
+                type="text"
+                placeholder="Username"
+                label="Username:"
+                errorMessage={serverError ? "Username or password invalid" : "Username is required"}
+                required={true}
+                value={values['username']}
+                onChange={onChange}
+                invalid={serverError}
+            />
+            <FormInput
+                classes={serverError ? 'form-input-invalid' : ''}
+                name="password"
+                type="password"
+                placeholder="Password"
+                label="Password:"
+                errorMessage={serverError ? "Username or password invalid" : "Passoword is required"}
+                required={true}
+                value={values['password']}
+                onChange={onChange}
+                invalid={serverError}
+            />
             <button type="submit">login</button>
         </form>
     )

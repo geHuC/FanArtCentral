@@ -8,12 +8,13 @@ import UserContext from '../../context/UserContext.js'
 const RegisterForm = () => {
     const navigate = useNavigate();
     const { dispatch } = useContext(UserContext);
+    const [serverError, setServerError] = useState({});
     const [values, setValues] = useState({
         username: "",
         email: "",
         password: "",
         repeatPassword: "",
-        birthdate: ""
+        fullname: ""
     });
 
     const inputs = [
@@ -22,23 +23,31 @@ const RegisterForm = () => {
             type: 'text',
             placeholder: 'Username',
             label: 'Username:',
-            errorMessage: 'Username must be at least 5 characters and contain only alphanumeric characters and underscore "_"',
+            errorMessage: serverError.username ? serverError.username : 'Username must be at least 5 characters and contain only alphanumeric characters and underscore "_"',
             pattern: "^[a-zA-Z0-9_]+$",
+            minLength: 5,
             required: true,
+            classes: serverError.username ? 'form-input-invalid' : ''
         },
         {
             name: 'email',
             type: 'email',
             placeholder: 'Email',
             label: 'Email:',
-            errorMessage: 'Please enter a valid email address',
+            errorMessage: serverError.email ? serverError.email : 'Please enter a valid email address',
             pattern: "^[A-Za-z0-9_\.]+@+[A-Za-z]+\.+[A-Za-z]+$",
             required: true,
+            classes: serverError.email ? 'form-input-invalid' : ''
         },
         {
-            name: 'birthdate',
-            type: 'date',
-            label: 'Date of birth:'
+            name: 'fullname',
+            type: 'text',
+            placeholder: 'Full name',
+            label: 'Full name:',
+            errorMessage: 'Full name must be at least 5 characters and contain only letters',
+            minLength: 5,
+            pattern: "^[a-zA-Z ]+$",
+            required: true,
         },
         {
             name: 'password',
@@ -63,13 +72,15 @@ const RegisterForm = () => {
 
     const submitHandler = (e) => {
         e.preventDefault();
-        console.log('called');
         authService.register(values)
             .then(data => {
                 dispatch({ type: 'LOGIN', payload: data.data });
                 navigate('/');
             })
-            .catch(err => console.log(err));
+            .catch(err => {
+                setServerError(err.response.data);
+                console.log(err.response);
+            });
     }
 
     const onChange = (e) => {
@@ -78,7 +89,8 @@ const RegisterForm = () => {
 
     return (
         <form className="register-form" onSubmit={submitHandler}>
-            {inputs.map(input => <FormInput key={input.name} {...input} value={values[input.name]} onChange={onChange} />)}
+            {inputs.map(input => <FormInput key={input.name} {...input} value={values[input.name]} onChange={onChange}
+                invalid={serverError} />)}
             <button type="submit">Submit</button>
         </form>
     )
