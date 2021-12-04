@@ -22,8 +22,8 @@ const create = (formData) => {
 const getOne = (slug, author) => {
     return api.get(`/${author}/art/${slug}`);
 }
-const getAll = () => {
-    return api.get('/');
+const getAll = (type) => {
+    return api.get(`/?sortBy=${type}`);
 }
 const getRandom = () => {
     return api.get('/random');

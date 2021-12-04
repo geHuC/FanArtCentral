@@ -10,7 +10,16 @@ const userService = require('../services/userService.js');
 
 router.get('/', async (req, res) => {
     try {
-        const submissions = await submissionService.getAll();
+        let queryParams = {}
+        let skip = 0
+        if (req.query.sortBy) {
+            req.query.sortBy === 'newest' ? queryParams.createdAt = 'desc' : queryParams.views = 'desc';
+        }
+        if (req.query.page) {
+            skip = parseInt(req.query.page) * 20;
+        }
+        const submissions = await submissionService.getAll(queryParams, skip);
+
         submissions.forEach(x => x.author = { username: x.author.username, avatar: x.author.avatar });
         res.status(200).json(submissions);
     } catch (error) {
@@ -21,7 +30,7 @@ router.get('/', async (req, res) => {
 router.get('/favourite/:id', isUser, async (req, res) => {
     try {
         await submissionService.favourite(req.params.id, req.user._id, 'favourites');
-        await userService.pushToField(req.user._id, req.params.id,'favourites');
+        await userService.pushToField(req.user._id, req.params.id, 'favourites');
         res.status(200).json({ ok: 'favourited' });
     } catch (error) {
         console.log(error);
@@ -31,7 +40,7 @@ router.get('/favourite/:id', isUser, async (req, res) => {
 router.get('/unfavourite/:id', isUser, async (req, res) => {
     try {
         await submissionService.unfavourite(req.params.id, req.user._id, 'favourites');
-        await userService.removeFromField(req.user._id, req.params.id,'favourites');
+        await userService.removeFromField(req.user._id, req.params.id, 'favourites');
         res.status(200).json({ ok: 'unfavourited' });
     } catch (error) {
         console.log(error);
@@ -61,8 +70,8 @@ router.delete('/:id', isUser, async (req, res) => {
     try {
         console.log('called');
         await submissionService.deleteOne(req.params.id, req.user._id);
-        await userService.removeFromField(req.user._id,req.params.id, 'submissions');
-        res.status(200).json({ok:'deleted item'});
+        await userService.removeFromField(req.user._id, req.params.id, 'submissions');
+        res.status(200).json({ ok: 'deleted item' });
     } catch (error) {
         res.status(500).json({ error })
     }
