@@ -10,6 +10,16 @@ const pushToField = async (id, itemId, fieldName) => {
     return user.save({ validateBeforeSave: false });
 }
 
+const removeFromField = async (id, itemId, fieldName) => {
+    const user = await User.findById(id);
+    if (!user[fieldName].some(x => x._id == itemId)) {
+        //Change error message accordingly
+        throw new Error('Item not in field');
+    }
+    user[fieldName].pull(itemId);
+    return user.save({ validateBeforeSave: false });
+}
+
 const follow = async (username, followerId) => {
     const user = await User.findOne({ username });
     if (user.followers.some(x => x === followerId)) {
@@ -34,5 +44,6 @@ module.exports = {
     getAndPopulate,
     follow,
     unfollow,
-    getOne
+    getOne,
+    removeFromField,
 }

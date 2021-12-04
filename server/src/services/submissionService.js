@@ -35,28 +35,23 @@ const pushToField = async (id, userId, fieldName) => {
     item[fieldName].push(userId);
     return item.save();
 }
-const upvote = async (id, userId, fieldName) => {
+const favourite = async (id, userId, fieldName) => {
     const item = await Submission.findById(id);
     if (item.author == userId) {
         throw new Error('Cannot vote on your post')
     }
     if (item[fieldName].some(x => x._id == userId)) {
-        throw new Error('Already voted on this post');
+        throw new Error('Already favourited post');
     }
     item[fieldName].push(userId);
-    item.rating += 1;
     return item.save();
 }
-const downvote = async (id, userId, fieldName) => {
+const unfavourite = async (id, userId, fieldName) => {
     const item = await Submission.findById(id);
-    if (item.author == userId) {
-        throw new Error('Cannot vote on your post')
+    if (!item[fieldName].some(x => x._id == userId)) {
+        throw new Error('Not favourited');
     }
-    if (item[fieldName].some(x => x._id == userId)) {
-        throw new Error('Already voted on this post');
-    }
-    item[fieldName].push(userId);
-    item.rating -= 1;
+    item[fieldName].pull(userId);
     return item.save();
 }
 module.exports = {
@@ -66,8 +61,8 @@ module.exports = {
     deleteOne,
     updateOne,
     pushToField,
-    upvote,
-    downvote,
+    favourite,
+    unfavourite,
     getCount,
     updateViews,
     getRandom

@@ -7,8 +7,9 @@ const { parseError } = require('../utils/mongooseErrorParser.js');
 router.get('/follow/:username', isUser, async (req, res) => {
 
     try {
-        await userService.follow(req.params.username, req.user._id)
-        res.status(200).json({message: 'followed'});
+        const followed = await userService.follow(req.params.username, req.user._id);
+        await userService.pushToField(req.user._id, followed._id, 'following');
+        res.status(200).json({ message: 'followed' });
     } catch (error) {
         res.status(500).json({ error })
     }
@@ -17,8 +18,9 @@ router.get('/follow/:username', isUser, async (req, res) => {
 router.get('/unfollow/:username', isUser, async (req, res) => {
 
     try {
-        await userService.unfollow(req.params.username, req.user._id)
-        res.status(200).json({message: 'unfollowed'});
+        const followed = await userService.unfollow(req.params.username, req.user._id)
+        await userService.removeFromField(req.user._id, followed._id, 'following');
+        res.status(200).json({ message: 'unfollowed' });
     } catch (error) {
         console.log(error);
         res.status(500).json({ error })

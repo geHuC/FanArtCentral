@@ -3,7 +3,7 @@ const { default: slugify } = require('slugify');
 const upload = require('../configurations/multerConfig.js');
 const imageThumbnail = require('image-thumbnail');
 const submissionService = require('../services/submissionService.js');
-const {isUser} = require('../middlewares/routeGuardMiddleware.js')
+const { isUser } = require('../middlewares/routeGuardMiddleware.js')
 const fbService = require('../services/firebaseService.js');
 const sizeOf = require('image-size');
 const userService = require('../services/userService.js');
@@ -11,24 +11,30 @@ const userService = require('../services/userService.js');
 router.get('/', async (req, res) => {
     try {
         const submissions = await submissionService.getAll();
-        submissions.forEach(x => x.author = {username: x.author.username, avatar: x.author.avatar});
+        submissions.forEach(x => x.author = { username: x.author.username, avatar: x.author.avatar });
         res.status(200).json(submissions);
     } catch (error) {
         console.log(error);
         res.status(500).json({ error })
     }
 })
-
-router.get('/:author/:slug', async (req, res) => {
+router.get('/favourite/:id', isUser, async (req, res) => {
     try {
-        const submission = await submissionService.getOne(req.params.slug);
-        if(submission.author.username != req.params.author){
-            throw new Error('Different author');
-        }
-        submission.author = {username: submission.author.username, avatarUrl: submission.author.avatar, followers: submission.author.followers};
-        submissionService.updateViews(submission._id);
-        res.status(200).json(submission);
+        await submissionService.favourite(req.params.id, req.user._id, 'favourites');
+        await userService.pushToField(req.user._id, req.params.id,'favourites');
+        res.status(200).json({ ok: 'favourited' });
     } catch (error) {
+        console.log(error);
+        res.status(500).json({ error })
+    }
+})
+router.get('/unfavourite/:id', isUser, async (req, res) => {
+    try {
+        await submissionService.unfavourite(req.params.id, req.user._id, 'favourites');
+        await userService.removeFromField(req.user._id, req.params.id,'favourites');
+        res.status(200).json({ ok: 'unfavourited' });
+    } catch (error) {
+        console.log(error);
         res.status(500).json({ error })
     }
 })
@@ -38,7 +44,7 @@ router.get('/random', async (req, res) => {
         const submission = await submissionService.getRandom();
         const author = await userService.getOne(submission[0].author);
         const constructedObject = {
-            title : submission[0].title,
+            title: submission[0].title,
             imageUrl: submission[0].imageUrl,
             slug: submission[0].slug,
             author: {
@@ -52,7 +58,7 @@ router.get('/random', async (req, res) => {
     }
 })
 
-router.post('/', isUser, upload.single('image'),  async (req, res) => {
+router.post('/', isUser, upload.single('image'), async (req, res) => {
     try {
 
         res.status(200);
@@ -78,6 +84,19 @@ router.post('/', isUser, upload.single('image'),  async (req, res) => {
         res.status(201).json(sub)
     } catch (error) {
         console.log('Error', error);
+        res.status(500).json({ error })
+    }
+})
+router.get('/:author/art/:slug', async (req, res) => {
+    try {
+        const submission = await submissionService.getOne(req.params.slug);
+        if (submission.author.username != req.params.author) {
+            throw new Error('Different author');
+        }
+        submission.author = { username: submission.author.username, avatarUrl: submission.author.avatar, followers: submission.author.followers };
+        submissionService.updateViews(submission._id);
+        res.status(200).json(submission);
+    } catch (error) {
         res.status(500).json({ error })
     }
 })
