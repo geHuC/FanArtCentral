@@ -19,10 +19,30 @@ const create = (formData) => {
     })
 }
 
-const getOne = (slug) =>{
-    return api.get(`/${slug}`);
+const getOne = (slug, author) => {
+    return api.get(`/${author}/art/${slug}`);
+}
+const getAll = () => {
+    return api.get('/');
+}
+const getRandom = () => {
+    return api.get('/random');
+}
+const favourite = (id) => {
+    return api.get(`/favourite/${id}`)
+}
+const unfavourite = (id) => {
+    return api.get(`/unfavourite/${id}`)
 }
 
-
-const submissionService = { setUp, clearToken, create, getOne }
+const submissionService = {
+    setUp,
+    clearToken,
+    create,
+    getOne,
+    getAll,
+    getRandom,
+    favourite,
+    unfavourite,
+}
 export default submissionService
