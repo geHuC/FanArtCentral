@@ -124,7 +124,7 @@ router.post('/', isUser, upload.single('image'), async (req, res) => {
         res.status(200);
         let count = await submissionService.getCount();
         req.body.author = req.user._id;
-        req.body.slug = slugify(req.body.title, { lower: true, strict: true, trim: true }) + `-${count + 1}`;
+        req.body.slug = slugify(req.body.title, { lower: true, strict: true, trim: true }) + `-${Date.now().toString().slice(7,12)}${count + 1}`;
         req.body.tags = JSON.parse(req.body.tags);
 
         const thumbnail = await imageThumbnail(req.file.buffer, { height: 300 });
@@ -132,7 +132,7 @@ router.post('/', isUser, upload.single('image'), async (req, res) => {
 
         const fileName = `${req.body.slug}.${dimensions.type}`;
         const thumbName = `${req.body.slug}_thumb.${dimensions.type}`;
-
+        
         await fbService.file(`art/${req.user.username}/${fileName}`).createWriteStream().end(req.file.buffer);
         await fbService.file(`thumbs/${req.user.username}/${thumbName}`).createWriteStream().end(thumbnail);
         req.body.thumbWidth = dimensions.width;
