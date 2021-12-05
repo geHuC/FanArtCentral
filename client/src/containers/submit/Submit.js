@@ -5,23 +5,49 @@ import TagInput from '../../components/tagInput/TagInput.js';
 import UserContext from '../../context/UserContext.js';
 import './submit.css'
 import submissionService from '../../services/submissionService.js';
+import CategorySelector from '../../components/categorySelector/CategorySelector.js';
+import DescriptionTextBox from '../../components/descriptionTextBox/DescriptionTextBox.js';
 
 const Submit = () => {
     const { state } = useContext(UserContext);
     const [tags, setTags] = useState([]);
+    const [imageError, setImageError] = useState({});
+    const [serverError, setServerError] = useState(false);
+    const [rerender, setRerender] = useState(1)
+
     const navigate = useNavigate();
     const formHandler = (e) => {
         e.preventDefault();
+        console.log('called');
+        if (serverError) return;
         let formData = new FormData(e.currentTarget);
         formData.append('tags', JSON.stringify(tags));
         submissionService.create(formData)
             .then(data => navigate(`/${state.user.username}/art/${data.data.slug}`))
             .catch(err => console.log(err));
     }
-
+    const imageValidator = (e) => {
+        setImageError({});
+        setServerError(false)
+        if (e.target.files[0]) {
+            if (e.target.files[0].size > 3145728) {
+                setImageError({ msg: 'Pictures should be less than 3MB in size' });
+                setServerError(true);
+                setRerender(rerender + 1);
+            }
+            if (e.target.files[0].type !== 'image/png' && e.target.files[0].type !== 'image/jpeg' && e.target.files[0].type !== 'image/jpg') {
+                setImageError({ msg: 'Only JPG, JPEG and PNG files accepted' });
+                setServerError(true);
+                setRerender(rerender + 1);
+            }
+        }
+    }
     return (
-        <div>
-            <form onSubmit={formHandler} encType="multipart/form-data">
+        <section className="submit-section">
+            <div className="submit-header-container">
+                <h2>Create submission:</h2>
+            </div>
+            <form className="submit-form" onSubmit={formHandler} encType="multipart/form-data">
                 <FormInput
                     name="title"
                     type="text"
@@ -31,34 +57,32 @@ const Submit = () => {
                     required={true}
                     pattern=".{3,}"
                 />
-                <FormInput
-                    name="category"
-                    type="text"
-                    placeholder="Enter category"
-                    label="Category:"
-                    errorMessage="Please select a category"
-                    required={true}
-                />
+                <CategorySelector />
                 <TagInput tags={tags} setTags={setTags} />
                 <FormInput
+                    classes={serverError ? 'form-input-invalid' : ''}
+                    name="image"
+                    type="file"
+                    label="Image:"
+                    errorMessage={serverError ? imageError.msg : "Please choose a valid image"}
+                    required={true}
+                    accept="image/png, image/jpeg, image/jpg"
+                    onChange={imageValidator}
+                    invalid={rerender} //hacky hack no idea why I need to go this lenght it if someone can explain please do
+                />
+                {/* <FormInput
                     name="description"
                     type="text"
                     placeholder="Enter description"
                     label="Description:"
                     errorMessage="Please enter a description"
                     required={true}
-                />
-                <FormInput
-                    name="image"
-                    type="file"
-                    label="Image:"
-                    errorMessage="Please choose a valid image"
-                    required={true}
-                    accept="image/png, image/jpeg, image/jpg"
-                />
-                <button type="submit">Submit</button>
+                /> */}
+                <DescriptionTextBox />
+               
+                <button className="submit-form-submit-button" type="submit">Submit</button>
             </form>
-        </div>
+        </section>
     )
 }
 
