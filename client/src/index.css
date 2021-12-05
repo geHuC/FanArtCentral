@@ -12,3 +12,6 @@
   --color-navbar-search-input: #e2e2e2;
   --color-navbar-search-text: #1a1a1a;
 }
+body{
+  font-family: 'Roboto', sans-serif;
+}
