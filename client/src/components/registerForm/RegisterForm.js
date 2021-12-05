@@ -71,6 +71,7 @@ const RegisterForm = () => {
     ];
 
     const submitHandler = (e) => {
+        setServerError({});
         e.preventDefault();
         authService.register(values)
             .then(data => {
