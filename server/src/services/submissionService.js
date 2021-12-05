@@ -12,6 +12,10 @@ const getAll = async (sortParams = { createdAt: 'desc' }, skip = 0, pagesize = 2
     return Submission.find().populate('author').sort(sortParams).skip(skip).limit(pagesize).lean();
 }
 
+const getAllMatching = async (array, sortParams = { createdAt: 'desc' }) => {
+    return Submission.find({ 'author': { $in: array } }).populate('author').sort(sortParams).lean();
+}
+
 const getOne = async (slug) => {
     return await Submission.findOne({ slug: slug }).populate('author').lean();
 }
@@ -65,5 +69,6 @@ module.exports = {
     unfavourite,
     getCount,
     updateViews,
-    getRandom
+    getRandom,
+    getAllMatching,
 }

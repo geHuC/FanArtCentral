@@ -29,13 +29,16 @@ const getRandom = () => {
     return api.get('/random');
 }
 const favourite = (id) => {
-    return api.get(`/favourite/${id}`)
+    return api.get(`/favourite/${id}`);
 }
 const unfavourite = (id) => {
-    return api.get(`/unfavourite/${id}`)
+    return api.get(`/unfavourite/${id}`);
 }
 const deleteOne = (id) => {
     return api.delete(`/${id}`);
+}
+const getFeed = (sort) =>{
+    return api.get(`/feed?sort=${sort}`);
 }
 
 const submissionService = {
@@ -48,5 +51,6 @@ const submissionService = {
     favourite,
     unfavourite,
     deleteOne,
+    getFeed
 }
 export default submissionService

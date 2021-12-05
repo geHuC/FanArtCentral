@@ -12,6 +12,7 @@ import submissionService from './services/submissionService.js';
 import Footer from './components/footer/Footer.js';
 import About from './containers/about/About.js';
 import Contact from './containers/contact/Contact.js';
+import Feed from './containers/feed/Feed.js';
 
 const initialState = {
   isAuthenticated: false,
@@ -78,6 +79,7 @@ function App() {
               <Route path="/register" element={<Register />} />
               <Route path="/login" element={<Login />} />
               <Route path="/submit" element={<Submit />} />
+              <Route path="/feed" element={<Feed />} />
               <Route path="/about" element={<About />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/:author/art/:slug" element ={<Details />} />

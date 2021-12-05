@@ -48,6 +48,20 @@ router.get('/unfavourite/:id', isUser, async (req, res) => {
     }
 })
 
+router.get('/feed', isUser, async (req, res) => {
+    try {
+        let sortParams = {};
+        req.query.sort === 'oldest' ? sortParams.createdAt = 'asc' : sortParams.createdAt = 'desc';
+        const user = await userService.getOne(req.user._id);
+        const submissions = await submissionService.getAllMatching(user.following, sortParams);
+        submissions.forEach(x => x.author = { username: x.author.username, avatar: x.author.avatar });
+        res.status(200).json(submissions);
+        
+    } catch (error) {
+        res.status(500).json(error)
+    }
+})
+
 router.get('/random', async (req, res) => {
     try {
         const submission = await submissionService.getRandom();
