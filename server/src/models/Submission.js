@@ -43,7 +43,7 @@ const schema = new mongoose.Schema({
     },
     tags: [{
         type: String,
-        default: []
+        default: [String]
     }],
     favourites: [{
         type: mongoose.Schema.Types.ObjectId,

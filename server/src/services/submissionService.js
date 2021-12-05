@@ -15,6 +15,9 @@ const getAll = async (sortParams = { createdAt: 'desc' }, skip = 0, pagesize = 2
 const getAllMatching = async (array, sortParams = { createdAt: 'desc' }) => {
     return Submission.find({ 'author': { $in: array } }).populate('author').sort(sortParams).lean();
 }
+const getTagged = async (tag, sortParams = { createdAt: 'desc' }) => {
+    return Submission.find({ 'tags': tag }).populate('author').sort(sortParams).lean();
+}
 
 const getOne = async (slug) => {
     return await Submission.findOne({ slug: slug }).populate('author').lean();
@@ -71,4 +74,5 @@ module.exports = {
     updateViews,
     getRandom,
     getAllMatching,
+    getTagged,
 }

@@ -25,6 +25,9 @@ const getOne = (slug, author) => {
 const getAll = (type) => {
     return api.get(`/?sortBy=${type}`);
 }
+const getByTag = (sortType, tag) => {
+    return api.get(`/tags/${tag}?sortBy=${sortType}`);
+}
 const getRandom = () => {
     return api.get('/random');
 }
@@ -51,6 +54,7 @@ const submissionService = {
     favourite,
     unfavourite,
     deleteOne,
-    getFeed
+    getFeed,
+    getByTag
 }
 export default submissionService
