@@ -4,6 +4,7 @@ import { useState } from 'react';
 const TagInput = ({ tags, setTags }) => {
     const [input, setInput] = useState('');
     const [isKeyReleased, setIsKeyReleased] = useState(false);
+    const [showError, setShowError] = useState(false);
 
     const onChange = (e) => {
         const { value } = e.target;
@@ -13,9 +14,12 @@ const TagInput = ({ tags, setTags }) => {
     const onKeyDown = (e) => {
         const { key } = e;
         const trimmedInput = input.trim();
-
+        setShowError(false);
         if (key === ',' && trimmedInput.length && !tags.includes(trimmedInput)) {
             e.preventDefault();
+            if (trimmedInput.length < 3) {
+                return setShowError(true);
+            }
             setTags(prevState => [...prevState, trimmedInput]);
             setInput('');
         }
@@ -42,7 +46,7 @@ const TagInput = ({ tags, setTags }) => {
     return (
         <>
             <label className="tag-label">Tags (separate by comma ",")</label>
-            <div className="tag-input-container">
+            <div className={`tag-input-container ${showError && 'form-input-invalid'}`}>
                 {tags.map((tag, index) => (
                     <div className="input-tag" key={tag}>
                         {tag}
@@ -57,6 +61,7 @@ const TagInput = ({ tags, setTags }) => {
                     onKeyUp={onKeyUp}
                 />
             </div>
+            {showError && <span className='tag-input-error'>Tag must be atleast 3 characters long</span>}
         </>
     )
 }

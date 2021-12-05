@@ -41,3 +41,8 @@
     cursor: pointer;
     color: var(--color-logo-text);
 }
+.tag-input-error{
+    color: tomato;
+    font-size: 0.75rem;
+    padding-left: 0.25rem;
+}
