@@ -1,0 +1,45 @@
+.description-text-box {
+    width: 100%;
+    margin-top: 1rem;
+}
+
+
+.description-text-box textarea {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 100%;
+
+    font-family: 'Roboto', sans-serif;
+}
+
+.description-text-box-count-container {
+    display: flex;
+    width: 100%;
+    position: relative;
+}
+
+.description-text-box-count-container span {
+    font-size: 0.75rem;
+    position: absolute;
+    top: -0.25rem;
+}
+
+.description-text-box-count-container-left {
+    flex: 1;
+    margin: 0;
+    padding: 0;
+}
+
+.description-text-box-count-container-right {
+    display: flex;
+    flex: 1;
+    justify-content: flex-end;
+}
+
+.description-text-box-count-container-left span {
+    padding-left: 0.25rem;
+    color: tomato;
+    position: absolute;
+    top: -0.25rem;
+}
