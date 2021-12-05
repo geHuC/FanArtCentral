@@ -1,0 +1,15 @@
+.category-selector{
+    padding: 1rem;
+    margin-top: 0.25rem;
+    border: none;
+    outline: none;
+    background: var(--color-navbar-search-input);
+    width: 100%;
+}
+
+.category-label{
+    display:inline-block;
+    font-size: 1rem;
+    margin-top: 1rem;
+    width: 100%;
+}
