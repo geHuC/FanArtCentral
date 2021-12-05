@@ -24,13 +24,13 @@ const Navbar = () => {
                 <div className="navigation-links">
                     {isAuthenticated
                         ? <>
-                            <p><Link to="/feed">Feed</Link></p>
+                            <p className="feed-link"><Link to="/feed">Feed</Link></p>
                             <p><Link to="/submit">Submit</Link></p>
                             <UserDropDown />
                             
                         </>
                         : <>
-                            <p><Link to="/login">Sign in</Link></p>
+                            <p className="sign-in-link"><Link to="/login">Sign in</Link></p>
                             <p><Link to="/register">Sign up</Link></p>
                         </>}
                 </div>
