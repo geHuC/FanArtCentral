@@ -23,6 +23,7 @@ const Home = () => {
     return (
         <div className="home-wrapper">
             <div className="home-sort-bar">
+                <span>Order by:</span>
                 <button onClick ={newestBtnHandler} className={`home-sort-button ${sortType === 'newest' && 'home-sort-button-selected'}`}>Newest</button>
                 <button onClick ={popularBtnHandler} className={`home-sort-button ${sortType === 'popular' && 'home-sort-button-selected'}`}>Popular</button>
             </div>

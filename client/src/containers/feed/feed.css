@@ -18,6 +18,9 @@
     align-items: center;
     background: white;
     opacity: .9;
+    position: sticky;
+    top: 3.125rem;
+    z-index: 9998;
 }
 
 .feed-bar-left {
@@ -35,6 +38,7 @@
     margin-left: 8rem;
 }
 .feed-bar-button{
+    color: var(--color-text-light);
     margin-right: 1rem;
     border: none;
     background: none;

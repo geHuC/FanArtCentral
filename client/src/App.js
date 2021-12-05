@@ -13,6 +13,7 @@ import Footer from './components/footer/Footer.js';
 import About from './containers/about/About.js';
 import Contact from './containers/contact/Contact.js';
 import Feed from './containers/feed/Feed.js';
+import TagsContainer from './containers/tags/TagsContainer.js';
 
 const initialState = {
   isAuthenticated: false,
@@ -80,6 +81,7 @@ function App() {
               <Route path="/login" element={<Login />} />
               <Route path="/submit" element={<Submit />} />
               <Route path="/feed" element={<Feed />} />
+              <Route path="/tags/:tag" element={<TagsContainer />} />
               <Route path="/about" element={<About />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/:author/art/:slug" element ={<Details />} />
