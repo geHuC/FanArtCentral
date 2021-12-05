@@ -28,11 +28,16 @@
     background: var(--color-navbar-search-input);
     height: 2rem;
     width: 100%;
-    padding-left: 1rem;
+    padding-left: 2rem;
     color: var(--color-navbar-search-text);
     outline: none;
 }
-
+.search-icon{
+    position: absolute;
+    height: 2rem;
+    left: 0.5rem;
+    z-index: 9999;
+}
 .navigation-search-input:focus+.navigation-search-highlight {
     left: 0;
 }
