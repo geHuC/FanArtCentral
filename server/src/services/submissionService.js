@@ -11,6 +11,9 @@ const getCount = async () => {
 const getAll = async (sortParams = { createdAt: 'desc' }, skip = 0, pagesize = 20) => {
     return Submission.find().populate('author').sort(sortParams).skip(skip).limit(pagesize).lean();
 }
+const searchAll = async (seachParams = {}, sortParams = { createdAt: 'desc' }, skip = 0, pagesize = 20) => {
+    return Submission.find(seachParams).populate('author').sort(sortParams).skip(skip).limit(pagesize).lean();
+}
 
 const getAllMatching = async (array, sortParams = { createdAt: 'desc' }) => {
     return Submission.find({ 'author': { $in: array } }).populate('author').sort(sortParams).lean();
@@ -75,4 +78,5 @@ module.exports = {
     getRandom,
     getAllMatching,
     getTagged,
+    searchAll
 }

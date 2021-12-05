@@ -75,6 +75,22 @@ router.get('/tags/:tag', async (req, res) => {
     }
 })
 
+router.get('/search', async (req, res) => {
+    let searchParams = {};
+    let sortParams = {}
+    const regex = new RegExp(req.query.q, 'i')
+    searchParams['$or'] = [{ title: { $regex: regex } }, { tags: { $regex: regex } }];
+    req.query.sort.toLowerCase() === 'oldest' ? sortParams.createdAt = 'asc' : sortParams.createdAt = 'desc';
+    try {
+        const submissions = await submissionService.searchAll(searchParams, sortParams);
+        submissions.forEach(x => x.author = { username: x.author.username, avatar: x.author.avatar });
+        res.status(200).json(submissions);
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ error })
+    }
+})
+
 router.get('/random', async (req, res) => {
     try {
         const submission = await submissionService.getRandom();
@@ -105,7 +121,6 @@ router.delete('/:id', isUser, async (req, res) => {
 })
 router.post('/', isUser, upload.single('image'), async (req, res) => {
     try {
-
         res.status(200);
         let count = await submissionService.getCount();
         req.body.author = req.user._id;

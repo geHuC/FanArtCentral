@@ -40,8 +40,12 @@ const unfavourite = (id) => {
 const deleteOne = (id) => {
     return api.delete(`/${id}`);
 }
-const getFeed = (sort) =>{
+const getFeed = (sort) => {
     return api.get(`/feed?sort=${sort}`);
+}
+
+const getBySearch = (search, sort) => {
+    return api.get(`/search${search}&sort=${sort}`)
 }
 
 const submissionService = {
@@ -55,6 +59,7 @@ const submissionService = {
     unfavourite,
     deleteOne,
     getFeed,
-    getByTag
+    getByTag,
+    getBySearch
 }
 export default submissionService
