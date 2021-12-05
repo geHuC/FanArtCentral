@@ -28,6 +28,7 @@ const Details = () => {
     return (
         <section className="details-container">
             <div className="image-container">
+                <a href={data.imageUrl} target='_blank' />
                 <img src={data.imageUrl} alt="fanart" />
             </div>
             <div className="submission-details-container">
