@@ -6,9 +6,9 @@ const About = () => {
         <section className="about">
             <h1>About</h1>
             <h2>FanArt Central</h2>
-            <p>The site is built as a <Link to={{ pathname: "https://softuni.bg/" }} target="_blank">SoftUni</Link> course project by <Link to={{ pathname: "https://github.com/geHuC/" }} target="_blank">Denis Velkov</Link>. </p> 
+            <p>The site is built as a <a href="https://softuni.bg/" target="_blank">SoftUni</a> course project by <a href="https://github.com/geHuC/" target="_blank">Denis Velkov</a>. </p> 
             <p> Underneath the hood it utilizes the MERN (Mongo,Express,React,Node) technological stack.</p>
-            <p>The source code for the project can be found on GitHub <Link to={{ pathname: "https://github.com/geHuC/FanArtCentral" }} target="_blank">here</Link></p>
+            <p>The source code for the project can be found on GitHub <a href="https://github.com/geHuC/FanArtCentral" target="_blank">here</a></p>
         </section>
     )
 }
