@@ -1,8 +1,7 @@
 import { useParams } from "react-router-dom"
 import "./tagsContainer.css"
-import { useContext, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import SubmissionCard from '../../components/submissionCard/SubmissionCard.js';
-import UserContext from '../../context/UserContext.js'
 import submissionService from '../../services/submissionService.js';
 
 const TagsContainer = () => {

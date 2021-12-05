@@ -13,7 +13,8 @@ import Footer from './components/footer/Footer.js';
 import About from './containers/about/About.js';
 import Contact from './containers/contact/Contact.js';
 import Feed from './containers/feed/Feed.js';
-import TagsContainer from './containers/tags/TagsContainer.js';
+import TagsContainer from './containers/tagsContainer/TagsContainer.js';
+import Search from './containers/search/Search.js';
 
 const initialState = {
   isAuthenticated: false,
@@ -55,10 +56,10 @@ const reducer = (state, action) => {
 
 function App() {
   const [state, dispatch] = useReducer(reducer, initialState);
-  useEffect(()=>{
+  useEffect(() => {
     let user = localStorage.getItem('user');
     let token = localStorage.getItem('token');
-    if (user){
+    if (user) {
       dispatch({
         type: 'STORAGE-LOAD',
         payload: {
@@ -67,8 +68,8 @@ function App() {
           token
         }
       })
-    } 
-  },[])
+    }
+  }, [])
   return (
     <>
       <BrowserRouter>
@@ -83,8 +84,9 @@ function App() {
               <Route path="/feed" element={<Feed />} />
               <Route path="/tags/:tag" element={<TagsContainer />} />
               <Route path="/about" element={<About />} />
+              <Route path="/search" element={<Search />} />
               <Route path="/contact" element={<Contact />} />
-              <Route path="/:author/art/:slug" element ={<Details />} />
+              <Route path="/:author/art/:slug" element={<Details />} />
             </Routes>
           </div>
           <Footer />
