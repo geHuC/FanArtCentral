@@ -2,7 +2,7 @@ import './userDropDown.css'
 import { useContext, useState } from 'react';
 import UserContext from '../../context/UserContext.js';
 import { Link } from 'react-router-dom';
-
+import { AiOutlineLogout, AiOutlineSetting, AiOutlineStar } from 'react-icons/ai'
 
 const UserDropDown = () => {
     const { state: { user }, dispatch } = useContext(UserContext);
@@ -24,8 +24,9 @@ const UserDropDown = () => {
             </div>
             {show && <ul className="user-dropdown-menu">
                 <Link to={`/${user.username}`}><p className="dropdown-menu-username">{user.username}</p></Link>
-                <p className="user-dropdown-menu-item">Settings</p>
-                <p className="user-dropdown-menu-item" onClick={() => { dispatch({ type: 'LOGOUT' }) }}>Logout</p>
+                <Link to={'/favourites'} ><p className="user-dropdown-menu-item"><AiOutlineStar /> Favourites</p></Link>
+                <Link to={'/settings'} ><p className="user-dropdown-menu-item"><AiOutlineSetting /> Settings </p></Link>
+                <p className="user-dropdown-menu-item" onClick={() => { dispatch({ type: 'LOGOUT' }) }}><AiOutlineLogout /> Logout </p>
             </ul>}
         </div>
     )
