@@ -1,0 +1,9 @@
+.carousel{
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+.carousel-row{
+    display: flex;
+    gap: 0.5rem;
+}
