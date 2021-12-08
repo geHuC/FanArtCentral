@@ -1,0 +1,38 @@
+.profile-container{
+    margin-top: 5rem;
+    box-shadow: 0 -2px 0 rgba(0, 0, 0, 0.2)  ; 
+	-webkit-box-shadow: 0 -2px 0 rgba(0, 0, 0, 0.2)  ; 
+	-moz-box-shadow: 0 -2px 0 rgba(0, 0, 0, 0.2)  ; 
+    margin-top: 3rem;
+    width: 100%;
+    min-height: 70vh;
+    padding: 2rem;
+    align-items: center;
+    background: white;
+}
+.profile-data{
+    display: flex;
+    gap: 1rem;
+}
+
+.pd-left img{
+    width: 4rem;
+    height: 4rem;
+    object-fit: cover;
+}
+.pd-username{
+    font-family: 'Anton', sans-serif;
+    letter-spacing: 0.2rem;
+    font-size: large;
+}
+.pd-right{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.pd-statistics{
+    font-weight: 300;
+    font-size: 0.8rem;
+    display: flex;
+    gap: 1rem;
+}

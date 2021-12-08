@@ -15,6 +15,7 @@ import Contact from './containers/contact/Contact.js';
 import Feed from './containers/feed/Feed.js';
 import TagsContainer from './containers/tagsContainer/TagsContainer.js';
 import Search from './containers/search/Search.js';
+import Profile from './containers/profile/Profile.js';
 
 const initialState = {
   isAuthenticated: false,
@@ -86,6 +87,7 @@ function App() {
               <Route path="/about" element={<About />} />
               <Route path="/search" element={<Search />} />
               <Route path="/contact" element={<Contact />} />
+              <Route path="/:username" element={<Profile />} />
               <Route path="/:author/art/:slug" element={<Details />} />
             </Routes>
           </div>

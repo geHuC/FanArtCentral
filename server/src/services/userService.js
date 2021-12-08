@@ -33,8 +33,11 @@ const unfollow = async (username, followerId) => {
     return User.updateOne({ username }, { $pull: {followers: followerId} });
 }
 
-const getAndPopulate = async (id, field) => {
-    return User.findById(id).populate({ path: 'posts', populate: { path: 'author' } }).lean();
+const getAndPopulate = async (username, field) => {
+    
+    const pattern = new RegExp(`^${username}$`, 'i');
+    let user = await User.findOne({ username: { $regex: pattern } })
+    return User.findOne({ username: { $regex: pattern } }).populate(field).lean();
 }
 const getOne = async(id) =>{
     return User.findById(id).lean();
