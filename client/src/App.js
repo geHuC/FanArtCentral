@@ -16,6 +16,7 @@ import Feed from './containers/feed/Feed.js';
 import TagsContainer from './containers/tagsContainer/TagsContainer.js';
 import Search from './containers/search/Search.js';
 import Profile from './containers/profile/Profile.js';
+import ScrollToTop from './components/scrollToTop/ScrollToTop.js';
 
 const initialState = {
   isAuthenticated: false,
@@ -74,6 +75,7 @@ function App() {
   return (
     <>
       <BrowserRouter>
+      <ScrollToTop />
         <UserContext.Provider value={{ state, dispatch }}>
           <Navbar />
           <div className="container">
