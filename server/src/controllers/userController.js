@@ -29,6 +29,8 @@ router.get('/get/:username', async (req, res) => {
         try {
             const user = await userService.getAndPopulate(req.params.username,'submissions');
             user.submissions.forEach(x=> x.author = { username: user.username, avatar: user.avatar });
+            user.submissions.sort((a, b)=> b.createdAt - a.createdAt);
+            delete user.password;
             res.status(200).json(user);
         } catch (error) {
             console.log(error);
