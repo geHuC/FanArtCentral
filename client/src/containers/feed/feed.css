@@ -33,26 +33,30 @@
     justify-content: flex-end;
     width: 100%;
 }
-.feed-bar-name{
+
+.feed-bar-name {
     font-family: 'Anton', sans-serif;
     margin-left: 8rem;
 }
-.feed-bar-button{
+
+.feed-bar-button {
     color: var(--color-text-light);
     margin-right: 1rem;
     border: none;
     background: none;
     cursor: pointer;
 }
-.feed-bar-right span{
+
+.feed-bar-right span {
     margin-right: 0.5rem;
 }
+
 .feed-bar-selected {
     color: var(--color-accent);
     cursor: inherit;
 }
 
-.feed-bar-button:not(.feed-bar-selected):hover{
+.feed-bar-button:not(.feed-bar-selected):hover {
     color: var(--color-accent);
     text-decoration: underline;
 }

@@ -1,8 +1,8 @@
 import { useParams } from "react-router-dom"
 import "./tagsContainer.css"
 import { useEffect, useState } from 'react'
-import SubmissionCard from '../../components/submissionCard/SubmissionCard.js';
 import submissionService from '../../services/submissionService.js';
+import Carousel from "../../components/carousel/Carousel.js";
 
 const TagsContainer = () => {
     const { tag } = useParams();
@@ -43,9 +43,7 @@ const TagsContainer = () => {
                     <button onClick={sortByOldest} className={`feed-bar-button ${sort === 'oldest' ? 'feed-bar-selected' : ''}`}>Oldest</button>
                 </div>
             </div>
-            <div className="feed-container">
-                {loading ? <p>Loading...</p> : data.map(submission => <SubmissionCard key={submission._id} {...submission} />)}
-            </div>
+            {loading ? <p>Loading...</p> : <Carousel submissions={data} />}
         </section>
     )
 }

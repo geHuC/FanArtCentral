@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useLocation } from 'react-router'
-import SubmissionCard from '../../components/submissionCard/SubmissionCard.js';
+import Carousel from '../../components/carousel/Carousel.js';
 import submissionService from '../../services/submissionService.js';
 
 const Search = () => {
@@ -35,9 +35,7 @@ const Search = () => {
                     <button onClick={sortByOldest} className={`feed-bar-button ${sort === 'oldest' ? 'feed-bar-selected' : ''}`}>Oldest</button>
                 </div>
             </div>
-            <div className="feed-container">
-                {loading ? <p>Loading...</p> : data.map(submission => <SubmissionCard key={submission._id} {...submission} />)}
-            </div>
+            {loading ? <p>Loading...</p> : <Carousel submissions={data} />}
         </section>
     )
 }
