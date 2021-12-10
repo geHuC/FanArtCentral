@@ -1,11 +1,10 @@
-import React, { useContext} from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import UserContext from '../../context/UserContext.js'
 import UserDropDown from '../userDropDown/UserDropDown.js'
 import './navbar.css'
 import { AiOutlineSearch } from 'react-icons/ai';
+import { useUserContext } from '../../context/UserContext.js';
 const Navbar = () => {
-    const { state: { isAuthenticated } } = useContext(UserContext);
+    const { state: { isAuthenticated } } = useUserContext();
     const navigate = useNavigate();
 
     const onSearch = (e) => {

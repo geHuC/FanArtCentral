@@ -1,8 +1,7 @@
 import './favouriteButton.css'
-import { useContext, useEffect, useState } from 'react';
-
+import { useEffect, useState } from 'react';
 import { AiOutlineStar, AiFillStar } from 'react-icons/ai';
-import UserContext from '../../context/UserContext.js';
+import { useUserContext } from '../../context/UserContext.js';
 import prettyNumbers from '../../utils/prettyNumbers.js';
 import { useNavigate } from 'react-router-dom';
 import submissionService from '../../services/submissionService.js';
@@ -10,7 +9,7 @@ import submissionService from '../../services/submissionService.js';
 const FavouriteButton = ({ favourites, postId, author }) => {
     const [hasFavourited, setHasFavourited] = useState(false);
     const [favouritesCount, setFavouritesCount] = useState(favourites.length)
-    const { state: { user } } = useContext(UserContext);
+    const { state: { user } } = useUserContext()
     const navigate = useNavigate();
 
     useEffect(() => {

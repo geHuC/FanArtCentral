@@ -1,15 +1,15 @@
+import './submit.css'
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useContext, useState } from 'react';
+import { useUserContext } from '../../context/UserContext.js';
 import FormInput from '../../components/formInput/FormInput.js'
 import TagInput from '../../components/tagInput/TagInput.js';
-import UserContext from '../../context/UserContext.js';
-import './submit.css'
 import submissionService from '../../services/submissionService.js';
 import CategorySelector from '../../components/categorySelector/CategorySelector.js';
 import DescriptionTextBox from '../../components/descriptionTextBox/DescriptionTextBox.js';
 
 const Submit = () => {
-    const { state } = useContext(UserContext);
+    const { state } = useUserContext();
     const [tags, setTags] = useState([]);
     const [imageError, setImageError] = useState({});
     const [serverError, setServerError] = useState(false);

@@ -1,13 +1,13 @@
-import axios from 'axios';
 import { useContext, useEffect, useState } from 'react'
-import UserContext from '../../context/UserContext.js';
 import './followButton.css'
+import axios from 'axios';
+import { useUserContext } from '../../context/UserContext.js';
 
 const FollowButton = ({ author }) => {
     const [follow, setFollow] = useState(false);
     const [followSymbol, setFollowSymbol] = useState('✓');
     const [waiting, setWaiting] = useState(false);
-    const { state: { user, token } } = useContext(UserContext);
+    const { state: { user, token } } = useUserContext();
     useEffect(() => {
         if (user) {
             if (author.followers.some(x => x === user._id)) {

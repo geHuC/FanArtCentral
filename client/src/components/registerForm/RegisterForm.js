@@ -1,13 +1,13 @@
-import { useContext, useState } from 'react'
+import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { useUserContext } from '../../context/UserContext.js';
 import FormInput from '../formInput/FormInput.js'
 import './registerForm.css'
 import authService from '../../services/authService.js'
-import UserContext from '../../context/UserContext.js'
 
 const RegisterForm = () => {
     const navigate = useNavigate();
-    const { dispatch } = useContext(UserContext);
+    const { dispatch } = useUserContext();
     const [serverError, setServerError] = useState({});
     const [values, setValues] = useState({
         username: "",

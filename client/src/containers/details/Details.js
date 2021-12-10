@@ -1,17 +1,17 @@
-import { useState, useEffect, useContext } from 'react';
-import { Link, useParams } from 'react-router-dom';
-import { AiFillEye, AiOutlineStar } from 'react-icons/ai';
-import TimeAgo from 'timeago-react';
 import './details.css'
+import { useState, useEffect } from 'react';
+import { Link, useParams } from 'react-router-dom';
+import TimeAgo from 'timeago-react';
+import { AiFillEye, AiOutlineStar } from 'react-icons/ai';
+import { useUserContext } from '../../context/UserContext.js';
 import AuthorControls from '../../components/authorControls/AuthorControls.js';
 import FollowButton from '../../components/followButton/FollowButton.js';
 import submissionService from '../../services/submissionService.js';
-import UserContext from '../../context/UserContext.js';
 
 const Details = () => {
     let { author, slug } = useParams();
     const [data, setData] = useState({});
-    const { state: { user } } = useContext(UserContext);
+    const { state: { user } } = useUserContext();
 
     useEffect(() => {
         submissionService.getOne(slug, author)
@@ -21,7 +21,7 @@ const Details = () => {
 
     let isAuthor = undefined;
 
-    if(user) isAuthor = author === user.username;
+    if (user) isAuthor = author === user.username;
 
     if (Object.keys(data).length === 0) return (<div>Loading...</div>);
 
@@ -45,8 +45,8 @@ const Details = () => {
                                 <span>by </span>
                                 <Link to={`/${data.author?.username}`}>{data.author?.username}</Link>
                                 {isAuthor
-                                    ? <AuthorControls id={data._id}/>
-                                    : user ?<FollowButton author={data.author} /> : ''
+                                    ? <AuthorControls id={data._id} />
+                                    : user ? <FollowButton author={data.author} /> : ''
                                 }
 
                             </div>

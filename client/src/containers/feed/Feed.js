@@ -1,12 +1,11 @@
-import { useContext, useEffect, useState } from 'react'
-import Carousel from '../../components/carousel/Carousel.js';
-import SubmissionCard from '../../components/submissionCard/SubmissionCard.js';
-import UserContext from '../../context/UserContext.js'
-import submissionService from '../../services/submissionService.js';
 import './feed.css'
+import { useEffect, useState } from 'react'
+import { useUserContext } from '../../context/UserContext.js'
+import Carousel from '../../components/carousel/Carousel.js';
+import submissionService from '../../services/submissionService.js';
 
 const Feed = () => {
-    const { state: { user } } = useContext(UserContext);
+    const { state: { user } } = useUserContext()
     const [sort, setSort] = useState('newest');
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);
