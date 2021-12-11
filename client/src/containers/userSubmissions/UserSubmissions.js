@@ -3,37 +3,39 @@ import { useEffect, useState } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
 import axios from 'axios';
 import Carousel from '../../components/carousel/Carousel.js';
+import ProfileDataBar from '../../components/profileDataBar/ProfileDataBar.js';
 
 const UserSubmissions = () => {
     const location = useLocation()
     const { username } = useParams();
-    const { userData } = location.state;
-    const [data, setData] = useState([]);
+    const [userData, setUserData] = useState({});
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        if (username === userData?.username) {
-            setData(userData.submissions);
+        if (username === location.state?.userData?.username) {
+            setUserData(location.state?.userData);
             setLoading(false)
             return;
         }
         axios.get(`http://localhost:3030/api/v1/users/get/${username}`)
             .then(res => {
-                setData(res.data.submissions);
+                setUserData(res.data);
                 setLoading(false);
             })
             .catch(err => { console.log(err); setLoading(false) })
-    }, [username])
+    }, [username, location])
+
+    if (loading) return (<div>Loading...</div>);
+
     return (
-        <section className="feed">
-            <div className="feed-bar">
-                <div className="feed-bar-left">
-                    <span className="feed-bar-name">{username}</span>
-                    <span>`s Submissions:</span>
+        <>
+            <section className="user-favourites">
+                <div className="data-bar">
+                    <ProfileDataBar userData={userData} username={username} label="Submissions" />
                 </div>
-            </div>
-            {loading ? <p>Loading...</p> : <Carousel submissions={data} />}
-        </section>
+                <Carousel submissions={userData.submissions} />
+            </section>
+        </>
     )
 }
 
