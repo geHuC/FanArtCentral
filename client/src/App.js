@@ -16,6 +16,7 @@ import Search from './containers/search/Search.js';
 import Profile from './containers/profile/Profile.js';
 import ScrollToTop from './components/scrollToTop/ScrollToTop.js';
 import UserSubmissions from './containers/userSubmissions/UserSubmissions.js';
+import UserFavourites from './containers/userFavourites/userFavourites.js';
 
 function App() {
   return (
@@ -37,6 +38,7 @@ function App() {
               <Route path="/contact" element={<Contact />} />
               <Route path="/:username" element={<Profile />} />
               <Route path="/:username/submissions" element={<UserSubmissions />} />
+              <Route path="/:username/favourites" element={<UserFavourites />} />
               <Route path="/:author/art/:slug" element={<Details />} />
             </Routes>
           </div>
