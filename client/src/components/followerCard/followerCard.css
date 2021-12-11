@@ -1,0 +1,37 @@
+.follower-card {
+    height: 2.5rem;
+    display: flex;
+    gap: 0.5rem;
+    padding: 0.25rem;
+    background: var(--color-logo-text);
+    cursor: pointer;
+    max-width: 13.5rem;
+    min-width: 10rem;
+    color: var(--color-text-light);
+}
+
+.follower-card:hover {
+    background: var(--color-navbar-search-input);
+}
+
+.follower-card-img-container {
+    width: 2rem;
+    height: 2rem;
+}
+
+.follower-card-img-container img {
+    object-fit: cover;
+    width: 2rem;
+    height: 2rem;
+}
+
+.follower-card-right {
+    display: flex;
+    align-items: center;
+    font-size: 0.8rem;
+}
+
+.follower-card-left {
+    display: flex;
+    align-items: center;
+}

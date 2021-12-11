@@ -1,0 +1,30 @@
+.followers-row-card-container{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.followers-row{
+    margin-top: 1rem;
+}
+.followers-row-text-container{
+    display: flex;
+    gap: .5rem;
+    margin-bottom: 0.5rem;
+    color:  var(--color-text-light);
+}
+.followers-row-text{
+    font-weight: bold;
+}
+.followers-row-count{
+    font-weight: 300;
+}
+.followers-row-show-more{
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    font-size: .8rem;
+}
+.followers-row-show-more:hover{
+    color:var(--color-accent);
+    text-decoration: underline;
+}
