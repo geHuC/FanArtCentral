@@ -45,7 +45,11 @@
     align-items: center;
     gap: 0.2rem;
 }
-
+.pd-username a{
+    font-family: 'Anton', sans-serif;
+    letter-spacing: 0.2rem;
+    font-size: large;
+}
 .pd-name-container a svg {
     display: flex;
     color: var(--color-text-light);

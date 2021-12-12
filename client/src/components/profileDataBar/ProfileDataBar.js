@@ -18,11 +18,11 @@ const ProfileDataBar = ({ userData, username, label }) => {
         <div className="profile-data">
             <div className="pd-user-info">
                 <div className="pd-left">
-                    <img src="/static/noAvatar.png" alt="avatar" />
+                    <img src={userData.avatar} alt="avatar" />
                 </div>
                 <div className="pd-right">
                     <div className="pd-name-container">
-                        <span className="pd-username">{userData.username}</span>
+                        <span className="pd-username"><Link to={`/${userData.username}`}>{userData.username}</Link></span>
                         {loggedUserProfile
                             ? <Link to="/settings"><AiOutlineSetting />settings</Link>
                             : isAuthenticated ? <FollowButton author={userData} /> : ''
