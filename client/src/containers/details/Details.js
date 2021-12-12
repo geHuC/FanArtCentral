@@ -11,7 +11,7 @@ import submissionService from '../../services/submissionService.js';
 const Details = () => {
     let { author, slug } = useParams();
     const [data, setData] = useState({});
-    const { state: { user } } = useUserContext();
+    const { state: { user, isAuthenticated } } = useUserContext();
 
     useEffect(() => {
         submissionService.getOne(slug, author)
@@ -46,7 +46,7 @@ const Details = () => {
                                 <Link to={`/${data.author?.username}`}>{data.author?.username}</Link>
                                 {isAuthor
                                     ? <AuthorControls id={data._id} />
-                                    : user ? <FollowButton author={data.author} /> : ''
+                                    : isAuthenticated ? <FollowButton author={data.author} /> : ''
                                 }
 
                             </div>
