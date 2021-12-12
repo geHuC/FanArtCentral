@@ -16,7 +16,7 @@ router.get('/follow/:username', isUser, async (req, res) => {
 
 router.get('/unfollow/:username', isUser, async (req, res) => {
     try {
-        const followed = await userService.unfollow(req.params.username, req.user._id)
+        const followed = await userService.unfollow(req.params.username, req.user._id);
         await userService.removeFromField(req.user._id, followed._id, 'following');
         res.status(200).json({ message: 'unfollowed' });
     } catch (error) {
@@ -31,7 +31,7 @@ router.get('/get/:username', async (req, res) => {
             user.submissions.forEach(x=> x.author = { username: user.username, avatar: user.avatar });
             user.submissions.sort((a, b)=> b.createdAt - a.createdAt);
             user.favourites.forEach(x=> x.author = { username: x.author.username, avatar: x.author.avatar });
-            user.favourites.sort((a, b)=> b.createdAt - a.createdAt);
+            user.favourites.reverse();
             delete user.password;
             res.status(200).json(user);
         } catch (error) {
@@ -51,5 +51,15 @@ router.get('/getSmall/:id', async (req, res) => {
         }
     }
 )
+router.get('/getById/:id', async (req, res) => {
+    try {
+        const user = await userService.getOne(req.params.id)
+        delete user.password;
+        res.status(200).json(user);
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ error })
+    }
+})
 
 module.exports = router;

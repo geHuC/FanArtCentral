@@ -2,7 +2,7 @@ const User = require('../models/User');
 
 const pushToField = async (id, itemId, fieldName) => {
     const user = await User.findById(id);
-    if (user[fieldName].some(x => x._id == itemId)) {
+    if (user[fieldName].some(x => x == itemId)) {
         //Change error message accordingly
         throw new Error('Item already exists');
     }
@@ -12,7 +12,7 @@ const pushToField = async (id, itemId, fieldName) => {
 
 const removeFromField = async (id, itemId, fieldName) => {
     const user = await User.findById(id);
-    if (!user[fieldName].some(x => x._id == itemId)) {
+    if (!user[fieldName].some(x => x.toString() == itemId.toString())) {
         //Change error message accordingly
         throw new Error('Item not in field');
     }
@@ -22,7 +22,7 @@ const removeFromField = async (id, itemId, fieldName) => {
 
 const follow = async (username, followerId) => {
     const user = await User.findOne({ username });
-    if (user.followers.some(x => x === followerId)) {
+    if (user.followers.some(x => x.toString() === followerId.toString())) {
         //Change error message accordingly
         throw new Error('Already following');
     }
@@ -30,11 +30,10 @@ const follow = async (username, followerId) => {
     return user.save({ validateBeforeSave: false });
 }
 const unfollow = async (username, followerId) => {
-    return User.updateOne({ username }, { $pull: {followers: followerId} });
+    return User.findOneAndUpdate({ username }, { $pull: {followers: followerId} });
 }
 
 const getAndPopulate = async (username, field) => {
-    
     const pattern = new RegExp(`^${username}$`, 'i');
     let user = await User.findOne({ username: { $regex: pattern } })
     return User.findOne({ username: { $regex: pattern } }).populate(field).lean();
