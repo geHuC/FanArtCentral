@@ -11,7 +11,8 @@ const SubmissionsRow = ({userData, type}) => {
             </div>
             <div className="p-latest-submissions-row">
                 {userData[type].length > 0
-                    ? userData[type].slice(0, 4).map(submission => <SubmissionCard key={submission._id} {...submission} />)
+                    ? <>{userData[type].slice(0, 5).map(submission => <SubmissionCard key={submission._id} {...submission} />)}
+                    {userData[type].length > 5 && <Link to={`/${userData.username}/${type}`} state={{ userData }} className='p-latest-submissions-row-see-more'>See more</Link>}</>
                     : <div className="p-latest-submissions-nothing">{userData.username} doesn't have any {type} yet.</div>
                 }
             </div>
