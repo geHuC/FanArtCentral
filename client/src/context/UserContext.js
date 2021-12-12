@@ -48,6 +48,16 @@ const reducer = (state, action) => {
                 user: action.payload.user,
                 token: action.payload.token
             };
+        case "AVATAR-CHANGE":
+            let obj = {
+                ...state,
+                user: {
+                    ...state.user,
+                    avatar: action.payload.avatar
+                }
+            }
+            localStorage.setItem("user", JSON.stringify(obj.user));
+            return obj
         default:
             return state;
     };
