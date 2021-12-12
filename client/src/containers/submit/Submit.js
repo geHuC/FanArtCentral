@@ -18,7 +18,6 @@ const Submit = () => {
     const navigate = useNavigate();
     const formHandler = (e) => {
         e.preventDefault();
-        console.log('called');
         if (serverError) return;
         let formData = new FormData(e.currentTarget);
         formData.append('tags', JSON.stringify(tags));
@@ -70,16 +69,16 @@ const Submit = () => {
                     onChange={imageValidator}
                     invalid={rerender} //hacky hack no idea why I need to go this lenght it if someone can explain please do
                 />
-                {/* <FormInput
+                <DescriptionTextBox
                     name="description"
-                    type="text"
-                    placeholder="Enter description"
+                    placeholder="Enter description here"
+                    minLenght={10}
+                    maxLenght={350}
+                    errorMsg="Description must be atleast 10 characters long"
                     label="Description:"
-                    errorMessage="Please enter a description"
                     required={true}
-                /> */}
-                <DescriptionTextBox />
-               
+                />
+
                 <button className="submit-form-submit-button" type="submit">Submit</button>
             </form>
         </section>
