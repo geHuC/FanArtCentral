@@ -7,7 +7,6 @@ import { useUserContext } from '../../context/UserContext.js';
 
 const ProfileDataBar = ({ userData, username, label }) => {
     const { state: { user, isAuthenticated } } = useUserContext();
-    console.log(username);
     let loggedUserProfile = false;
     if (isAuthenticated) {
         if (user.username.toLowerCase() === username.toLowerCase()) {
