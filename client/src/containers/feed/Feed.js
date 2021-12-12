@@ -21,7 +21,7 @@ const Feed = () => {
                 setLoading(false);
                 console.log(err);
             })
-    }, [user, sort])
+    }, [user,sort])
 
     const sortByNewest = () => {
         if (sort !== 'newest') setSort('newest');

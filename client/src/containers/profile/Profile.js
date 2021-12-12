@@ -1,17 +1,17 @@
 import './profile.css'
-import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
 import FollowersRow from '../../components/followersRow/FollowersRow.js';
 import SubmissionsRow from '../../components/submissionsRow/SubmissionsRow.js';
 import ProfileDataBar from '../../components/profileDataBar/ProfileDataBar.js';
+import userService from '../../services/userService.js';
 
 const Profile = () => {
     const { username } = useParams();
     const [userData, setUserData] = useState({});
     const [waiting, setWaiting] = useState(true);
     useEffect(() => {
-        axios.get(`http://localhost:3030/api/v1/users/get/${username}`)
+        userService.getByUsername(username)
             .then(res => {
                 setUserData(res.data);
                 setWaiting(false);
