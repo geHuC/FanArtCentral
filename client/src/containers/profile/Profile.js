@@ -24,12 +24,21 @@ const Profile = () => {
 
     return (
         <section className="profile-container">
-            <ProfileDataBar userData={userData} username={username}/>
+            <ProfileDataBar userData={userData} username={username} />
             <SubmissionsRow userData={userData} type="submissions" />
             <SubmissionsRow userData={userData} type="favourites" />
-            <FollowersRow followers={userData.followers} text='Followers' />
-            <FollowersRow followers={userData.following} text='Following' />
-
+            <div className="profile-container-bottom">
+                <div className="profile-container-bottom-left">
+                    <FollowersRow followers={userData.followers} text='Followers' />
+                    <FollowersRow followers={userData.following} text='Following' />
+                </div>
+                <div className="profile-container-bottom-right">
+                    <span>Bio:</span>
+                    <div className="profile-container-bottom-right-bio">
+                        {userData.bio}
+                    </div>
+                </div>
+            </div>
         </section>
     )
 }
