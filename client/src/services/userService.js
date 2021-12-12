@@ -34,7 +34,13 @@ const follow = (username) => {
 const unfollow = (username) => {
     return api.get(`/unfollow/${username}`);
 }
-
+const updateSettings = (formData) => {
+    return api.patch('/profile/settings', formData, {
+        headers: {
+            "Content-Type": "multipart/form-data",
+        },
+    })
+}
 
 const userService = {
     setUp,
@@ -43,6 +49,7 @@ const userService = {
     getOneById,
     getSmall,
     follow,
-    unfollow
+    unfollow,
+    updateSettings,
 }
 export default userService
