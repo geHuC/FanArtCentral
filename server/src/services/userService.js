@@ -30,7 +30,7 @@ const follow = async (username, followerId) => {
     return user.save({ validateBeforeSave: false });
 }
 const unfollow = async (username, followerId) => {
-    return User.findOneAndUpdate({ username }, { $pull: {followers: followerId} });
+    return User.findOneAndUpdate({ username }, { $pull: { followers: followerId } });
 }
 
 const getAndPopulate = async (username, field) => {
@@ -38,8 +38,11 @@ const getAndPopulate = async (username, field) => {
     let user = await User.findOne({ username: { $regex: pattern } })
     return User.findOne({ username: { $regex: pattern } }).populate(field).lean();
 }
-const getOne = async(id) =>{
+const getOne = async (id) => {
     return User.findById(id).lean();
+}
+const updateOne = async (id, data) => {
+    return User.findOneAndUpdate({ _id: id }, data, { new: true });
 }
 module.exports = {
     pushToField,
@@ -48,4 +51,5 @@ module.exports = {
     unfollow,
     getOne,
     removeFromField,
+    updateOne
 }

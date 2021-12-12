@@ -16,6 +16,10 @@ const userSchema = new mongoose.Schema({
         minlength: [5, 'Full name must be at least 5 characters long'],
         validate: [/^[a-zA-Z0-9 ]+$/, 'Full name can contain only letters']
     },
+    bio: {
+        type: String,
+        maxlenght: [350, 'Bio cannot be longer than 350 characters'],
+    },
     email: {
         type: String,
         required: [true, 'Email is required'],
