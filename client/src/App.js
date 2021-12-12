@@ -18,6 +18,8 @@ import ScrollToTop from './components/scrollToTop/ScrollToTop.js';
 import UserSubmissions from './containers/userSubmissions/UserSubmissions.js';
 import UserFavourites from './containers/userFavourites/userFavourites.js';
 import Settings from './containers/settings/Settings.js';
+import RequireGuest from './components/routeGuards/RequireGuest.js';
+import RequireAuth from './components/routeGuards/RequireAuth.js';
 
 function App() {
   return (
@@ -29,15 +31,22 @@ function App() {
           <div className="container">
             <Routes>
               <Route path="/" element={<Home />} />
-              <Route path="/register" element={<Register />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/submit" element={<Submit />} />
-              <Route path="/feed" element={<Feed />} />
+
+              <Route element={<RequireGuest />} >
+                <Route path="/register" element={<Register />} />
+                <Route path="/login" element={<Login />} />
+              </Route>
+
+              <Route element={<RequireAuth />} >
+                <Route path="/submit" element={<Submit />} />
+                <Route path="/feed" element={<Feed />} />
+                <Route path="/settings" element={<Settings />} />
+              </Route>
+              
               <Route path="/tags/:tag" element={<TagsContainer />} />
               <Route path="/about" element={<About />} />
               <Route path="/search" element={<Search />} />
               <Route path="/contact" element={<Contact />} />
-              <Route path="/settings" element={<Settings />} />
               <Route path="/:username" element={<Profile />} />
               <Route path="/:username/submissions" element={<UserSubmissions />} />
               <Route path="/:username/favourites" element={<UserFavourites />} />
