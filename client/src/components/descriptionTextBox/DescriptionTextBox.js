@@ -6,8 +6,10 @@ const DescriptionTextBox = ({ placeholder, label, maxLenght, minLenght, required
     const [symbolCount, setSymbolCount] = useState(0);
     const [error, setError] = useState(false);
     useState(() => {
-        setValue(initialValue);
-        setSymbolCount(initialValue.length);
+        if (initialValue) {
+            setValue(initialValue);
+            setSymbolCount(initialValue.length);
+        }
     }, [initialValue])
     const onChangeHandler = (e) => {
         if (e.target.value.length <= maxLenght) {
