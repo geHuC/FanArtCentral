@@ -1,41 +1,44 @@
 import { useState } from 'react'
 import './descriptionTextBox.css'
 
-const DescriptionTextBox = () => {
+const DescriptionTextBox = ({ placeholder, label, maxLenght, minLenght, required, name, errorMsg, initialValue }) => {
     const [value, setValue] = useState('');
     const [symbolCount, setSymbolCount] = useState(0);
-    const [error, setError] = useState(false)
-
+    const [error, setError] = useState(false);
+    useState(() => {
+        setValue(initialValue);
+        setSymbolCount(initialValue.length);
+    }, [initialValue])
     const onChangeHandler = (e) => {
-        if (e.target.value.length <= 350) {
+        if (e.target.value.length <= maxLenght) {
             setValue(e.target.value);
             setSymbolCount(e.target.value.length);
         }
     }
     const onBlurHandler = (e) => {
-        if (symbolCount < 10) setError(true);
+        if (symbolCount < minLenght) setError(true);
     }
     const onFocusHandler = (e) => {
         if (error) setError(false);
     }
     return (
         <div className="description-text-box">
-            <label htmlFor="description">Description:</label>
+            <label htmlFor={name}>{label}</label>
             <textarea
-                name="description"
+                name={name}
                 value={value}
                 onChange={onChangeHandler}
                 onBlur={onBlurHandler}
                 onFocus={onFocusHandler}
-                placeholder="Enter description here"
-                minLength={10}
-                required={true} />
+                placeholder={placeholder}
+                minLength='10'
+                required={required} />
             <div className="description-text-box-count-container">
                 <div className="description-text-box-count-container-left">
-                    {error && <span>Description must be atleast 10 characters long</span>}
+                    {error && <span>{errorMsg}</span>}
                 </div>
                 <div className="description-text-box-count-container-right">
-                    <span>{symbolCount}/350</span>
+                    <span>{symbolCount}/{maxLenght}</span>
                 </div>
             </div>
         </div>
