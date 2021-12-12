@@ -20,6 +20,7 @@ import UserFavourites from './containers/userFavourites/userFavourites.js';
 import Settings from './containers/settings/Settings.js';
 import RequireGuest from './components/routeGuards/RequireGuest.js';
 import RequireAuth from './components/routeGuards/RequireAuth.js';
+import NotFound from './containers/notFound/NotFound.js';
 
 function App() {
   return (
@@ -42,15 +43,17 @@ function App() {
                 <Route path="/feed" element={<Feed />} />
                 <Route path="/settings" element={<Settings />} />
               </Route>
-              
+
               <Route path="/tags/:tag" element={<TagsContainer />} />
               <Route path="/about" element={<About />} />
               <Route path="/search" element={<Search />} />
               <Route path="/contact" element={<Contact />} />
+              <Route path="/404" element={<NotFound />} />
               <Route path="/:username" element={<Profile />} />
               <Route path="/:username/submissions" element={<UserSubmissions />} />
               <Route path="/:username/favourites" element={<UserFavourites />} />
               <Route path="/:author/art/:slug" element={<Details />} />
+              <Route path="*" element={<NotFound />} />
             </Routes>
           </div>
           <Footer />

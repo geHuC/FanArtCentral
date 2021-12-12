@@ -24,7 +24,6 @@ router.get('/unfollow/:username', isUser, async (req, res) => {
         await userService.removeFromField(req.user._id, followed._id, 'following');
         res.status(200).json({ message: 'unfollowed' });
     } catch (error) {
-        console.log(error);
         res.status(500).json({ error })
     }
 })
@@ -32,6 +31,7 @@ router.get('/unfollow/:username', isUser, async (req, res) => {
 router.get('/get/:username', async (req, res) => {
     try {
         const user = await userService.getAndPopulate(req.params.username, [{ path: 'submissions' }, { path: 'favourites', populate: { path: 'author' } }]);
+        if (!user) return res.status(404).json({ msg: 'Not found' });
         user.submissions.forEach(x => x.author = { username: user.username, avatar: user.avatar });
         user.submissions.sort((a, b) => b.createdAt - a.createdAt);
         user.favourites.forEach(x => x.author = { username: x.author.username, avatar: x.author.avatar });
@@ -39,7 +39,6 @@ router.get('/get/:username', async (req, res) => {
         delete user.password;
         res.status(200).json(user);
     } catch (error) {
-        console.log(error);
         res.status(500).json({ error })
     }
 }
@@ -50,7 +49,6 @@ router.get('/getSmall/:id', async (req, res) => {
         const toReturn = { username: user.username, avatar: user.avatar }
         res.status(200).json(toReturn);
     } catch (error) {
-        console.log(error);
         res.status(500).json({ error })
     }
 }
@@ -61,7 +59,6 @@ router.get('/getById/:id', async (req, res) => {
         delete user.password;
         res.status(200).json(user);
     } catch (error) {
-        console.log(error);
         res.status(500).json({ error })
     }
 })
@@ -69,7 +66,7 @@ router.patch('/profile/settings', isUser, upload.single('avatar'), async (req, r
     try {
         if (req.file) {
             const fileType = req.file.mimetype.split('/')[1];
-            const fileName = `${Date.now().toString().slice(7,12)}.${fileType}`
+            const fileName = `${Date.now().toString().slice(7, 12)}.${fileType}`
             const filepath = `avatars/${req.user.username}/${fileName}`;
             console.log(filepath);
             const thumbnail = await imageThumbnail(req.file.buffer, { height: 200 });
@@ -80,7 +77,6 @@ router.patch('/profile/settings', isUser, upload.single('avatar'), async (req, r
         delete user.password;
         res.status(200).json(user);
     } catch (error) {
-        console.log(error);
         res.status(500).json(error);
     }
 })

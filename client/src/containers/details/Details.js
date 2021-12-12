@@ -1,6 +1,6 @@
 import './details.css'
 import { useState, useEffect } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, Navigate, useNavigate, useParams } from 'react-router-dom';
 import TimeAgo from 'timeago-react';
 import { AiFillEye, AiOutlineStar } from 'react-icons/ai';
 import { useUserContext } from '../../context/UserContext.js';
@@ -9,6 +9,7 @@ import FollowButton from '../../components/followButton/FollowButton.js';
 import submissionService from '../../services/submissionService.js';
 
 const Details = () => {
+    let navigate = useNavigate()
     let { author, slug } = useParams();
     const [data, setData] = useState({});
     const { state: { user, isAuthenticated } } = useUserContext();
@@ -16,7 +17,9 @@ const Details = () => {
     useEffect(() => {
         submissionService.getOne(slug, author)
             .then(res => setData(res.data))
-            .catch(err => console.log(err));
+            .catch(err => {
+                navigate('/404');
+            });
     }, [slug, author])
 
     let isAuthor = undefined;

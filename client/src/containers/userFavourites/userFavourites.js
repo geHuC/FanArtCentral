@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react';
-import { useLocation, useParams } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import Carousel from '../../components/carousel/Carousel.js';
 import ProfileDataBar from '../../components/profileDataBar/ProfileDataBar.js';
 
 const UserFavourites = () => {
-    const location = useLocation()
+    const location = useLocation();
+    const navigate = useNavigate();
     const { username } = useParams();
     const [userData, setUserData] = useState({});
     const [loading, setLoading] = useState(true);
@@ -21,7 +22,11 @@ const UserFavourites = () => {
                 setUserData(res.data);
                 setLoading(false);
             })
-            .catch(err => { console.log(err); setLoading(false) })
+            .catch(err => { 
+                if(err.response.status === 404){
+                    return navigate('/404');
+                }
+                setLoading(false) })
     }, [username, location])
 
     if (loading) return (<div>Loading...</div>);
