@@ -22,7 +22,7 @@ const FavouriteButton = ({ favourites, postId, author }) => {
     const addToFavourites = (e) => {
         e.preventDefault();
         if (!user) {
-            navigate('/login')
+           return navigate('/login')
         }
         if (user.username === author.username) {
             return;
@@ -38,7 +38,7 @@ const FavouriteButton = ({ favourites, postId, author }) => {
     const removeFromFavourites = (e) => {
         e.preventDefault();
         if (!user) {
-            navigate('/login')
+           return navigate('/login')
         }
         if (user.username === author.username) {
             return;
