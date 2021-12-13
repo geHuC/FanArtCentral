@@ -17,12 +17,12 @@
 }
 
 .profile-container-bottom-left {
-    flex: 1;
+    flex: 3;
 }
 
 .profile-container-bottom-right {
     margin-top: 1rem;
-    flex: 1;
+    flex: 2;
     margin-bottom: 1rem;
 }
 .profile-container-bottom-right span{
