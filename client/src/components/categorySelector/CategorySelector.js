@@ -1,10 +1,10 @@
 import './categorySelector.css'
 
-const CategorySelector = () => {
+const CategorySelector = ({initialValue}) => {
     return (
         <>
             <label className='category-label' htmlFor="category">Category: </label>
-            <select name='category' className="category-selector">
+            <select name='category' className="category-selector" defaultValue={initialValue}>
                 <option value="digital-art">Digital Art</option>
                 <option value="tradidional-art">Tradidional Art</option>
                 <option value="scultpure">Scultpure</option>

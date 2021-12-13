@@ -1,14 +1,18 @@
-.author-contols{
+.author-contols {
     display: flex;
     margin-left: 0.5rem;
     position: relative;
 }
-.author-contols-button{
+
+.author-contols-button {
     cursor: pointer;
 }
-.AiOutlineEdit:hover{
+
+.AiOutlineEdit:hover {
     color: var(--color-accent);
 }
-.AiOutlineDelete:hover{
-    color:tomato;
+
+.AiOutlineDelete:hover {
+    color: tomato;
 }
+

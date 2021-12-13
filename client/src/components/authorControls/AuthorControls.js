@@ -4,39 +4,54 @@ import { useState } from 'react';
 import ConfirmBox from '../confirmBox/ConfirmBox.js';
 import submissionService from '../../services/submissionService.js';
 import { useNavigate } from 'react-router-dom';
+import EditDialog from '../editDialog/EditDialog.js';
 
-const AuthorControls = ({id}) => {
-    const [confirm, setConfirirm] = useState(false);
+const AuthorControls = ({ id, data, setData }) => {
+    const [delDialog, setDelDialog] = useState(false);
+    const [editDialog, setEditDialog] = useState(false)
     const [wait, setWait] = useState(false);
     const navigate = useNavigate()
+
     const deleteBtnHandler = (e) => {
-        setConfirirm(!confirm);
+        setDelDialog(state => !state);
     }
-    const hideConfirm = (e) =>{
-        setConfirirm(false)
+    const editBtnHandler = (e) => {
+        setEditDialog(state => !state)
     }
-    const deleteSubmission = (e)=>{
+    const hideDelDialog = (e) => {
+        setDelDialog(false);
+    }
+    const hideEditDialog = (e) => {
+        setEditDialog(false);
+    }
+    const deleteSubmission = (e) => {
         setWait(true);
         submissionService.deleteOne(id)
-        .then(res => navigate('/'))
-        .catch(err => console.log(err))
+            .then(res => navigate('/'))
+            .catch(err => console.log(err))
         setWait(false);
     }
     return (
-        <div className={`author-contols ${wait && 'wait'}`} onMouseLeave={hideConfirm}>
-            <AiOutlineEdit className="author-contols-button AiOutlineEdit"/>
-            <AiOutlineDelete 
-            className="author-contols-button AiOutlineDelete"
-            onClick={deleteBtnHandler}/>
-            
-            {confirm && <ConfirmBox 
-            classes="delete-confirm-box"
-            heading="Are you sure?"
-            subheading="Deleting an item cannot be reversed" 
-            confirmBtn="Delete" 
-            cancelBtn="Cancel"
-            cancelClick={hideConfirm}
-            confirmClick={deleteSubmission}
+        <div className={`author-contols ${wait && 'wait'}`} onMouseLeave={hideDelDialog}>
+            <AiOutlineEdit
+                className="author-contols-button AiOutlineEdit"
+                onClick={editBtnHandler}
+            />
+
+            {editDialog && <EditDialog data={data} hideHandler={hideEditDialog} setData={setData}/>}
+
+            <AiOutlineDelete
+                className="author-contols-button AiOutlineDelete"
+                onClick={deleteBtnHandler} />
+
+            {delDialog && <ConfirmBox
+                classes="delete-confirm-box"
+                heading="Are you sure?"
+                subheading="Deleting an item cannot be reversed"
+                confirmBtn="Delete"
+                cancelBtn="Cancel"
+                cancelClick={hideDelDialog}
+                confirmClick={deleteSubmission}
             />}
         </div>
     )

@@ -19,6 +19,10 @@ const create = (formData) => {
     })
 }
 
+const update = (id, formData) => {
+    return api.patch(`/${id}`, formData);
+}
+
 const getOne = (slug, author) => {
     return api.get(`/${author}/art/${slug}`);
 }
@@ -52,6 +56,7 @@ const submissionService = {
     setUp,
     clearToken,
     create,
+    update,
     getOne,
     getAll,
     getRandom,

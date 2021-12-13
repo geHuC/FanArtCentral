@@ -31,7 +31,7 @@ const Details = () => {
     return (
         <section className="details-container">
             <div className="image-container">
-                <a href={data.imageUrl} target='_blank' rel="noreferrer" />
+                <a href={data.imageUrl} target='_blank' rel="noreferrer" ></a>
                 <img src={data.imageUrl} alt="fanart" />
             </div>
             <div className="submission-details-container">
@@ -48,7 +48,7 @@ const Details = () => {
                                 <span>by </span>
                                 <Link to={`/${data.author?.username}`}>{data.author?.username}</Link>
                                 {isAuthor
-                                    ? <AuthorControls id={data._id} />
+                                    ? <AuthorControls id={data._id} data={data} setData={setData}/>
                                     : isAuthenticated ? <FollowButton author={data.author} /> : ''
                                 }
 

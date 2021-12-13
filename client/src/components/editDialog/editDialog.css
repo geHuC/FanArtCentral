@@ -1,0 +1,31 @@
+.edit-dialog-container {
+    position: fixed;
+    top:0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.5);
+}
+.edit-dialog-box{
+    box-shadow: 0 -2px 0 rgba(0, 0, 0, 0.2)  ; 
+	-webkit-box-shadow: 0 -2px 0 rgba(0, 0, 0, 0.2)  ; 
+	-moz-box-shadow: 0 -2px 0 rgba(0, 0, 0, 0.2)  ; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: white;
+    width: 100%;
+    max-width: 1000px;
+    height: 70vh;
+    margin-top: 8rem;
+}
+.edit-dialog-cancel{
+    margin-top: 1rem;
+    cursor: pointer;
+}
+.edit-dialog-cancel:hover{
+    text-decoration: underline;
+}
