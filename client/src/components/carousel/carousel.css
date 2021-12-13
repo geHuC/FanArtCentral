@@ -7,3 +7,11 @@
     display: flex;
     gap: 0.5rem;
 }
+.carousel-row-nothing{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 2rem;
+    font-weight: bold;
+    color: var(--color-text-light);
+}

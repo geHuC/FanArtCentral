@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react'
 import './carousel.css'
+import { useEffect, useState } from 'react'
 import useWindowDimesions from '../../hooks/useWindowDimensions.js'
 import SubmissionCard from '../submissionCard/SubmissionCard.js';
 
@@ -38,9 +38,12 @@ const Carousel = (props) => {
     }, [props.submissions, width])
     return (
         <div className="carousel">
-            {temp.map(row => (<div className="carousel-row" style={row.style} key={row.id}>
-                {row.submissions.map(submission => <SubmissionCard key={submission._id} {...submission} />)}
-            </div>))}
+            {props.submissions.length > 0
+                ? temp.map(row => (<div className="carousel-row" style={row.style} key={row.id}>
+                    {row.submissions.map(submission => <SubmissionCard key={submission._id} {...submission} />)}
+                </div>))
+                : <div className="carousel-row-nothing">{props.emptyMsg}</div>}
+
         </div>
     )
 }
