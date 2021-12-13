@@ -1,0 +1,32 @@
+.skeleton-carousel{
+    display: flex;
+    gap: 0.5rem;
+    flex-direction: column;
+    max-width: 1200px;
+}
+.skeleton-row{
+    display: flex;
+    gap: 0.5rem;
+    max-width: 1200px;
+    overflow: hidden;
+}
+@keyframes breathe {
+    0%{
+        opacity: 0.3;
+    }
+    50%{
+        opacity: 0.7;
+    }
+    100%{
+        opacity: 0.3;
+    }
+}
+.skeleton-item{
+    width: 100%;
+    max-height: 18.25rem;
+    min-height: 16rem;
+    height: 17rem;
+    background: lightgray;
+    animation: breathe 2s ease-in-out infinite;
+}
+

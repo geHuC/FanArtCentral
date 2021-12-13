@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useLocation } from 'react-router'
 import Carousel from '../../components/carousel/Carousel.js';
+import SkeletonCarousel from '../../components/skeletonCarousel/SkeletonCarousel.js';
 import submissionService from '../../services/submissionService.js';
 
 const Search = () => {
@@ -35,7 +36,7 @@ const Search = () => {
                     <button onClick={sortByOldest} className={`feed-bar-button ${sort === 'oldest' ? 'feed-bar-selected' : ''}`}>Oldest</button>
                 </div>
             </div>
-            {loading ? <p>Loading...</p> : <Carousel submissions={data} />}
+            {loading ? <SkeletonCarousel /> : <Carousel submissions={data} emptyMsg={`We looked everywhere and couldn't find any ${prettySearch} content. Be the first to submit it.`}/>}
         </section>
     )
 }

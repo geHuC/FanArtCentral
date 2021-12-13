@@ -3,6 +3,7 @@ import "./tagsContainer.css"
 import { useEffect, useState } from 'react'
 import submissionService from '../../services/submissionService.js';
 import Carousel from "../../components/carousel/Carousel.js";
+import SkeletonCarousel from "../../components/skeletonCarousel/SkeletonCarousel.js";
 
 const TagsContainer = () => {
     const { tag } = useParams();
@@ -43,7 +44,7 @@ const TagsContainer = () => {
                     <button onClick={sortByOldest} className={`feed-bar-button ${sort === 'oldest' ? 'feed-bar-selected' : ''}`}>Oldest</button>
                 </div>
             </div>
-            {loading ? <p>Loading...</p> : <Carousel submissions={data} />}
+            {loading ? <SkeletonCarousel /> : <Carousel submissions={data} />}
         </section>
     )
 }

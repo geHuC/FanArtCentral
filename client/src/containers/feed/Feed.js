@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 import { useUserContext } from '../../context/UserContext.js'
 import Carousel from '../../components/carousel/Carousel.js';
 import submissionService from '../../services/submissionService.js';
+import SkeletonCarousel from '../../components/skeletonCarousel/SkeletonCarousel.js';
 
 const Feed = () => {
     const { state: { user } } = useUserContext()
@@ -42,7 +43,7 @@ const Feed = () => {
                     <button onClick={sortByOldest} className={`feed-bar-button ${sort === 'oldest' ? 'feed-bar-selected' : ''}`}>Oldest</button>
                 </div>
             </div>
-            {loading ? <p>Loading...</p> : <Carousel submissions={data} />}
+            {loading ? <SkeletonCarousel /> : <Carousel submissions={data} emptyMsg="There is nothing to show yet, follow more people to see more content."/>}
         </section>
     )
 }
