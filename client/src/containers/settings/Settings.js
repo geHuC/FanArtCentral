@@ -5,6 +5,7 @@ import { useCallback, useEffect, useState } from 'react';
 import userService from '../../services/userService.js';
 import FormInput from '../../components/formInput/FormInput.js';
 import DescriptionTextBox from '../../components/descriptionTextBox/DescriptionTextBox.js';
+import LoadingDots from '../../components/loadintDots/LoadingDots.js';
 
 const Settings = () => {
     const { state: { user }, dispatch } = useUserContext();
@@ -39,7 +40,7 @@ const Settings = () => {
     const onChange = e => {
         setFullname(e.target.value);
     }
-    if (loading) return (<div>Loading...</div>);
+    if (loading) return <LoadingDots />;
 
     return (
         <section className="settings-section">

@@ -5,6 +5,7 @@ import FollowersRow from '../../components/followersRow/FollowersRow.js';
 import SubmissionsRow from '../../components/submissionsRow/SubmissionsRow.js';
 import ProfileDataBar from '../../components/profileDataBar/ProfileDataBar.js';
 import userService from '../../services/userService.js';
+import LoadingDots from '../../components/loadintDots/LoadingDots.js';
 
 const Profile = () => {
     const { username } = useParams();
@@ -18,7 +19,7 @@ const Profile = () => {
                 setWaiting(false);
             })
             .catch(err => {
-                if(err.response.status === 404){
+                if (err.response.status === 404) {
                     return navigate('/404');
                 }
                 setWaiting(false)
@@ -26,7 +27,7 @@ const Profile = () => {
     }, [username])
 
 
-    if (waiting) return (<div>Loading...</div>);
+    if (waiting) return <LoadingDots />;
 
     return (
         <section className="profile-container">

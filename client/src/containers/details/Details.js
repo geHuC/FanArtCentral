@@ -7,6 +7,7 @@ import { useUserContext } from '../../context/UserContext.js';
 import AuthorControls from '../../components/authorControls/AuthorControls.js';
 import FollowButton from '../../components/followButton/FollowButton.js';
 import submissionService from '../../services/submissionService.js';
+import LoadingDots from '../../components/loadintDots/LoadingDots.js';
 
 const Details = () => {
     let navigate = useNavigate()
@@ -26,7 +27,7 @@ const Details = () => {
 
     if (user) isAuthor = author === user.username;
 
-    if (Object.keys(data).length === 0) return (<div>Loading...</div>);
+    if (Object.keys(data).length === 0) return <LoadingDots />;
 
     return (
         <section className="details-container">

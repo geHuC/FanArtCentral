@@ -4,6 +4,7 @@ import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import Carousel from '../../components/carousel/Carousel.js';
 import ProfileDataBar from '../../components/profileDataBar/ProfileDataBar.js';
+import LoadingDots from '../../components/loadintDots/LoadingDots.js';
 
 const UserSubmissions = () => {
     const location = useLocation();
@@ -31,7 +32,7 @@ const UserSubmissions = () => {
             })
     }, [username, location])
 
-    if (loading) return (<div>Loading...</div>);
+    if (loading) return <LoadingDots />;
 
     return (
         <>
