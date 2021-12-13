@@ -32,7 +32,7 @@ const deleteOne = async (id, ownerId) => {
     return Submission.findOneAndDelete({ _id: id, author: ownerId });
 }
 const updateOne = async (id, ownerId, data) => {
-    return Submission.findOneAndUpdate({ _id: id, author: ownerId }, data, { runValidators: true });
+    return Submission.findOneAndUpdate({ _id: id, author: ownerId }, data, { runValidators: true, new: true }).populate('author').lean();
 }
 const getRandom = async () => {
     return Submission.aggregate().sample(1);

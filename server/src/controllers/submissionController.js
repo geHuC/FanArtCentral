@@ -120,7 +120,6 @@ router.delete('/:id', isUser, async (req, res) => {
 })
 router.post('/', isUser, upload.single('image'), async (req, res) => {
     try {
-        res.status(200);
         let count = await submissionService.getCount();
         req.body.author = req.user._id;
         req.body.slug = slugify(req.body.title, { lower: true, strict: true, trim: true }) + `-${Date.now().toString().slice(7, 12)}${count + 1}`;
@@ -142,7 +141,18 @@ router.post('/', isUser, upload.single('image'), async (req, res) => {
         userService.pushToField(req.user._id, sub._id, 'submissions');
         res.status(201).json(sub)
     } catch (error) {
-        console.log('Error', error);
+        res.status(500).json({ error })
+    }
+})
+router.patch('/:id', isUser, async (req, res) => {
+    try {
+        req.body.slug = `${slugify(req.body.title, { lower: true, strict: true, trim: true })}-${req.body.slug.split('-').slice(-1)[0]}`;
+        req.body.tags = JSON.parse(req.body.tags);
+        let sub = await submissionService.updateOne(req.params.id, req.user._id, req.body);
+        sub.author = { username: sub.author.username, avatarUrl: sub.author.avatar, followers: sub.author.followers };
+        res.status(200).json(sub);
+    } catch (error) {
+        console.log(error);
         res.status(500).json({ error })
     }
 })
