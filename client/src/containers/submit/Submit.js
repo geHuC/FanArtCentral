@@ -13,17 +13,23 @@ const Submit = () => {
     const [tags, setTags] = useState([]);
     const [imageError, setImageError] = useState({});
     const [serverError, setServerError] = useState(false);
-    const [rerender, setRerender] = useState(1)
+    const [rerender, setRerender] = useState(1);
+    const [wait, setWait] = useState(false);
 
     const navigate = useNavigate();
     const formHandler = (e) => {
         e.preventDefault();
+        if (wait) return;
         if (serverError) return;
+        setWait(true);
         let formData = new FormData(e.currentTarget);
         formData.append('tags', JSON.stringify(tags));
         submissionService.create(formData)
-            .then(data => navigate(`/${state.user.username}/art/${data.data.slug}`))
-            .catch(err => console.log(err));
+            .then(data => { navigate(`/${state.user.username}/art/${data.data.slug}`) })
+            .catch(err => {
+                console.log(err);
+                setWait(false);
+            });
     }
     const imageValidator = (e) => {
         setImageError({});
@@ -42,7 +48,7 @@ const Submit = () => {
         }
     }
     return (
-        <section className="submit-section">
+        <section className={`submit-section ${wait && 'wait'}`}>
             <div className="submit-header-container">
                 <h2>Create submission:</h2>
             </div>
@@ -79,7 +85,7 @@ const Submit = () => {
                     required={true}
                 />
 
-                <button className="submit-form-submit-button" type="submit">Submit</button>
+                <button className={`submit-form-submit-button ${wait && 'block'}`} type="submit">Submit</button>
             </form>
         </section>
     )
