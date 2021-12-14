@@ -13,6 +13,11 @@ const EditDialog = ({ data, hideHandler, setData }) => {
     const [tags, setTags] = useState(data.tags);
     const navigate = useNavigate();
 
+    const backgroundClick = (e) => {
+        if(e.currentTarget === e.target){
+            hideHandler();
+        }
+    }
     const formHandler = (e) => {
         e.preventDefault();
         let formData = new FormData(e.currentTarget);
@@ -20,7 +25,7 @@ const EditDialog = ({ data, hideHandler, setData }) => {
         formData.append('slug', data.slug);
         submissionService.update(data._id, Object.fromEntries(formData))
             .then(res => {
-                if(res.data.slug === data.slug){
+                if (res.data.slug === data.slug) {
                     setData(res.data)
                 }
                 navigate(`/${state.user.username}/art/${res.data.slug}`, { replace: true })
@@ -29,7 +34,7 @@ const EditDialog = ({ data, hideHandler, setData }) => {
             .catch(err => console.log(err));
     }
     return (
-        <div className="edit-dialog-container">
+        <div className="edit-dialog-container" onClick={backgroundClick}>
             <div className='edit-dialog-box'>
                 <div className="submit-header-container">
                     <h2>Edit submission:</h2>
