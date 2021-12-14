@@ -131,8 +131,8 @@ router.post('/', isUser, upload.single('image'), async (req, res) => {
         const fileName = `${req.body.slug}.${dimensions.type}`;
         const thumbName = `${req.body.slug}_thumb.${dimensions.type}`;
 
-        await fbService.file(`art/${req.user.username}/${fileName}`).createWriteStream().end(req.file.buffer);
-        await fbService.file(`thumbs/${req.user.username}/${thumbName}`).createWriteStream().end(thumbnail);
+        await fbService.file(`art/${req.user.username}/${fileName}`).save(req.file.buffer);
+        await fbService.file(`thumbs/${req.user.username}/${thumbName}`).save(thumbnail);
         req.body.thumbWidth = dimensions.width;
         req.body.imageUrl = `https://firebasestorage.googleapis.com/v0/b/fanart-central.appspot.com/o/art%2F${req.user.username}%2F${fileName}?alt=media`;
         req.body.thumbUrl = `https://firebasestorage.googleapis.com/v0/b/fanart-central.appspot.com/o/thumbs%2F${req.user.username}%2F${thumbName}?alt=media`;
