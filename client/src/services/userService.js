@@ -11,13 +11,6 @@ const clearToken = () => {
     delete api.defaults.headers.common['X-Authorization'];
 }
 
-const create = (formData) => {
-    return api.post('/', formData, {
-        headers: {
-            "Content-Type": "multipart/form-data",
-        },
-    })
-}
 const getByUsername = (username) => {
     return api.get(`/get/${username}`)
 }
