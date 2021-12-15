@@ -8,6 +8,7 @@ import AuthorControls from '../../components/authorControls/AuthorControls.js';
 import FollowButton from '../../components/followButton/FollowButton.js';
 import submissionService from '../../services/submissionService.js';
 import LoadingDots from '../../components/loadintDots/LoadingDots.js';
+import UsernameHoverCard from '../../components/usernameHoverCard/UsernameHoverCard.js';
 
 const Details = () => {
     let navigate = useNavigate()
@@ -47,7 +48,8 @@ const Details = () => {
                             </div>
                             <div className="submission-info-username">
                                 <span>by </span>
-                                <Link to={`/${data.author?.username}`}>{data.author?.username}</Link>
+                                {/* <Link to={`/${data.author?.username}`}>{data.author?.username}</Link> */}
+                                <UsernameHoverCard username={data.author.username} />
                                 {isAuthor
                                     ? <AuthorControls id={data._id} data={data} setData={setData}/>
                                     : isAuthenticated ? <FollowButton author={data.author} /> : ''

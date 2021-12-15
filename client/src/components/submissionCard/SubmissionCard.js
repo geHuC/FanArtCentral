@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { AiFillEye } from 'react-icons/ai';
 import prettyNumbers from '../../utils/prettyNumbers.js';
 import FavouriteButton from '../favouriteButton/FavouriteButton.js';
+import UsernameHoverCard from '../usernameHoverCard/UsernameHoverCard.js';
 
 const SubmissionCard = (props) => {
     return (
@@ -19,7 +20,8 @@ const SubmissionCard = (props) => {
                         <span className="submission-card-title">{props.title}</span>
                         <div className="submission-card-user">
                             <Link to={`/${props.author.username}`}><img src={props.author.avatar} alt="avatar" /></Link>
-                            <Link to={`/${props.author.username}`} className="submission-card-name">{props.author.username}</Link>
+                            <UsernameHoverCard username={props.author.username} externalClass="submission-card-name" />
+                            {/* <Link to={`/${props.author.username}`} className="submission-card-name">{props.author.username}</Link> */}
                         </div>
                     </div>
                 </div>

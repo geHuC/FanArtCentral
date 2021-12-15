@@ -1,7 +1,7 @@
 .submission-card {
     overflow: hidden;
     position: relative;
-    transition: all .5s ease-in;
+    transition: all .3s ease-in;
     cursor: pointer;
 }
 
@@ -30,9 +30,9 @@
     width: 100%;
     opacity: 0;
     visibility: none;
-    transition: .5s ease;
+    transition: .2s ease-in;
     background: rgb(57, 56, 57);
-    background: linear-gradient(0deg, rgba(57, 56, 57, 1) 35%, rgba(57, 56, 57, 0) 100%, rgba(57, 56, 57, 0) 100%);
+    background: linear-gradient(0deg, rgba(57, 56, 57, 0.801) 35%, rgba(57, 56, 57, 0) 80%, rgba(57, 56, 57, 0) 80%);
 
     display: flex;
 }
@@ -100,7 +100,7 @@
 }
 
 .submission-card:hover .submission-card-overlay {
-    opacity: .9;
+    opacity: 1;
 }
 
 .submission-card-views {
