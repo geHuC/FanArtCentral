@@ -6,7 +6,7 @@ import FollowButton from '../followButton/FollowButton.js';
 import { useUserContext } from '../../context/UserContext.js';
 import useWindowDimensions from '../../hooks/useWindowDimensions.js';
 
-const UsernameHoverCard = ({ username, externalClass }) => {
+const UsernameHoverCard = ({ username, externalClass, externalElipsColor }) => {
     const [userData, setUserData] = useState({});
     const [showCard, setShowCard] = useState(false);
     const [cardLocation, setCardLocation] = useState({})
@@ -49,13 +49,13 @@ const UsernameHoverCard = ({ username, externalClass }) => {
         } else {
             setShowCard(true);
         }
-    })
+    }, [pagewidth, nameRef, userData, username])
 
     const mouseLeaveHandler = () => {
         setShowCard(false);
     }
     return (
-        <div className="username-hover-container" onMouseLeave={mouseLeaveHandler} onMouseEnter={mouseEnterHandler} onScroll={mouseLeaveHandler}>
+        <div className={`username-hover-container ${externalElipsColor && externalElipsColor}`} onMouseLeave={mouseLeaveHandler} onMouseEnter={mouseEnterHandler} onScroll={mouseLeaveHandler}>
             <Link to={`/${username}`} className={`${externalClass && externalClass} ${wait && 'wait'}`} ref={nameRef}  >{username}</Link>
             {showCard && <div className="username-hover-card" style={cardLocation}>
                 <div className="username-hover-card-avatar-container">

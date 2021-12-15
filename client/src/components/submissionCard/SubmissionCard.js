@@ -20,7 +20,8 @@ const SubmissionCard = (props) => {
                         <span className="submission-card-title">{props.title}</span>
                         <div className="submission-card-user">
                             <Link to={`/${props.author.username}`}><img src={props.author.avatar} alt="avatar" /></Link>
-                            <UsernameHoverCard username={props.author.username} externalClass="submission-card-name" />
+                            <UsernameHoverCard username={props.author.username} externalClass="submission-card-name submission-card-name-color"
+                            externalElipsColor="submission-card-name-color" />
                             {/* <Link to={`/${props.author.username}`} className="submission-card-name">{props.author.username}</Link> */}
                         </div>
                     </div>

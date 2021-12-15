@@ -56,6 +56,8 @@
     display: flex;
     flex-direction: column;
     overflow: hidden;
+    
+    text-overflow: ellipsis;
 }
 
 .submission-card-right-container {
@@ -83,16 +85,15 @@
 
 .submission-card-name {
     text-decoration: none;
-    color: white;
     font-style: bold;
     margin-left: 0.5rem;
-
     text-overflow: ellipsis;
-
     white-space: nowrap;
     overflow: hidden;
 }
-
+.submission-card-name-color{
+    color: white;
+}
 .submission-card-user {
     display: flex;
     align-items: center;

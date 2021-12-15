@@ -1,5 +1,7 @@
 .username-hover-container {
     position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .username-hover-card {
