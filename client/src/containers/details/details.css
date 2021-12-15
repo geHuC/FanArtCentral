@@ -33,6 +33,7 @@
     justify-content: flex-end;
     font-size: 0.8rem;
 }
+
 .submission-info-right p {
     margin-right: 0.5rem;
 }
@@ -82,44 +83,43 @@
     margin-left: 0.25rem;
 }
 
-.image-container>img {
+.image-container img {
     height: 70vh;
-    box-shadow: 0 0 1rem rgba(0, 0, 0, 0.3)  ; 
-	-webkit-box-shadow: 0 0 1rem rgba(0, 0, 0, 0.3)  ; 
-	-moz-box-shadow: 0 0 1rem rgba(0, 0, 0, 0.3)  ; 
+    box-shadow: 0 0 1rem rgba(0, 0, 0, 0.3);
+    -webkit-box-shadow: 0 0 1rem rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 0 0 1rem rgba(0, 0, 0, 0.3);
 }
-.image-container{
+
+.image-container {
     position: relative;
 }
-.image-container a{
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    cursor:zoom-in;
+
+.image-container a {
+    cursor: zoom-in;
 }
-.submission-info-username a{
+
+.submission-info-username a {
     text-decoration: underline;
     color: var(--color-text-light);
     font-weight: bold;
     margin-left: 0.2rem;
 }
+
 .submission-info-username {
     display: flex;
     align-items: center;
 }
 
-.submission-avatar img{
+.submission-avatar img {
     object-fit: cover;
     width: 2.5rem;
     height: 2.5rem;
 }
 
-.submission-details-container{
-    box-shadow: 0 -2px 0 rgba(0, 0, 0, 0.2)  ; 
-	-webkit-box-shadow: 0 -2px 0 rgba(0, 0, 0, 0.2)  ; 
-	-moz-box-shadow: 0 -2px 0 rgba(0, 0, 0, 0.2)  ; 
+.submission-details-container {
+    box-shadow: 0 -2px 0 rgba(0, 0, 0, 0.2);
+    -webkit-box-shadow: 0 -2px 0 rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: 0 -2px 0 rgba(0, 0, 0, 0.2);
     margin-top: 1rem;
     display: flex;
     flex-direction: column;
@@ -133,5 +133,5 @@
     width: 80%;
     margin: 2rem 3rem;
     align-items: flex-start;
-    align-content:flex-start;
+    align-content: flex-start;
 }
