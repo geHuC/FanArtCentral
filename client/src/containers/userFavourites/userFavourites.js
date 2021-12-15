@@ -28,7 +28,7 @@ const UserFavourites = () => {
                     return navigate('/404');
                 }
                 setLoading(false) })
-    }, [username, location])
+    }, [username, location, navigate])
 
     if (loading) return <LoadingDots />;
 

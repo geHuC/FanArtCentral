@@ -30,7 +30,7 @@ const UserSubmissions = () => {
                 }
                 setLoading(false)
             })
-    }, [username, location])
+    }, [username, location, navigate])
 
     if (loading) return <LoadingDots />;
 

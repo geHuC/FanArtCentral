@@ -1,7 +1,7 @@
 import './settings.css'
 import ChangeAvatar from '../../components/changeAvatar/ChangeAvatar.js'
 import { useUserContext } from '../../context/UserContext.js'
-import { useCallback, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import userService from '../../services/userService.js';
 import FormInput from '../../components/formInput/FormInput.js';
 import DescriptionTextBox from '../../components/descriptionTextBox/DescriptionTextBox.js';

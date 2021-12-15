@@ -1,6 +1,6 @@
 import './details.css'
 import { useState, useEffect } from 'react';
-import { Link, Navigate, useNavigate, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import TimeAgo from 'timeago-react';
 import { AiFillEye, AiOutlineStar } from 'react-icons/ai';
 import { useUserContext } from '../../context/UserContext.js';
@@ -22,7 +22,7 @@ const Details = () => {
             .catch(err => {
                 navigate('/404');
             });
-    }, [slug, author])
+    }, [slug, author, navigate])
 
     let isAuthor = undefined;
 
@@ -33,8 +33,9 @@ const Details = () => {
     return (
         <section className="details-container">
             <div className="image-container">
-                <a href={data.imageUrl} target='_blank' rel="noreferrer" ></a>
-                <img src={data.imageUrl} alt="fanart" />
+                <a href={data.imageUrl} target='_blank' rel="noreferrer" >
+                    <img src={data.imageUrl} alt="fanart" />
+                </a>
             </div>
             <div className="submission-details-container">
                 <div className="submission-info">
@@ -51,7 +52,7 @@ const Details = () => {
                                 {/* <Link to={`/${data.author?.username}`}>{data.author?.username}</Link> */}
                                 <UsernameHoverCard username={data.author.username} />
                                 {isAuthor
-                                    ? <AuthorControls id={data._id} data={data} setData={setData}/>
+                                    ? <AuthorControls id={data._id} data={data} setData={setData} />
                                     : isAuthenticated ? <FollowButton author={data.author} /> : ''
                                 }
 

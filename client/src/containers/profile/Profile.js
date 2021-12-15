@@ -1,6 +1,6 @@
 import './profile.css'
 import React, { useEffect, useState } from 'react'
-import { Navigate, useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import FollowersRow from '../../components/followersRow/FollowersRow.js';
 import SubmissionsRow from '../../components/submissionsRow/SubmissionsRow.js';
 import ProfileDataBar from '../../components/profileDataBar/ProfileDataBar.js';
@@ -24,7 +24,7 @@ const Profile = () => {
                 }
                 setWaiting(false)
             })
-    }, [username])
+    }, [username, navigate])
 
 
     if (waiting) return <LoadingDots />;

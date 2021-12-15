@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import { Link } from 'react-router-dom';
 import FollowerCard from '../followerCard/FollowerCard.js'
 import './followersRow.css'
 
