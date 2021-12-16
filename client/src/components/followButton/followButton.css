@@ -14,5 +14,8 @@
     cursor: pointer;
 }
 .wait{
-    cursor: wait;
+    cursor: wait !important;
+}
+.follow-button-not-following:hover{
+    transform: scale(1.1);
 }
