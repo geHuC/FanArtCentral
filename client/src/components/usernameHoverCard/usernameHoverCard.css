@@ -2,6 +2,7 @@
     position: relative;
     overflow: hidden;
     text-overflow: ellipsis;
+    cursor: auto;
 }
 
 .username-hover-card {
@@ -13,10 +14,9 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     padding: 1rem 0rem;
-    z-index: 9999;
-    
-    transform: translateX(-50%);
+    z-index: 99999;
 }
 
 .uhc-username {
@@ -29,6 +29,7 @@
 .uhc-fullname {
     margin-top: 0.1rem;
     font-size: 0.8rem;
+    color: var(--color-text-light);
 }
 
 
@@ -37,7 +38,9 @@
     height: 3rem;
 
 }
-
+.username-hover-card-stats{
+    color: var(--color-text-light);
+}
 .username-hover-card-avatar-container img {
     width: 3rem;
     height: 3rem;
@@ -61,6 +64,8 @@
     display: flex;
     gap: 0.1rem;
     margin-bottom: 1rem;
+    padding-left: 0.35rem;
+    width: 100%;
 }
 
 .uhc-submission {
@@ -91,12 +96,19 @@
     flex-direction: column;
     background: rgba(235, 235, 235, 0.7);
 }
+.uhc-submission .uhc-last-link:hover{
+    font-size: .9rem;
+}
 
 .uhc-submission img {
     width: 3.5rem;
     height: 3rem;
     object-fit: cover;
     border: 1px solid grey;
+}
+.uhc-submission img:hover{
+    border: 1px solid var(--color-accent);
+    opacity: .8;
 }
 
 .uhc-follow {

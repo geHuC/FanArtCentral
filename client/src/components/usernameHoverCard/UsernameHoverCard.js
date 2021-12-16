@@ -26,12 +26,12 @@ const UsernameHoverCard = ({ username, externalClass, externalElipsColor }) => {
     const mouseEnterHandler = useCallback(() => {
         const { x, y, width, height } = nameRef.current.getBoundingClientRect();
         let top = y - 240;
-        let left = (x + (width / 2));
+        let left = (x + (width / 2) - 120);
         if (top < 0) {
             top = y + height;
         }
         if (left < 0) {
-            left = x;
+            left = 5;
         }
         if (left + 120 > pagewidth) {
             left = x + width - 240;
