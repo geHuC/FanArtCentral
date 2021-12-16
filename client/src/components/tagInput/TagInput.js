@@ -15,7 +15,7 @@ const TagInput = ({ tags, setTags }) => {
         const { key } = e;
         const trimmedInput = input.trim();
         setShowError(false);
-        if (key === ',' && trimmedInput.length && !tags.includes(trimmedInput)) {
+        if (key === ',' || key === 'Enter' && trimmedInput.length && !tags.includes(trimmedInput)) {
             e.preventDefault();
             if (trimmedInput.length < 3) {
                 return setShowError(true);
@@ -43,6 +43,17 @@ const TagInput = ({ tags, setTags }) => {
         setTags(prevState => prevState.filter((tag, i) => i !== index))
     }
 
+    const onBlur = (e) => {
+        const trimmedInput = input.trim();
+        if (trimmedInput.length && !tags.includes(trimmedInput)) {
+            e.preventDefault();
+            if (trimmedInput.length < 3) {
+                return setShowError(true);
+            }
+            setTags(prevState => [...prevState, trimmedInput]);
+            setInput('');
+        }
+    }
     return (
         <>
             <label className="tag-label">Tags (separate by comma ",")</label>
@@ -50,7 +61,7 @@ const TagInput = ({ tags, setTags }) => {
                 {tags.map((tag, index) => (
                     <div className="input-tag" key={tag}>
                         {tag}
-                        <button onClick={() => deleteTag(index)}>x</button>
+                        <button type="button" onClick={() => deleteTag(index)}>x</button>
                     </div>
                 ))}
                 <input
@@ -59,6 +70,7 @@ const TagInput = ({ tags, setTags }) => {
                     onKeyDown={onKeyDown}
                     onChange={onChange}
                     onKeyUp={onKeyUp}
+                    onBlur={onBlur}
                 />
             </div>
             {showError && <span className='tag-input-error'>Tag must be atleast 3 characters long</span>}
