@@ -2,19 +2,21 @@ import './followButton.css'
 import { useEffect, useState } from 'react'
 import { useUserContext } from '../../context/UserContext.js';
 import userService from '../../services/userService.js';
+import { useNavigate } from 'react-router-dom'
 
 const FollowButton = ({ author }) => {
     const [follow, setFollow] = useState(false);
     const [followSymbol, setFollowSymbol] = useState('✓');
     const [waiting, setWaiting] = useState(false);
-    const { state: { user } } = useUserContext();
+    const { state: { user, isAuthenticated } } = useUserContext();
+    const navigate = useNavigate();
     useEffect(() => {
-        if (user) {
+        if (isAuthenticated) {
             if (author.followers.some(x => x === user._id)) {
                 setFollow(true);
             }
         }
-    }, [author, user]);
+    }, [author, user, isAuthenticated]);
 
     const mouseOverHandler = (e) => {
         setFollowSymbol('✕');
@@ -25,6 +27,7 @@ const FollowButton = ({ author }) => {
 
     const followHandler = (e) => {
         e.preventDefault()
+        if (!isAuthenticated) navigate('/login');
         setWaiting(true);
         userService.follow(author.username)
             .then(data => { setWaiting(false); setFollow(true) })
@@ -32,6 +35,7 @@ const FollowButton = ({ author }) => {
     }
     const unfollowHandler = (e) => {
         e.preventDefault()
+        if (!isAuthenticated) navigate('/login');
         setWaiting(true);
         userService.unfollow(author.username)
             .then(data => { setWaiting(false); setFollow(false) })

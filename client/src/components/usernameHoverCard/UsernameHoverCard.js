@@ -10,7 +10,7 @@ const UsernameHoverCard = ({ username, externalClass, externalElipsColor }) => {
     const [userData, setUserData] = useState({});
     const [showCard, setShowCard] = useState(false);
     const [cardLocation, setCardLocation] = useState({})
-    const { state: { user } } = useUserContext();
+    const { state: { user, isAuthenticated } } = useUserContext();
     const [wait, setWait] = useState(false)
     const pagewidth = useWindowDimensions();
     const nameRef = useRef();
@@ -74,7 +74,7 @@ const UsernameHoverCard = ({ username, externalClass, externalElipsColor }) => {
                     {userData.submissions.length > 3 && <div className="uhc-submission">
                         <Link to={`/${userData.username}/submissions`} state={{ userData }} className="uhc-last-link"> see all </Link><img src={userData.submissions[3].thumbUrl} alt="submission" /></div>}
                 </div>
-                {user && (user.username !== userData.username && <FollowButton author={userData} />)}
+                {user?.username !== userData.username && <FollowButton author={userData} />}
             </div>}
         </div>
     )
