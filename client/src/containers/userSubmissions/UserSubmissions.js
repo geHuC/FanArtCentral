@@ -40,7 +40,7 @@ const UserSubmissions = () => {
                 <div className="data-bar">
                     <ProfileDataBar userData={userData} username={username} label="Submissions" />
                 </div>
-                <Carousel submissions={userData.submissions} />
+                <Carousel submissions={userData.submissions} emptyMsg={`${username} has no submissions yet`}/>
             </section>
         </>
     )

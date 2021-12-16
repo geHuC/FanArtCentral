@@ -38,7 +38,7 @@ const UserFavourites = () => {
                 <div className="data-bar">
                     <ProfileDataBar userData={userData} username={username} label="Favourites" />
                 </div>
-                <Carousel submissions={userData.favourites} />
+                <Carousel submissions={userData.favourites} emptyMsg={`${username} has no favourites yet`}/>
             </section>
         </>
     )
