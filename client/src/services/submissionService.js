@@ -26,8 +26,8 @@ const update = (id, formData) => {
 const getOne = (slug, author) => {
     return api.get(`/${author}/art/${slug}`);
 }
-const getAll = (type) => {
-    return api.get(`/?sortBy=${type}`);
+const getAll = (type, page) => {
+    return api.get(`/?sortBy=${type}&page=${page}`);
 }
 const getByTag = (sortType, tag) => {
     return api.get(`/tags/${tag}?sortBy=${sortType}`);

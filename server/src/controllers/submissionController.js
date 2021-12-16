@@ -18,7 +18,7 @@ router.get('/', async (req, res) => {
         if (req.query.page) {
             skip = parseInt(req.query.page) * 20;
         }
-        const submissions = await submissionService.getAll(queryParams, skip);
+        const submissions = await submissionService.getAll(queryParams, skip, 20);
 
         submissions.forEach(x => x.author = { username: x.author.username, avatar: x.author.avatar });
         res.status(200).json(submissions);
