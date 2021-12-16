@@ -15,7 +15,7 @@ const TagInput = ({ tags, setTags }) => {
         const { key } = e;
         const trimmedInput = input.trim();
         setShowError(false);
-        if (key === ',' || key === 'Enter' && trimmedInput.length && !tags.includes(trimmedInput)) {
+        if ((key === ',' || key === 'Enter') && trimmedInput.length && !tags.includes(trimmedInput)) {
             e.preventDefault();
             if (trimmedInput.length < 3) {
                 return setShowError(true);
