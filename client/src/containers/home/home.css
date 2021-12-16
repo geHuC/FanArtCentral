@@ -30,7 +30,7 @@
     opacity: 0.9;
     position: sticky;
     top: 3.125rem;
-    z-index: 9998;
+    z-index: 9997;
 }
 .home-sort-bar span{
     margin-right: 0.5rem;
