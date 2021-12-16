@@ -37,7 +37,7 @@ const reducer = (state, action) => {
             return {
                 ...state,
                 isAuthenticated: false,
-                user: {}
+                user: null
             };
         case "STORAGE-LOAD":
             submissionService.setUp(action.payload.token);
