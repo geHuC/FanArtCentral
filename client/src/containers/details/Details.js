@@ -9,6 +9,7 @@ import FollowButton from '../../components/followButton/FollowButton.js';
 import submissionService from '../../services/submissionService.js';
 import LoadingDots from '../../components/loadintDots/LoadingDots.js';
 import UsernameHoverCard from '../../components/usernameHoverCard/UsernameHoverCard.js';
+import FavouriteButton from '../../components/favouriteButton/FavouriteButton.js';
 
 const Details = () => {
     let navigate = useNavigate()
@@ -20,10 +21,9 @@ const Details = () => {
         submissionService.getOne(slug, author)
             .then(res => setData(res.data))
             .catch(err => {
-                navigate('/404');
+                navigate('/404', { replace: true });
             });
     }, [slug, author, navigate])
-
     let isAuthor = undefined;
 
     if (user) isAuthor = author === user.username;
@@ -38,6 +38,13 @@ const Details = () => {
                 </a>
             </div>
             <div className="submission-details-container">
+                {!isAuthor && <div className="submission-favourites">
+                    <FavouriteButton 
+                    big={true}
+                    favourites={data.favourites}
+                    author={data.author}
+                    postId={data._id} />
+                </div>}
                 <div className="submission-info">
                     <div className="submission-info-left">
                         <div className="submission-avatar">

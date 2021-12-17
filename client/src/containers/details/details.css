@@ -84,7 +84,7 @@
 }
 
 .image-container img {
-    height: 70vh;
+    max-height: 70vh;
     box-shadow: 0 0 1rem rgba(0, 0, 0, 0.3);
     -webkit-box-shadow: 0 0 1rem rgba(0, 0, 0, 0.3);
     -moz-box-shadow: 0 0 1rem rgba(0, 0, 0, 0.3);
@@ -134,4 +134,10 @@
     margin: 2rem 3rem;
     align-items: flex-start;
     align-content: flex-start;
+}
+.submission-favourites{
+    width: 80%;
+    margin-top: 1rem;
+    display: flex;
+    align-items: center;
 }
