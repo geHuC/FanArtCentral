@@ -2,7 +2,7 @@
     box-shadow: 0 0 1rem rgba(0, 0, 0, 0.3)  ; 
 	-webkit-box-shadow: 0 0 1rem rgba(0, 0, 0, 0.3)  ; 
 	-moz-box-shadow: 0 0 1rem rgba(0, 0, 0, 0.3)  ; 
-    background: white;
+    background: var(--color-light);
     position: absolute;
     right: calc(40%);
     transform: translateX(50%);
@@ -23,7 +23,7 @@
     margin-left: -5px;
     border-width: 10px;
     border-style: solid;
-    border-color: white transparent transparent transparent; 
+    border-color: var(--color-light) transparent transparent transparent; 
 }
 
 .confirm-box-buttons button{
@@ -34,6 +34,7 @@
 }
 .confirm-box-button-cancel{
     margin-right: 1rem;
+    color: var(--color-black)
 }
 .confirm-box-button-cancel:hover{
     color: var(--color-accent);
