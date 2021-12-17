@@ -68,7 +68,6 @@ router.patch('/profile/settings', isUser, upload.single('avatar'), async (req, r
             const fileType = req.file.mimetype.split('/')[1];
             const fileName = `${Date.now().toString().slice(7, 12)}.${fileType}`
             const filepath = `avatars/${req.user.username}/${fileName}`;
-            console.log(filepath);
             const thumbnail = await imageThumbnail(req.file.buffer, { height: 200 });
             await fbService.file(filepath).save(thumbnail);
             req.body.avatar = `https://firebasestorage.googleapis.com/v0/b/fanart-central.appspot.com/o/avatars%2F${req.user.username}%2F${fileName}?alt=media`
