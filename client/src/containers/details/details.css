@@ -127,6 +127,7 @@
     align-items: center;
     background: var(--color-light);
     color: var(--color-black);
+    padding-bottom: 1rem;
 }
 
 .submission-description {
@@ -140,4 +141,8 @@
     margin-top: 1rem;
     display: flex;
     align-items: center;
+}
+.submission-image-details{
+    width: 80%;
+    display: flex;
 }

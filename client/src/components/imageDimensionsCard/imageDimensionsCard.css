@@ -1,0 +1,26 @@
+.image-dimesions-top {
+    text-transform: uppercase;
+}
+
+.image-dimensions-container {
+    color: var(--color-black);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem 1rem;
+    background: var(--color-bg);
+}
+
+.image-dimesions-bottom {
+    display: flex;
+    gap: 3rem;
+}
+
+.image-dimesions-bottom-left {
+    opacity: .8;
+}
+
+.image-dimesions-top {
+    opacity: .8;
+    font-size: 0.8rem;
+}

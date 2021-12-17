@@ -11,6 +11,7 @@ import LoadingDots from '../../components/loadintDots/LoadingDots.js';
 import UsernameHoverCard from '../../components/usernameHoverCard/UsernameHoverCard.js';
 import FavouriteButton from '../../components/favouriteButton/FavouriteButton.js';
 import changeTitle from '../../utils/changeTitle.js';
+import ImageDimensionsCard from '../../components/imageDimensionsCard/ImageDimensionsCard.js';
 
 const Details = () => {
     let navigate = useNavigate()
@@ -92,6 +93,9 @@ const Details = () => {
                 <div className="submission-description">
                     <p>{data.description}</p>
                 </div>
+                {data.height && <div className="submission-image-details">
+                    <ImageDimensionsCard width={data.width} height={data.height} size={data.fileSize}/>
+                </div>}
             </div>
         </section>
     )
