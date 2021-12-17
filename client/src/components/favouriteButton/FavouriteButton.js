@@ -6,7 +6,7 @@ import prettyNumbers from '../../utils/prettyNumbers.js';
 import { useNavigate } from 'react-router-dom';
 import submissionService from '../../services/submissionService.js';
 
-const FavouriteButton = ({ favourites, postId, author }) => {
+const FavouriteButton = ({ favourites, postId, author, big }) => {
     const [hasFavourited, setHasFavourited] = useState(false);
     const [favouritesCount, setFavouritesCount] = useState(favourites.length)
     const { state: { user } } = useUserContext()
@@ -22,7 +22,7 @@ const FavouriteButton = ({ favourites, postId, author }) => {
     const addToFavourites = (e) => {
         e.preventDefault();
         if (!user) {
-           return navigate('/login')
+            return navigate('/login')
         }
         if (user.username === author.username) {
             return;
@@ -38,7 +38,7 @@ const FavouriteButton = ({ favourites, postId, author }) => {
     const removeFromFavourites = (e) => {
         e.preventDefault();
         if (!user) {
-           return navigate('/login')
+            return navigate('/login')
         }
         if (user.username === author.username) {
             return;
@@ -52,13 +52,21 @@ const FavouriteButton = ({ favourites, postId, author }) => {
     }
     return (
         <>
-            {hasFavourited
-                ? (<div className="favourites-button-container favourites-button-container-followed" onClick={removeFromFavourites}>
-                    < AiFillStar />{prettyNumbers(favouritesCount)}
-                </div>)
-                : (<div className="favourites-button-container favourites-button-container-not-followed" onClick={addToFavourites}>
-                    < AiOutlineStar />{prettyNumbers(favouritesCount)}
-                </div>)
+            {!big
+                ? hasFavourited
+                    ? (<div className="favourites-button-container favourites-button-container-followed" onClick={removeFromFavourites}>
+                        < AiFillStar />{prettyNumbers(favouritesCount)}
+                    </div>)
+                    : (<div className="favourites-button-container favourites-button-container-not-followed" onClick={addToFavourites}>
+                        < AiOutlineStar />{prettyNumbers(favouritesCount)}
+                    </div>)
+                : hasFavourited
+                    ? (<div className="favourites-button-container-big favourites-button-container-followed" onClick={removeFromFavourites}>
+                        < AiFillStar /> In Favourites
+                    </div>)
+                    : (<div className="favourites-button-container-big favourites-button-container-not-followed" onClick={addToFavourites}>
+                        < AiOutlineStar /> Add to favourites
+                    </div>)
             }
         </>
     )

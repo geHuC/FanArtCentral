@@ -10,3 +10,11 @@
     font-size: 0.8rem;
     z-index: 9998;
 }
+.favourites-button-container-big {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    font-size: 1rem;
+    z-index: 9998;
+    cursor: pointer;
+}
