@@ -2,10 +2,11 @@
     display: flex;
     justify-items: center;
     align-items: center;
-    color: var(--color-accent);
+    color: var(--color-text-light);
     cursor: pointer;
     margin-right: 0.5rem;
 }
 .switch-item:hover{
-    transform: scale(1.1);
+    transform: scale(1.2);
+    color: var(--color-accent);
 }
