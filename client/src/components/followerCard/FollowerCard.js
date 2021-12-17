@@ -14,20 +14,20 @@ const FollowerCard = ({ userId }) => {
             .catch(err => { console.log(err) })
     }, [userId])
     return (
-        <Link to={`/${state.username}`} style={{ textDecoration: 'none', maxWidth: '13.5rem' }} >
-            <div className='follower-card'>
-                <div className="follower-card-left">
-                    <div className="follower-card-img-container">
-                        <img src={state.avatar} alt="avatar" />
-                    </div>
+        <div className='follower-card'>
+            <Link to={`/${state.username}`} className='follower-card-link'></Link>
+            <div className="follower-card-left">
+                <div className="follower-card-img-container">
+                    <img src={state.avatar} alt="avatar" />
                 </div>
-                <div className="follower-card-right">
-                    {/* <span>{state.username}</span> */}
-                    <UsernameHoverCard username={state.username} noLink={true} externalClass={'cursor-pointer'}/>
-                </div>
-
             </div>
-        </Link>
+            <div className="follower-card-right">
+                {/* <span>{state.username}</span> */}
+                <UsernameHoverCard username={state.username} externalClass={'cursor-pointer'} />
+            </div>
+
+        </div >
+
     )
 }
 
