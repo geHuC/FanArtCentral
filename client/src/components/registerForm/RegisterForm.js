@@ -77,7 +77,7 @@ const RegisterForm = () => {
         authService.register(values)
             .then(data => {
                 dispatch({ type: 'LOGIN', payload: data.data });
-                navigate('/');
+                navigate('/', { replace: true });
             })
             .catch(err => {
                 setServerError(err.response.data);

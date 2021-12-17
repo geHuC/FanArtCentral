@@ -20,7 +20,7 @@ const LoginForm = () => {
         authService.login(values)
             .then(data => {
                 dispatch({ type: 'LOGIN', payload: data.data })
-                navigate(-1);
+                navigate(-1,{replace: true});
             })
             .catch(err => {setServerError(true); console.log(err);});
     }
