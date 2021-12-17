@@ -22,6 +22,15 @@ const schema = new mongoose.Schema({
     thumbWidth: {
         type: Number,
     },
+    width: {
+        type: Number,
+    },
+    height: {
+        type: Number,
+    },
+    fileSize: {
+        type: Number,
+    },
     views: {
         type: Number,
         default: 0,

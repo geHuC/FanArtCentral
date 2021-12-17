@@ -136,7 +136,10 @@ router.post('/', isUser, upload.single('image'), async (req, res) => {
         req.body.thumbWidth = dimensions.width;
         req.body.imageUrl = `https://firebasestorage.googleapis.com/v0/b/fanart-central.appspot.com/o/art%2F${req.user.username}%2F${fileName}?alt=media`;
         req.body.thumbUrl = `https://firebasestorage.googleapis.com/v0/b/fanart-central.appspot.com/o/thumbs%2F${req.user.username}%2F${thumbName}?alt=media`;
-
+        const imageDimensions = sizeOf(req.file.buffer);
+        req.body.width = imageDimensions.width;
+        req.body.height = imageDimensions.height;
+        req.body.fileSize = req.file.size;
         const sub = await submissionService.create(req.body);
         userService.pushToField(req.user._id, sub._id, 'submissions');
         res.status(201).json(sub)
