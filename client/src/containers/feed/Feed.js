@@ -4,6 +4,7 @@ import { useUserContext } from '../../context/UserContext.js'
 import Carousel from '../../components/carousel/Carousel.js';
 import submissionService from '../../services/submissionService.js';
 import SkeletonCarousel from '../../components/skeletonCarousel/SkeletonCarousel.js';
+import changeTitle from '../../utils/changeTitle.js';
 
 const Feed = () => {
     const { state: { user } } = useUserContext()
@@ -22,6 +23,7 @@ const Feed = () => {
                 setLoading(false);
                 console.log(err);
             })
+        changeTitle(`Feed`);
     }, [user,sort])
 
     const sortByNewest = () => {

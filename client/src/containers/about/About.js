@@ -1,6 +1,8 @@
+import changeTitle from '../../utils/changeTitle.js'
 import './about.css'
 
 const About = () => {
+    changeTitle('About');
     return (
         <section className="about vh70-box">
             <h1>About</h1>

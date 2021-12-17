@@ -1,10 +1,11 @@
 import './userSubmissions.css'
 import { useEffect, useState } from 'react';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
-import axios from 'axios';
 import Carousel from '../../components/carousel/Carousel.js';
 import ProfileDataBar from '../../components/profileDataBar/ProfileDataBar.js';
 import LoadingDots from '../../components/loadintDots/LoadingDots.js';
+import changeTitle from '../../utils/changeTitle.js';
+import userService from '../../services/userService.js';
 
 const UserSubmissions = () => {
     const location = useLocation();
@@ -14,12 +15,13 @@ const UserSubmissions = () => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
+        changeTitle(`${username}'s favourites`);
         if (username === location.state?.userData?.username) {
             setUserData(location.state?.userData);
             setLoading(false)
             return;
         }
-        axios.get(`http://localhost:3030/api/v1/users/get/${username}`)
+        userService.getByUsername(username)
             .then(res => {
                 setUserData(res.data);
                 setLoading(false);

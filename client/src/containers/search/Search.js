@@ -3,6 +3,7 @@ import { useLocation } from 'react-router'
 import Carousel from '../../components/carousel/Carousel.js';
 import SkeletonCarousel from '../../components/skeletonCarousel/SkeletonCarousel.js';
 import submissionService from '../../services/submissionService.js';
+import changeTitle from '../../utils/changeTitle.js';
 
 const Search = () => {
     const searchParams = useLocation().search;
@@ -12,6 +13,7 @@ const Search = () => {
     const prettySearch = searchParams.split('=')[1].split('%20').join(' ');
 
     useEffect(() => {
+        changeTitle(`Search results for ${searchParams}`);
         submissionService.getBySearch(searchParams, sort)
             .then(res => { setLoading(false); setData(res.data) })
             .catch(err => { setLoading(false); console.log(err); })

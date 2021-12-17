@@ -1,5 +1,5 @@
 import './submit.css'
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useUserContext } from '../../context/UserContext.js';
 import FormInput from '../../components/formInput/FormInput.js'
@@ -7,6 +7,7 @@ import TagInput from '../../components/tagInput/TagInput.js';
 import submissionService from '../../services/submissionService.js';
 import CategorySelector from '../../components/categorySelector/CategorySelector.js';
 import DescriptionTextBox from '../../components/descriptionTextBox/DescriptionTextBox.js';
+import changeTitle from '../../utils/changeTitle.js';
 
 const Submit = () => {
     const { state } = useUserContext();
@@ -15,6 +16,9 @@ const Submit = () => {
     const [serverError, setServerError] = useState(false);
     const [rerender, setRerender] = useState(1);
     const [wait, setWait] = useState(false);
+    useEffect(() => {
+        changeTitle('Submission creation');
+    }, [])
 
     const navigate = useNavigate();
     const formHandler = (e) => {

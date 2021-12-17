@@ -6,6 +6,7 @@ import SubmissionsRow from '../../components/submissionsRow/SubmissionsRow.js';
 import ProfileDataBar from '../../components/profileDataBar/ProfileDataBar.js';
 import userService from '../../services/userService.js';
 import LoadingDots from '../../components/loadintDots/LoadingDots.js';
+import changeTitle from '../../utils/changeTitle.js';
 
 const Profile = () => {
     const { username } = useParams();
@@ -13,6 +14,7 @@ const Profile = () => {
     const [waiting, setWaiting] = useState(true);
     const navigate = useNavigate();
     useEffect(() => {
+        changeTitle(`${username}'s profile`);
         userService.getByUsername(username)
             .then(res => {
                 setUserData(res.data);

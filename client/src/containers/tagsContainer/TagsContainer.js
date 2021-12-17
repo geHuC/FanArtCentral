@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import submissionService from '../../services/submissionService.js';
 import Carousel from "../../components/carousel/Carousel.js";
 import SkeletonCarousel from "../../components/skeletonCarousel/SkeletonCarousel.js";
+import changeTitle from "../../utils/changeTitle.js";
 
 const TagsContainer = () => {
     const { tag } = useParams();
@@ -12,6 +13,7 @@ const TagsContainer = () => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
+        changeTitle(`Browsing tag - ${tag}`);
         setLoading(true);
         submissionService.getByTag(sort, tag)
             .then(res => {

@@ -1,8 +1,13 @@
+import { useEffect } from 'react'
+import './login.css'
 import LoginForm from '../../components/loginForm/LoginForm.js'
 import { Link } from 'react-router-dom'
-import './login.css'
+import changeTitle from '../../utils/changeTitle.js'
 
 const Login = () => {
+    useEffect(() => {
+        changeTitle('Login')
+    }, [])
     return (
         <section className="login">
             <div className="login-left-side">

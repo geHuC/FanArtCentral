@@ -10,6 +10,7 @@ import submissionService from '../../services/submissionService.js';
 import LoadingDots from '../../components/loadintDots/LoadingDots.js';
 import UsernameHoverCard from '../../components/usernameHoverCard/UsernameHoverCard.js';
 import FavouriteButton from '../../components/favouriteButton/FavouriteButton.js';
+import changeTitle from '../../utils/changeTitle.js';
 
 const Details = () => {
     let navigate = useNavigate()
@@ -19,7 +20,10 @@ const Details = () => {
 
     useEffect(() => {
         submissionService.getOne(slug, author)
-            .then(res => setData(res.data))
+            .then(res => {
+                setData(res.data);
+                changeTitle(`${res.data.title} by ${res.data.author.username}`);
+            })
             .catch(err => {
                 navigate('/404', { replace: true });
             });
@@ -39,11 +43,11 @@ const Details = () => {
             </div>
             <div className="submission-details-container">
                 {!isAuthor && <div className="submission-favourites">
-                    <FavouriteButton 
-                    big={true}
-                    favourites={data.favourites}
-                    author={data.author}
-                    postId={data._id} />
+                    <FavouriteButton
+                        big={true}
+                        favourites={data.favourites}
+                        author={data.author}
+                        postId={data._id} />
                 </div>}
                 <div className="submission-info">
                     <div className="submission-info-left">

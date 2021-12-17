@@ -4,6 +4,7 @@ import Carousel from '../../components/carousel/Carousel.js';
 import LoadingDots from '../../components/loadintDots/LoadingDots.js';
 import SkeletonCarousel from '../../components/skeletonCarousel/SkeletonCarousel.js';
 import submissionService from '../../services/submissionService.js';
+import changeTitle from '../../utils/changeTitle.js';
 
 const Home = () => {
     const [submissions, setSubmissions] = useState([]);
@@ -43,6 +44,10 @@ const Home = () => {
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [sortType]);
+    
+    useEffect(() => {
+        changeTitle('');
+    }, [])
 
     const handleObserver = (entities) => {
         const target = entities[0];

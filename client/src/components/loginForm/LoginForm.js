@@ -1,5 +1,5 @@
 import './loginForm.css';
-import { useState } from 'react';
+import {  useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useUserContext } from '../../context/UserContext.js';
 import authService from '../../services/authService.js';
@@ -13,16 +13,15 @@ const LoginForm = () => {
         username: "",
         password: "",
     });
-
     const submitHandler = (e) => {
         setServerError(false);
         e.preventDefault();
         authService.login(values)
             .then(data => {
                 dispatch({ type: 'LOGIN', payload: data.data })
-                navigate(-1,{replace: true});
+                navigate(-1, { replace: true });
             })
-            .catch(err => {setServerError(true); console.log(err);});
+            .catch(err => { setServerError(true); console.log(err); });
     }
 
     const onChange = (e) => {

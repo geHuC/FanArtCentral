@@ -6,7 +6,7 @@ import userService from '../../services/userService.js';
 import FormInput from '../../components/formInput/FormInput.js';
 import DescriptionTextBox from '../../components/descriptionTextBox/DescriptionTextBox.js';
 import LoadingDots from '../../components/loadintDots/LoadingDots.js';
-import { useThemeContext } from '../../context/ThemeContext.js';
+import changeTitle from '../../utils/changeTitle.js';
 
 const Settings = () => {
     const { state: { user }, dispatch } = useUserContext();
@@ -14,9 +14,8 @@ const Settings = () => {
     const [loading, setLoading] = useState(true);
     const [fullname, setFullname] = useState('');
     const [imageError, setImageError] = useState(false);
-    const test = useThemeContext();
-    console.log(test);
     useEffect(() => {
+        changeTitle('Profile Settings');
         setLoading(true);
         userService.getOneById(user._id.toString())
             .then(res => {

@@ -1,8 +1,13 @@
+import './register.css'
+import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import RegisterForm from '../../components/registerForm/RegisterForm.js'
-import './register.css'
+import changeTitle from '../../utils/changeTitle.js'
 
 const Register = () => {
+    useEffect(() => {
+        changeTitle('Register');
+    }, [])
     return (
         <section className="register">
             <div className="register-left-side">

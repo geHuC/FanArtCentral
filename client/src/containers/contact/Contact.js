@@ -1,6 +1,8 @@
+import changeTitle from '../../utils/changeTitle.js'
 import './contact.css'
 
 const Contact = () => {
+    changeTitle('Contact');
     return (
         <section className="contact vh70-box">
             <h2>Get in touch</h2>

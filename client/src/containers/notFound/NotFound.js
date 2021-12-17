@@ -1,6 +1,11 @@
 import './notFound.css'
+import { useEffect } from 'react';
+import changeTitle from '../../utils/changeTitle.js';
 
 const NotFound = () => {
+    useEffect(() => {
+        changeTitle('404 Not found');
+    }, [])
     return (
         <section className="not-found-404">
             <div className="vh70-box">
