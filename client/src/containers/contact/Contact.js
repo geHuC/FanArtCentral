@@ -2,7 +2,7 @@ import './contact.css'
 
 const Contact = () => {
     return (
-        <section className="contact">
+        <section className="contact vh70-box">
             <h2>Get in touch</h2>
             <form className="contact-form" action="https://formsubmit.co/5bf66164d66b145c3a3943239c12c1d3" method="POST">
                 <label htmlFor="name">Full name:</label>

@@ -60,7 +60,9 @@
 .pd-name-container a:hover svg {
     color: var(--color-accent);
 }
-
+.pd-full-name{
+    color: var(--color-black);
+}
 .pd-right {
     display: flex;
     flex-direction: column;
@@ -72,4 +74,5 @@
     font-size: 0.8rem;
     display: flex;
     gap: 1rem;
+    color: var(--color-black)
 }

@@ -3,11 +3,16 @@
     display: flex;
     gap: 0.5rem;
     padding: 0.25rem;
-    background: var(--color-logo-text);
+    background: var(--color-bg);
     cursor: pointer;
     max-width: 13.5rem;
     min-width: 10rem;
     width: 100%;
+    color: var(--color-text-light);
+}
+
+.follower-card a {
+    text-decoration: none;
     color: var(--color-text-light);
 }
 
@@ -35,4 +40,8 @@
 .follower-card-left {
     display: flex;
     align-items: center;
+}
+
+.cursor-pointer {
+    cursor: pointer !important;
 }

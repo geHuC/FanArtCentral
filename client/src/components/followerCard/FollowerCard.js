@@ -2,6 +2,7 @@ import './followerCard.css'
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
 import userService from '../../services/userService.js';
+import UsernameHoverCard from '../usernameHoverCard/UsernameHoverCard.js';
 
 const FollowerCard = ({ userId }) => {
     const [state, setState] = useState({});
@@ -21,7 +22,8 @@ const FollowerCard = ({ userId }) => {
                     </div>
                 </div>
                 <div className="follower-card-right">
-                    <span>{state.username}</span>
+                    {/* <span>{state.username}</span> */}
+                    <UsernameHoverCard username={state.username} noLink={true} externalClass={'cursor-pointer'}/>
                 </div>
 
             </div>

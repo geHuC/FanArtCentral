@@ -26,7 +26,8 @@
     height: 2rem;
     justify-content: flex-end;
     align-items: center;
-    background: white;
+    background: var(--color-light);
+    color: var(--color-black);
     opacity: 0.9;
     position: sticky;
     top: 3.125rem;

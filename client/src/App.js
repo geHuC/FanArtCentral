@@ -21,44 +21,47 @@ import Settings from './containers/settings/Settings.js';
 import RequireGuest from './components/routeGuards/RequireGuest.js';
 import RequireAuth from './components/routeGuards/RequireAuth.js';
 import NotFound from './containers/notFound/NotFound.js';
+import ThemeProvider from './context/ThemeContext.js';
 
 function App() {
   return (
     <>
-      <UserProvider>
-        <BrowserRouter>
-          <ScrollToTop />
-          <Navbar />
-          <div className="container">
-            <Routes>
-              <Route path="/" element={<Home />} />
+      <ThemeProvider>
+        <UserProvider>
+          <BrowserRouter>
+            <ScrollToTop />
+            <Navbar />
+            <div className="container">
+              <Routes>
+                <Route path="/" element={<Home />} />
 
-              <Route element={<RequireGuest />} >
-                <Route path="/register" element={<Register />} />
-                <Route path="/login" element={<Login />} />
-              </Route>
+                <Route element={<RequireGuest />} >
+                  <Route path="/register" element={<Register />} />
+                  <Route path="/login" element={<Login />} />
+                </Route>
 
-              <Route element={<RequireAuth />} >
-                <Route path="/submit" element={<Submit />} />
-                <Route path="/feed" element={<Feed />} />
-                <Route path="/settings" element={<Settings />} />
-              </Route>
+                <Route element={<RequireAuth />} >
+                  <Route path="/submit" element={<Submit />} />
+                  <Route path="/feed" element={<Feed />} />
+                  <Route path="/settings" element={<Settings />} />
+                </Route>
 
-              <Route path="/tags/:tag" element={<TagsContainer />} />
-              <Route path="/about" element={<About />} />
-              <Route path="/search" element={<Search />} />
-              <Route path="/contact" element={<Contact />} />
-              <Route path="/404" element={<NotFound />} />
-              <Route path="/:username" element={<Profile />} />
-              <Route path="/:username/submissions" element={<UserSubmissions />} />
-              <Route path="/:username/favourites" element={<UserFavourites />} />
-              <Route path="/:author/art/:slug" element={<Details />} />
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-          </div>
-          <Footer />
-        </BrowserRouter>
-      </UserProvider>
+                <Route path="/tags/:tag" element={<TagsContainer />} />
+                <Route path="/about" element={<About />} />
+                <Route path="/search" element={<Search />} />
+                <Route path="/contact" element={<Contact />} />
+                <Route path="/404" element={<NotFound />} />
+                <Route path="/:username" element={<Profile />} />
+                <Route path="/:username/submissions" element={<UserSubmissions />} />
+                <Route path="/:username/favourites" element={<UserFavourites />} />
+                <Route path="/:author/art/:slug" element={<Details />} />
+                <Route path="*" element={<NotFound />} />
+              </Routes>
+            </div>
+            <Footer />
+          </BrowserRouter>
+        </UserProvider>
+      </ThemeProvider>
     </>
   );
 }

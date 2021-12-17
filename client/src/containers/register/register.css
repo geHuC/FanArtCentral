@@ -31,6 +31,10 @@
     justify-content: center;
     align-items: center;
     padding: 2rem;
+    color:var(--color-black);
+}
+.register-right-side a{
+    color: var(--color-accent);
 }
 .register-right-side > h2 {
     text-transform: uppercase;

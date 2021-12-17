@@ -8,5 +8,5 @@
     width: 100%;
     padding: 2rem;
     align-items: center;
-    background: white;
+    background: var(--color-light);
 }

@@ -2,7 +2,7 @@ import './about.css'
 
 const About = () => {
     return (
-        <section className="about">
+        <section className="about vh70-box">
             <h1>About</h1>
             <h2>FanArt Central</h2>
             <p>The site is built as a <a href="https://softuni.bg/" target="_blank" rel="noreferrer" >SoftUni</a> course project by <a href="https://github.com/geHuC/" target="_blank" rel="noreferrer">Denis Velkov</a>. </p> 

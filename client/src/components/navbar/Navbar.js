@@ -3,6 +3,7 @@ import UserDropDown from '../userDropDown/UserDropDown.js'
 import './navbar.css'
 import { AiOutlineSearch } from 'react-icons/ai';
 import { useUserContext } from '../../context/UserContext.js';
+import ThemeSwitch from '../themeSwitch/ThemeSwitch.js';
 const Navbar = () => {
     const { state: { isAuthenticated } } = useUserContext();
     const navigate = useNavigate();
@@ -30,6 +31,7 @@ const Navbar = () => {
                     </div>
                 </div>
                 <div className="navigation-links">
+                    <ThemeSwitch />
                     {isAuthenticated
                         ? <>
                             <p className="feed-link"><Link to="/feed">Feed</Link></p>

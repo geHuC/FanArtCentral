@@ -1,8 +1,64 @@
-@import url('https://fonts.googleapis.com/css2?family=Anton&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;1,300;1,400;1,700&display=swap');;
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;1,300;1,400;1,700&display=swap');
+;
 
 :root {
   --font-family: 'Roboto', sans-serif;
+  --text-dark: rgb(173, 184, 201);
+  --accent1-dark: hsl(152, 100%, 31%);
+  --accent2-dark: hsl(21, 84%, 56%);
+  --accent3-dark: hsl(40, 89%, 65%);
+  --bkg1-dark: hsl(218, 15.4%, 10.2%);
+  --bkg2-dark: hsl(218, 14.7%, 18.7%);
+}
 
+@media(prefers-color-scheme: dark) {
+  :root {
+    --color-bg: var(--bkg2-dark);
+    --color-logo: #17953d;
+    --color-accent: var(--accent1-dark);
+    --color-text-light: var(--text-dark);
+    --color-logo-text: #f6f6f6;
+    --color-navbar-background: var(--bkg1-dark);
+    --color-navbar-search-input: #6e6e6e;
+    --color-navbar-search-text: #e4fdec;
+    --color-white: var(--bkg1-dark);
+    --color-black: white;
+    --color-light: rgb(66, 73, 87);
+    --card-shadow: rgba(255, 255, 255, 0.15) 2px 2px 5px 2px, rgba(255, 255, 255, 0.05) 1px 1px 1px 1px;
+  }
+}
+
+@media(prefers-color-scheme: light) {
+  :root {
+    --color-bg: #f5f5f5;
+    --color-logo: #17953d;
+    --color-accent: #17953d;
+    --color-text-light: #505050;
+    --color-logo-text: #f6f6f6;
+    --color-navbar-background: #fff;
+    --color-navbar-search-input: #e2e2e2;
+    --color-navbar-search-text: #1a1a1a;
+    --color-white: white;
+    --color-black: black;
+    --color-light: white;
+    --card-shadow: rgba(50, 50, 105, 0.15) 0px 2px 5px 0px, rgba(0, 0, 0, 0.05) 0px 1px 1px 0px;
+  }
+}
+[color-scheme="dark"]{
+  --color-bg: var(--bkg2-dark);
+  --color-logo: #17953d;
+  --color-accent: var(--accent1-dark);
+  --color-text-light: var(--text-dark);
+  --color-logo-text: #f6f6f6;
+  --color-navbar-background: var(--bkg1-dark);
+  --color-navbar-search-input: #6e6e6e;
+  --color-navbar-search-text: #e4fdec;
+  --color-white: var(--bkg1-dark);
+  --color-black: white;
+  --color-light: rgb(66, 73, 87);
+  --card-shadow: rgba(255, 255, 255, 0.15) 2px 2px 5px 2px, rgba(255, 255, 255, 0.05) 1px 1px 1px 1px;
+}
+[color-scheme="light"]{
   --color-bg: #f5f5f5;
   --color-logo: #17953d;
   --color-accent: #17953d;
@@ -11,7 +67,11 @@
   --color-navbar-background: #fff;
   --color-navbar-search-input: #e2e2e2;
   --color-navbar-search-text: #1a1a1a;
+  --color-white: white;
+  --color-black: black;
+  --color-light: white;
+  --card-shadow: rgba(50, 50, 105, 0.15) 0px 2px 5px 0px, rgba(0, 0, 0, 0.05) 0px 1px 1px 0px;
 }
-body{
+body {
   font-family: 'Roboto', sans-serif;
 }

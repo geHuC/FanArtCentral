@@ -16,11 +16,13 @@
     display: flex;
     height: 2rem;
     align-items: center;
-    background: white;
+    background: var(--color-light);
+    color: var(--color-black);
     opacity: .9;
     position: sticky;
     top: 3.125rem;
     z-index: 9997;
+
 }
 
 .feed-bar-left {

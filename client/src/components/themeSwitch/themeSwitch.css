@@ -1,0 +1,11 @@
+.theme-switch{
+    display: flex;
+    justify-items: center;
+    align-items: center;
+    color: var(--color-accent);
+    cursor: pointer;
+    margin-right: 0.5rem;
+}
+.switch-item:hover{
+    transform: scale(1.1);
+}

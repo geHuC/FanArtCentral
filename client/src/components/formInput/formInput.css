@@ -4,6 +4,7 @@
     border: none;
     outline: none;
     background: var(--color-navbar-search-input);
+    color: var(--color-black);
 }
 .form-input span{
     display: none;

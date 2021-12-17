@@ -19,6 +19,7 @@
     border: none;
     outline: none;
     background: var(--color-navbar-search-input);
+    color: var(--color-black);
 }
 
 .input-tag {

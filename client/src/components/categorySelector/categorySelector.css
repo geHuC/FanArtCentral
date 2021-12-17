@@ -4,7 +4,11 @@
     border: none;
     outline: none;
     background: var(--color-navbar-search-input);
+    color: var(--color-black);
     width: 100%;
+}
+.category-option{
+    color: var(--color-black);
 }
 
 .category-label{
