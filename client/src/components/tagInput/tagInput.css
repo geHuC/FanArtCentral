@@ -8,9 +8,13 @@
     background: var(--color-navbar-search-input);
 }
 
-.tag-label{
+.tag-label {
     display: block;
     margin-top: 1rem;
+}
+
+.tag-input-container>input::placeholder {
+    color: var(--color-text-light);
 }
 
 .tag-input-container>input {
@@ -42,7 +46,8 @@
     cursor: pointer;
     color: var(--color-logo-text);
 }
-.tag-input-error{
+
+.tag-input-error {
     color: tomato;
     font-size: 0.75rem;
     padding-left: 0.25rem;

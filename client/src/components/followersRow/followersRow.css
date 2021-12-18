@@ -23,6 +23,7 @@
     align-items: center;
     cursor: pointer;
     font-size: .8rem;
+    color: var(--color-text-light);
 }
 .followers-row-show-more:hover{
     color:var(--color-accent);

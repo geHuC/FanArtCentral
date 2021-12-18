@@ -6,6 +6,9 @@
     background: var(--color-navbar-search-input);
     color: var(--color-black);
 }
+.form-input input::placeholder{
+    color: var(--color-text-light);
+}
 .form-input span{
     display: none;
     color: tomato;

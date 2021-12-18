@@ -4,6 +4,9 @@
 }
 
 
+.description-text-box textarea::placeholder{
+    color: var(--color-text-light);
+}
 .description-text-box textarea {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;

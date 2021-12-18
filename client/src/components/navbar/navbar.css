@@ -32,6 +32,9 @@
     color: var(--color-navbar-search-text);
     outline: none;
 }
+.navigation-search-input::placeholder{
+    color: var(--color-text-light);
+}
 .search-icon{
     position: absolute;
     height: 2rem;
