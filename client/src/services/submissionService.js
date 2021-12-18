@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-    baseURL: `http://localhost:3030/api/v1/submissions`,
+    baseURL: `https://fanartcentral.herokuapp.com/api/v1/submissions`,
 });
 
 const setUp = (token) => {

@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-    baseURL: `http://localhost:3030/auth`,
+    baseURL: `https://fanartcentral.herokuapp.com/auth`,
 })
 
 const register = (data) => {
