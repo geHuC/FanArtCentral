@@ -61,10 +61,46 @@ Can be divided in a few groups (**containers**,**components**,**hooks**,**servic
  -  **Details** - statefull component used to display a single submission entry
 			 - interacts with the submission service to load and display the data
  -  **Feed** - statefull component used to display a users feed 
-			 - interacts with the submission service and with the userContext to load and display the data
+			 - interacts with the submission service and with the userContext to load the data and utilizes the ***Carousel*** component to display it
  -  **Home** - statefull component used to display an ***infinite scroll***  feed of all the content
-			 - interacts with the submission service and with the userContext to load and display the data
+			 - interacts with the submission service and with the userContext to load the data and utilizes the ***Carousel*** component to display it
+ -  **Login** - statefull component used to contain the login form
+ -  **NotFound** - stateless component holding the 404 error
+ -  **Profile** - statull component that display the user's latest submission and favourites their statistics like view counts, subscriber count as well as their bio.
+ -  **Register** - statefull component used to contain the register form
+ -  **Search** -statefull component that interacts with the submission service to get the search results and utilizes the ***Carousel*** component to display it
+ -  **Settings** statefull component that holds a form allowing the user to change their name/biography/avatar.
+ - **Submit** statefull component that holds a form allowing the user to submit new content.
+ -  **TagsContainer** statefull component that interacts with the submission service to get the tagged content and utilizes the ***Carousel*** component to display it
+ - **UserFavourites** statefull component displaying data about the user and all their favourites
+ - **UserSubmissions** statefull component displaying data about the user and all their submissions
+
+
+***Components*** - the list is not exhaustive  will include a few of the most notable.
+
+ - **Carousel** - *"pièce de résistance"* of the application. Takes in an array of submissions and uses the data from them alongside data from the custom hook useWindowDimesions to calculate rows of data for display in such a way as to always have a full grid of items, but keep their respective aspect ratios without cropping them. Does son on the fly - bad for performance perhaps but good for the soul, and anyway how often do you resize a browser window nonstop?
+ - **SubmissionCard** - the bread and butter of the application. it is the main way submission data is presented to the user. Takes in the data for a single submission and presents at a glance to the user a thumbnail of the picture, the title, view count, the submitter and an option to favourite then and there.
+ - **UserDropDown** - a popup card that shows on username hover that provides additional options to the user to get more data on the give user. Utilizes a bounding rect so that it can display above or below depending on wheter it might not clip out of the screen. In addition uses a fixed position so that it can always appear on top of where it needs to be without clipping.
+ - **TagInput** a small component that converts entered tags into actual tag buttons with the ability to dismiss any single one you choose. used in the Submit form and the Edit form.
+ - **FavourteButton** - handles the logic behind favouriting and showing whether something has been or not favourited. Optionally takes an argument about the appearance so it can be used as a smal one star button in the **SubmissionCard** or a big text button in the **Details** container.
+
+
+***Context*** 
+	
+
+ - **UserContext** - handles the state of authentication with the help of useReducer, also exposes it's own hook useUserState for easier access to context data in other components. Also handles the setup so various services have access to the auth token.
+ - **ThemeContext** - handles the theme context and exposes it's own hook for easier access.
+
+***Hooks***
+
+ - **useWindowDimensions** - the linchpin behind the **Carousel** component, listens to the window for resize events and changes the exposed widow dimensions accordingly.
+
 					
+***Utils***
+
+ - **changeTitle** - a homemade version of the only functionality the application scope needs from the Helmet library. (changes the page title so history and bookmarks look nicer)
+ - **prettyNumbers** - takes in a number and converts it to a shortened K version eg. 1000 to 1k, 1000000 to 1M and so on.
+ - **prettySizes** - similar to **prettyNumbers** but this one converts bytes to KB, MB, GB etc.
 
  
 
